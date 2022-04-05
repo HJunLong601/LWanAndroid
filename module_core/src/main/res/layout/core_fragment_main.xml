@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/common_white"
+        tools:context="com.hjl.core.MainActivity"
+        android:orientation="vertical">
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/fragment_main_vp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/common_divider_line_color" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/fragment_main_tl"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/core_bg_tab" />
+
+    </LinearLayout>
+</layout>

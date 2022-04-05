@@ -1,0 +1,3 @@
+
+include ':skin-plugin'
+project(":skin-plugin").projectDir = new File("../gradle-plugin/skin-plugin")

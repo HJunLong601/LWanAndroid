@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="holder"
+            type="com.hjl.core.adpter.LoadStateViewHolder" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ProgressBar
+            android:id="@+id/load_more_pb"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:visibility="@{holder.isLoading() ?View.VISIBLE:View.GONE}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/load_more_retry_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击重试"
+            android:textColor="@color/common_text_blue"
+            android:visibility="@{holder.isLoading() ?View.GONE:View.VISIBLE}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/load_more_end_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已经到底啦"
+            android:textColor="@color/common_text_gray"
+            android:visibility="@{holder.isEnd() ? View.VISIBLE:View.GONE}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

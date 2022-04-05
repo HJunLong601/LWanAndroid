@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:background="@color/common_white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.hjl.core.customview.X5WebView
+            android:id="@+id/core_simple_wb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+</layout>

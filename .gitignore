@@ -1,0 +1,15 @@
+*.iml
+.gradle
+/local.properties
+/.idea/
+.DS_Store
+/build
+/captures
+.cxx
+/output
+
+# Project exclude paths
+/buildSrc/build/
+wankey.jks
+# Project exclude paths
+/gradle-plugin/skin-plugin/build/

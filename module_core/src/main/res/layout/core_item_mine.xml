@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.hjl.core.net.bean.MineItemBean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/core_item_mine_iv"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="@dimen/margin_normal_size"
+            loadDrawable ="@{data.iconRes}"
+            tools:drawable="@drawable/core_icon_like" />
+
+        <TextView
+            android:id="@+id/core_item_mine_tv"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:layout_marginStart="@dimen/margin_normal_size"
+            android:textColor="@color/common_black"
+            android:textSize="@dimen/common_text_content_size"
+            android:text="@{data.itemName}"
+            tools:text="我的收藏" />
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="@dimen/margin_normal_size"
+            android:src="@drawable/view_icon_arrow_right_black" />
+
+    </LinearLayout>
+</layout>

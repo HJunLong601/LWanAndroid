@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.system.SystemArticleDetailActivity">
+
+        <include
+            android:id="@+id/core_title_ll"
+            layout="@layout/base_title_layout"/>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/core_system_tab"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/common_white"
+            app:tabIndicatorColor="@color/common_base_theme_color"
+            app:tabIndicatorHeight="2dp"
+            app:tabIndicatorFullWidth="false"
+            app:tabInlineLabel="true"
+
+            app:tabMode="scrollable"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/core_system_vp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+</layout>

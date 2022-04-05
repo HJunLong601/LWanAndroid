@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/no_network_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/no_network_retry_view2"
+        android:layout_width="100dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:padding="10dp"
+        android:src="@drawable/common_ic_no_network"
+        />
+
+    <TextView
+        android:id="@+id/no_network_view_tv2"
+        style="@style/MultipleStateView.Content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/no_network_retry_view2"
+        android:text="呀, 网络出了问题"/>
+
+    <Button
+        android:id="@+id/no_network_retry_view"
+        style="@style/MultipleStateView.Content"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/no_network_view_tv2"
+        android:text="刷新"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:id="@+id/no_network_view_tv"
+        style="@style/MultipleStateView.Content"
+        android:layout_below="@id/no_network_retry_view"
+        android:text="网络异常"
+        android:visibility="gone"/>
+</RelativeLayout>

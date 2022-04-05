@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_white">
+
+        <TextView
+            android:id="@+id/core_item_maven_group_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_base_theme_color"
+            android:textStyle="bold"
+            android:textSize="@dimen/common_title_normal_size"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/margin_tiny_size"
+            android:layout_marginEnd="@dimen/margin_tiny_size"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="title"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
+
+    </LinearLayout>
+</layout>

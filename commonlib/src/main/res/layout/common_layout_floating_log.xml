@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/common_bg_floating_log"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/floating_title_ll"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:layout_alignParentTop="true">
+
+
+        <ImageView
+            android:id="@+id/floating_title_iv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/common_icon_folding"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/floating_title_tv"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:text="标题"
+            android:textSize="13sp"
+            android:textColor="#000000"
+            android:gravity="center"/>
+
+        <ImageView
+            android:id="@+id/floating_close_iv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/common_icon_close"
+            android:padding="8dp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/floating_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#9E9B9B"
+        android:layout_below="@+id/floating_title_ll"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_transparent"
+        android:layout_above="@+id/floating_bottom_ll"
+        android:layout_below="@+id/floating_line">
+
+        <TextView
+            android:id="@+id/floating_tip_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:textColor="@color/common_gray"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:background="@color/common_transparent"
+            android:visibility="visible"
+            android:text="点击标题可拖动\n点击 x 清除日志;长按关闭窗口 \n 底部可拖动调节大小" />
+
+        <ScrollView
+            android:id="@+id/floating_sv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/floating_log_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#000000"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:paddingBottom="60dp"
+                tools:text="5555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555"/>
+
+        </ScrollView>
+
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/floating_bottom_ll"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/common_bg_floating_bottom"
+        android:layout_alignParentBottom="true">
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

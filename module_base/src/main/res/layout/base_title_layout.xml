@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/common_base_theme_color"
+        android:id="@+id/base_title_layout">
+
+        <ImageView
+            android:id="@+id/title_left_iv"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="16dp"
+            android:src="@drawable/common_icon_back"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <LinearLayout
+            android:id="@+id/title_center_ll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/title_right_iv"
+            app:layout_constraintStart_toEndOf="@+id/title_left_iv"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_goneMarginStart="48dp"
+            app:layout_goneMarginEnd="48dp">
+
+            <TextView
+                android:id="@+id/title_center_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="normal"
+                android:layout_gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="标题" />
+
+            <TextView
+                android:id="@+id/title_center_small_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="normal"
+                android:layout_marginTop="2dp"
+                android:visibility="gone"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="小标题"
+                tools:visibility="gone" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/title_right_iv"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title_right_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:visibility="gone"
+            tools:text="123" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

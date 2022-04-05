@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.hjl.core.viewmodel.HomeSearchViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.main.HomeSearchActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/common_base_theme_color">
+
+
+            <com.hjl.commonlib.customview.ClearEditText
+                android:id="@+id/home_search_ev"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:paddingStart="@dimen/padding_tiny_size"
+                android:paddingEnd="@dimen/padding_tiny_size"
+                android:textColor="@color/common_black"
+                android:textSize="@dimen/common_text_content_size"
+                android:background="@drawable/core_bg_search_white_24t"
+                android:focusable="true"
+                android:imeOptions="actionSearch"
+                android:drawableLeft="@drawable/view_icon_search_gray"
+                android:drawablePadding="@dimen/padding_tiny_size"
+                android:singleLine="true"
+                android:maxLines="1"
+
+                android:layout_marginTop="@dimen/margin_tiny_size"
+                android:layout_marginBottom="@dimen/margin_tiny_size"
+                android:layout_marginStart="@dimen/margin_normal_size"
+                android:layout_marginEnd="@dimen/margin_tiny_size"
+                tools:text="111"/>
+
+            <TextView
+                android:id="@+id/home_search_cancel_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="取消"
+                android:padding="@dimen/margin_tiny_size"
+                android:layout_marginStart="@dimen/margin_tiny_size"
+                android:layout_marginEnd="@dimen/margin_normal_size"
+                android:textSize="@dimen/common_text_big_size"
+                android:textColor="@color/common_white"/>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/home_search_recommend_sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/common_white"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/home_search_history_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/home_search_state_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="2dp"
+                    android:textSize="@dimen/common_text_content_size"
+                    android:textColor="@color/common_white"
+                    android:text="@string/core_string_all_search_history"
+                    android:gravity="center"
+                    android:visibility="gone"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="@color/common_divider_line_color"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="大家都在搜"
+                    android:textStyle="bold"
+                    android:gravity="center|start|bottom"
+                    android:textSize="@dimen/common_title_small_size"
+                    android:textColor="@color/common_base_theme_color"
+                    android:paddingStart="@dimen/padding_normal_size"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/home_search_hotkey"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:overScrollMode="never"
+                    android:background="@color/common_white"
+                    android:paddingTop="@dimen/margin_small_size"
+                    android:paddingEnd="@dimen/padding_tiny_size"
+                    android:paddingStart="@dimen/padding_tiny_size"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/margin_tiny_size"
+                    android:layout_marginEnd="@dimen/margin_tiny_size"
+                    android:layout_marginTop="@dimen/margin_tiny_size"
+                    android:background="@color/common_divider_line_color"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@color/common_white"
+                    android:text="常用网址"
+                    android:textStyle="bold"
+                    android:gravity="center|start|bottom"
+                    android:textSize="@dimen/common_title_small_size"
+                    android:textColor="@color/common_base_theme_color"
+                    android:paddingStart="@dimen/padding_normal_size"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/home_search_commonly_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:overScrollMode="never"
+                    android:background="@color/common_white"
+                    android:paddingTop="@dimen/margin_small_size"
+                    android:paddingEnd="@dimen/padding_tiny_size"
+                    android:paddingStart="@dimen/padding_tiny_size"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_search_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:overScrollMode="never"/>
+
+
+
+    </LinearLayout>
+</layout>

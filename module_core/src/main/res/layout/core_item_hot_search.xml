@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.hjl.core.net.bean.HomeSearchHotKeyBean" />
+    </data>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_marginStart="@dimen/margin_tiny_size"
+        android:layout_marginEnd="@dimen/margin_tiny_size"
+        android:layout_marginBottom="@dimen/margin_tiny_size"
+        android:paddingStart="@dimen/padding_small_size"
+        android:paddingEnd="@dimen/padding_small_size"
+        android:gravity="center"
+        android:textColor="@color/common_gray_tinge"
+        android:background="@drawable/core_bg_gray_4t"
+        android:textSize="@dimen/common_text_annotation_size"
+        android:text="@{data.name}"
+        tools:text="热门搜索">
+
+    </TextView>
+</layout>

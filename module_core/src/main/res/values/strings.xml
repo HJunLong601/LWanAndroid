@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="core_string_noname">佚名</string>
+
+    <string name="core_string_all_search_history">全部搜索记录</string>
+    <string name="core_string_clear_search_history">清除搜索记录</string>
+    <string name="core_string_key_value_format">%s : %s</string>
+    <string name="core_string_group">group</string>
+    <string name="core_string_artifact">artifact</string>
+    <string name="core_string_version">version</string>
+
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/error_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/error_retry_view2"
+        android:layout_width="100dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:padding="10dp"
+        android:src="@drawable/common_ic_no_content"
+        />
+
+    <TextView
+        android:id="@+id/error_view_tv2"
+        style="@style/MultipleStateView.Content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/error_retry_view2"
+        android:text="请求失败"/>
+
+    <Button
+        android:id="@+id/error_retry_view"
+        style="@style/MultipleStateView.Content"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/error_view_tv2"
+        android:background="@color/common_gray_D5D5D5"
+        android:text="刷新"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:id="@+id/error_view_tv"
+        style="@style/MultipleStateView.Content"
+        android:layout_below="@id/error_retry_view"
+        android:text="请求失败，点击图片重试"
+        android:visibility="gone"/>
+</RelativeLayout>

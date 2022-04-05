@@ -1,0 +1,69 @@
+import com.android.aaptcompiler.parseAsBool
+
+plugins {
+    id("com.android.library")
+    id("kotlin-android")
+    id("kotlin-android-extensions")
+    id("kotlin-kapt")
+}
+
+
+android {
+    compileSdkVersion(Android.compileSdkVersion)
+    buildToolsVersion(Android.buildToolsVersion)
+
+    defaultConfig {
+        minSdkVersion(Android.minSdkVersion)
+        targetSdkVersion(Android.targetSdkVersion)
+        versionCode = 1
+        versionName = "1.0"
+
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        isEnabled = true
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    buildTypes {
+        val release = getByName("release")
+        release.apply {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+
+}
+
+// 2、kotlin 配置ARouter
+//kapt {
+//    arguments {
+//        arg("AROUTER_MODULE_NAME", project.getName())
+//    }
+//}
+
+dependencies {
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+
+    api(project(":commonlib"))
+    api(project(":jetpacklib"))
+
+    api(Dependencies.permissionx)
+
+    // room
+    api(Jetpack.room)
+    kapt(Jetpack.room_compiler)
+    api(Jetpack.room_ktx)
+
+}

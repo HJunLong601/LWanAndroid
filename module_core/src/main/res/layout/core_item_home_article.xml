@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="bean"
+            type="com.hjl.core.net.bean.HomeArticleBean.Article" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@color/common_white"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_height="wrap_content"
+        app:linkUrl="@{bean.link}">
+
+        <TextView
+            android:id="@+id/home_article_author_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_text_blue"
+            android:textSize="@dimen/common_text_annotation_size"
+            android:layout_marginStart="@dimen/margin_normal_size"
+            android:layout_marginTop="@dimen/margin_tiny_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="折剑游侠"/>
+
+        <TextView
+            android:id="@+id/home_article_title_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal_size"
+            android:layout_marginTop="@dimen/margin_tiny_size"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:maxLines="2"
+            android:textColor="@color/common_black"
+            android:textSize="@dimen/common_text_content_size"
+            app:layout_constraintEnd_toStartOf="@+id/home_article_like_iv"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_article_author_tv"
+            tools:text="Glide都在用的LruCache，你学会了吗？Glide都在用的LruCache，你学会了吗Glide都在用的LruCache，你学会了吗" />
+
+        <TextView
+            android:id="@+id/home_article_tag_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_tiny_size"
+            android:layout_marginBottom="@dimen/margin_tiny_size"
+            android:textSize="@dimen/common_text_annotation_size"
+            android:textColor="@color/common_text_assist_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_article_title_tv"
+            app:layout_constraintStart_toStartOf="@id/home_article_title_tv"
+            tools:text="公众号·code小生"/>
+
+        <TextView
+            android:id="@+id/home_article_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/common_text_assist_gray"
+            android:textSize="@dimen/common_text_annotation_size"
+            android:text="@{bean.niceDate}"
+            android:layout_marginTop="@dimen/margin_tiny_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2020-06-14 19:34" />
+
+        <ImageView
+            android:id="@+id/home_article_like_iv"
+            android:layout_width="56dp"
+            android:layout_height="40dp"
+            android:src="@{bean.collect ? @drawable/core_icon_like_red : @drawable/core_icon_unlike}"
+            android:paddingEnd="@dimen/padding_normal_size"
+            android:paddingStart="@dimen/padding_normal_size"
+            android:paddingTop="@dimen/padding_tiny_size"
+            android:paddingBottom="@dimen/padding_tiny_size"
+            tools:src="@drawable/core_icon_unlike"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_article_date_tv"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

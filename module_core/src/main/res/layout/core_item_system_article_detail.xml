@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="String" />
+    </data>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginStart="@dimen/margin_tiny_size"
+        android:layout_marginEnd="@dimen/margin_tiny_size"
+        android:layout_marginBottom="@dimen/margin_tiny_size"
+        android:paddingStart="@dimen/padding_normal_size"
+        android:paddingEnd="@dimen/padding_normal_size"
+        android:gravity="center"
+        android:textColor="@color/common_text_content_color"
+        android:background="@drawable/core_bg_blue_16t"
+        android:textSize="@dimen/common_text_content_size"
+        android:text="@{data}"
+        tools:text="热门搜索">
+
+    </TextView>
+</layout>

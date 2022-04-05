@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="270dp"
+    android:layout_height="204dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/common_bg_white_7t">
+
+    <TextView
+        android:id="@+id/common_dialog_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_large_size"
+        android:layout_marginTop="@dimen/margin_small_size"
+        android:layout_marginEnd="@dimen/margin_large_size"
+        android:textColor="@color/common_text_content_color"
+        android:textSize="@dimen/common_text_big_size"
+        android:maxLines="1"
+        android:gravity="start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="同意销项" />
+    <TextView
+        android:id="@+id/common_dialog_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/common_text_content_color"
+        android:textSize="@dimen/common_text_content_size"
+        android:layout_marginTop="2dp"
+        app:layout_constraintStart_toStartOf="@id/common_dialog_title"
+        app:layout_constraintTop_toBottomOf="@+id/common_dialog_title"
+        tools:text="分配给李云龙"
+        tools:visibility="visible"/>
+    <com.hjl.viewlib.customview.ClearEditText
+        android:id="@+id/common_dialog_mark"
+        android:layout_width="228dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="@dimen/margin_small_size"
+        android:textColorHint="@color/common_text_assist_gray"
+        android:hint="给处理人留言选填，30字以内以内"
+        android:textColor="@color/common_text_content_color"
+        android:textSize="@dimen/common_text_content_size"
+        android:gravity="start"
+        android:maxLength="30"
+        android:background="@drawable/common_bg_edit_gray_4t"
+        android:paddingTop="@dimen/margin_tiny_size"
+        android:paddingEnd="@dimen/margin_small_size"
+        android:paddingStart="@dimen/margin_small_size"
+        android:paddingBottom="@dimen/margin_tiny_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/common_dialog_content"/>
+    <View
+        android:id="@+id/common_dialog_line_row"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/common_divider_line_color"
+        android:layout_marginTop="@dimen/margin_normal_size"
+        app:layout_constraintTop_toBottomOf="@+id/common_dialog_mark"/>
+    <View
+        android:id="@+id/common_dialog_line_column"
+        android:layout_width="1dp"
+        android:layout_height="60dp"
+        android:background="@color/common_divider_line_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/common_dialog_line_row"/>
+
+    <TextView
+        android:id="@+id/common_dialog_cancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="取消"
+        android:textSize="@dimen/common_title_normal_size"
+        android:textColor="@color/common_text_content_color"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/common_dialog_line_row"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/common_dialog_line_column"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/common_dialog_confirm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="加入群聊"
+        android:textSize="@dimen/common_title_normal_size"
+        android:textColor="@color/common_base_theme_color"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/common_dialog_line_row"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/common_dialog_line_column" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

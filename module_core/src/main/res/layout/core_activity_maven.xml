@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.hjl.core.viewmodel.MavenViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/common_white"
+        tools:context=".ui.mine.MavenActivity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Google Maven查询"
+            android:textSize="20sp"
+            android:textColor="@color/common_text_title_color"
+            android:layout_marginBottom="@dimen/margin_large_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/core_maven_search_ll"/>
+
+        <LinearLayout
+            android:id="@+id/core_maven_search_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/core_bg_search_gray_24t"
+            android:layout_marginStart="@dimen/margin_plus_size"
+            android:layout_marginEnd="@dimen/margin_plus_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:padding="@dimen/padding_small_size"
+                android:src="@drawable/view_icon_search_gray" />
+
+            <com.hjl.commonlib.customview.ClearEditText
+                android:id="@+id/core_maven_search_ev"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginEnd="@dimen/margin_large_size"
+                android:background="@color/common_transparent"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:hint="输入要查询的Google包名"
+                android:textSize="@dimen/common_text_content_size"
+                android:textColor="@color/common_black"
+                android:textColorHint="@color/common_text_assist_gray"
+                android:focusable="true"
+                android:gravity="center|start"
+                android:focusableInTouchMode="true"
+                android:imeOptions="actionSearch"/>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/core_maven_tip_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:layout_marginEnd="56dp"
+            android:background="@drawable/core_bg_search_gray_tip"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            app:layout_constraintStart_toStartOf="@id/core_maven_search_ll"
+            app:layout_constraintTop_toBottomOf="@+id/core_maven_search_ll"/>
+
+
+        <TextView
+            android:id="@+id/core_maven_baidu_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="百度搜索"
+            android:textColor="@color/common_base_theme_color"
+            android:textSize="@dimen/common_text_content_size"
+            android:layout_marginStart="@dimen/margin_plus_size"
+            android:layout_marginBottom="@dimen/margin_plus_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/core_maven_google_tv"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/core_maven_google_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Google"
+            android:textColor="@color/common_base_theme_color"
+            android:textSize="@dimen/common_text_content_size"
+            android:layout_marginEnd="@dimen/margin_plus_size"
+            android:layout_marginBottom="@dimen/margin_plus_size"
+            app:layout_constraintStart_toEndOf="@+id/core_maven_baidu_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

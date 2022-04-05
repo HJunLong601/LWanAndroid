@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/empty_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/empty_retry_view"
+        android:layout_width="100dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="false"
+        android:background="#FFFFFF"
+        android:padding="10dp"
+        android:src="@drawable/common_ic_no_content_gray" />
+
+    <TextView
+        android:id="@+id/empty_view_tv"
+        style="@style/MultipleStateView.Content"
+        android:layout_below="@id/empty_retry_view"
+        android:text="暂无相关内容"
+        android:visibility="visible"/>
+
+    <Button
+        android:id="@+id/empty_view_btn"
+        style="@style/MultipleStateView.Content"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/empty_view_tv"
+        android:background="@color/common_gray_D5D5D5"
+        android:text="刷新"
+        android:textColor="#FFFFFF"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+</RelativeLayout>

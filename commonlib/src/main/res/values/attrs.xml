@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MultipleStateViewAttrs">
+        <attr name="emptyView" format="reference"/>
+        <attr name="errorView" format="reference"/>
+        <attr name="loadingView" format="reference"/>
+        <attr name="noNetworkView" format="reference"/>
+        <attr name="contentView" format="reference"/>
+    </declare-styleable>
+
+    <attr name="borderRadius" format="dimension" />
+    <attr name="type">
+        <enum name="circle" value="0" />
+        <enum name="round" value="1" />
+    </attr>
+
+    <declare-styleable name="RoundImageView">
+        <attr name="borderRadius" />
+        <attr name="type" />
+    </declare-styleable>
+
+
+
+</resources>

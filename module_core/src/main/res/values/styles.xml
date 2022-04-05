@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <style name="BottomInActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowEnterAnimation">@anim/core_anim_bottom_to_top</item>
+        <item name="android:windowExitAnimation">@anim/core_anim_to_invisiable</item>
+    </style>
+    
+</resources>
