@@ -12,10 +12,7 @@ import com.hjl.commonlib.utils.SpUtils
 import com.hjl.commonlib.utils.ToastUtil
 
 import com.hjl.module_base.CacheUtils
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,11 +33,11 @@ import kotlin.coroutines.suspendCoroutine
 var coreApiServer = ApiRetrofit.getInstance().createApiServer(CoreApiServer::class.java)!!
 
 
-public fun launchNetRequest(
+fun CoroutineScope.launchNetRequest(
         request : suspend () -> Unit,
         fail : suspend (ApiException) -> Unit = {LogUtils.e("HTTP",it.errorMessage)}){
 
-    GlobalScope.launch {
+    launch {
 
         try {
             withContext(Dispatchers.IO){

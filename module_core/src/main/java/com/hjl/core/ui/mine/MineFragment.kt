@@ -2,6 +2,7 @@ package com.hjl.core.ui.mine
 
 import android.content.Intent
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
 import com.hjl.commonlib.base.BaseApplication
@@ -53,7 +54,7 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
 
     override fun initView() {
         tipDialog.setOnConfirmClickListener {
-            launchNetRequest({
+            lifecycleScope.launchNetRequest({
                 coreApiServer.logout().await()
                 com.hjl.commonlib.utils.SpUtils.clearCookie()
                 SpUtils.saveUserInfo("")
