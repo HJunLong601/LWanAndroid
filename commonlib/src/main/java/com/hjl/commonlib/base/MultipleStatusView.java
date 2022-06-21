@@ -243,6 +243,10 @@ public class MultipleStatusView extends RelativeLayout{
         return this;
     }
 
+    public int getViewStatus(){
+        return mViewStatus;
+    }
+
     /**
      * 设置内容视图,视图要是此控件的在一个页面
      */

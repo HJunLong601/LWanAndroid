@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hjl.commonlib.base.MultipleStatusView
 import com.hjl.jetpacklib.mvvm.recycleview.OnItemChildClickListener
 import com.hjl.commonlib.constant.Constant
 import com.hjl.commonlib.utils.SpUtils
@@ -17,6 +18,7 @@ import com.hjl.core.viewmodel.HomeViewModel
 import com.hjl.commonlib.extend.addDivider
 import com.hjl.jetpacklib.mvvm.view.BaseMVVMFragment2
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -74,7 +76,14 @@ class SystemDetailFragment : BaseMVVMFragment2<CoreFragmentSystemDetailBinding,H
     }
 
     override fun loadData() {
-
+        lifecycleScope.launch {
+//           不会阻塞线程
+            delay(8000)
+            if(getViewStatus() != MultipleStatusView.STATUS_CONTENT){
+                showError()
+                ToastUtil.show("status error : ${getViewStatus()}")
+            }
+        }
         lifecycleScope.launch(Dispatchers.IO) {
             viewModel.getSystemArticlePager(courseId).collect{
                 showComplete()

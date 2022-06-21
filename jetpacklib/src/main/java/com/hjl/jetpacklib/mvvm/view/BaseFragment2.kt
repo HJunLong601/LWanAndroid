@@ -100,6 +100,10 @@ abstract class BaseFragment2<VDB : ViewDataBinding> : Fragment(){
         initView()
     }
 
+    open fun getViewStatus() : Int{
+        return mMultipleStatusView.viewStatus
+    }
+
     open fun showLoading() {
         AndroidUtils.runOnMainThread { mMultipleStatusView.showLoading() }
     }

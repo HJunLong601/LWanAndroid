@@ -3,6 +3,7 @@ package com.hjl.core.ui.main
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hjl.commonlib.base.MultipleStatusView
 import com.hjl.jetpacklib.mvvm.recycleview.OnItemChildClickListener
 import com.hjl.commonlib.utils.SpUtils
 import com.hjl.commonlib.utils.ToastUtil
@@ -14,6 +15,7 @@ import com.hjl.core.viewmodel.HomeViewModel
 import com.hjl.commonlib.extend.addDivider
 import com.hjl.jetpacklib.mvvm.view.BaseMVVMFragment2
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -57,11 +59,11 @@ class WenDaFragment : BaseMVVMFragment2<CoreFragmentWendaBinding,HomeViewModel>(
                     if (bean.isCollect){
                         viewModel.removeCollect(bean.id)
                         bean.isCollect = false
-                        it.notifyDataSetChanged()
+                        it.notifyItemChanged(position)
                     }else{
                         viewModel.collectArticle(bean.id)
                         bean.isCollect = true
-                        it.notifyDataSetChanged()
+                        it.notifyItemChanged(position)
                     }
                 }
             }
@@ -70,6 +72,14 @@ class WenDaFragment : BaseMVVMFragment2<CoreFragmentWendaBinding,HomeViewModel>(
     }
 
     override fun loadData() {
+        lifecycleScope.launch {
+//           不会阻塞线程
+            delay(8000)
+            if(getViewStatus() != MultipleStatusView.STATUS_CONTENT){
+                showError()
+                ToastUtil.show("status error : ${getViewStatus()}")
+            }
+        }
         lifecycleScope.launch(Dispatchers.IO) {
             viewModel.getWendaPagingData().collect{
                 showComplete()

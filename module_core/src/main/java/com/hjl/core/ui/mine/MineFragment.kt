@@ -41,7 +41,20 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
 
     val tipDialog by lazy {
         BaseTipDialog(mContext,BaseTipDialog.TipDialogEnum.DIALOG_TIP)
-                .setTitle("确定退出登录？")
+                .setTitle("确定退出登录？").also { dialog ->
+                dialog.setOnConfirmClickListener {
+                    lifecycleScope.launchNetRequest({
+                        coreApiServer.logout().await()
+                        com.hjl.commonlib.utils.SpUtils.clearCookie()
+                        SpUtils.saveUserInfo("")
+                        BaseApplication.runOnUIThread {
+                            binding.mineUserNameTv.text = "去登陆"
+                            binding.mineUserInfo.visibility = View.GONE
+                            dialog.dismiss()
+                        }
+                    })
+                }
+            }
     }
 
     override fun initLayoutResID(): Int {
@@ -53,18 +66,6 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
     }
 
     override fun initView() {
-        tipDialog.setOnConfirmClickListener {
-            lifecycleScope.launchNetRequest({
-                coreApiServer.logout().await()
-                com.hjl.commonlib.utils.SpUtils.clearCookie()
-                SpUtils.saveUserInfo("")
-                BaseApplication.runOnUIThread {
-                    binding.mineUserNameTv.text = "去登陆"
-                    binding.mineUserInfo.visibility = View.GONE
-                    tipDialog.dismiss()
-                }
-            })
-        }
 
         binding.mineUserIconIv.setOnClickListener(this)
         binding.mineUserNameTv.setOnClickListener(this)
@@ -83,6 +84,16 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
             this.addItemDecoration(RecycleViewVerticalDivider(context,2,
                 ResourceManager.getInstance().getColor(context,R.color.common_divider_line_color),
                 DensityUtil.dp2px(15F),0))
+        }
+
+        if (SpUtils.getUserInfo().isNotEmpty()){
+            val userInfo = JsonUtils.parseObject(SpUtils.getUserInfo(),UserBean::class.java)
+            binding.mineUserNameTv.text = userInfo.nickname
+            binding.mineUserInfo.visibility = View.VISIBLE
+            binding.mineUserInfo.text = "ID:${userInfo.id}    积分: ${userInfo.coinCount}"
+        }else{
+            binding.mineUserNameTv.text = "去登陆"
+            binding.mineUserInfo.visibility = View.GONE
         }
 
 
@@ -107,20 +118,6 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
                     LoginActivity.startLoginActivity(activity!!)
                 }
             }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        if (SpUtils.getUserInfo().isNotEmpty()){
-            val userInfo = JsonUtils.parseObject(SpUtils.getUserInfo(),UserBean::class.java)
-            binding.mineUserNameTv.text = userInfo.nickname
-            binding.mineUserInfo.visibility = View.VISIBLE
-            binding.mineUserInfo.text = "ID:${userInfo.id}    积分: ${userInfo.coinCount}"
-        }else{
-            binding.mineUserNameTv.text = "去登陆"
-            binding.mineUserInfo.visibility = View.GONE
         }
     }
 

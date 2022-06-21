@@ -1,6 +1,5 @@
 package com.hjl.core.ui.system
 
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hjl.core.R
 import com.hjl.core.adpter.SystemListAdapter
@@ -38,10 +37,12 @@ class SystemListFragment : BaseMVVMFragment2<CoreFragmentHomeSystemBinding, Home
     }
 
     override fun loadData() {
-        viewModel.systemListData.observe(this, Observer {
+        viewModel.systemListData.observe(this, {
             if (it.isNotEmpty()){
                 systemArticleAdapter.setNewData(it)
                 showComplete()
+            }else{
+                showEmpty()
             }
         })
 

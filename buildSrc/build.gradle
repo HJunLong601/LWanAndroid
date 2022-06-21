@@ -7,7 +7,13 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        jcenter()
+        maven{url "https://jitpack.io" }
+        maven{url "https://maven.aliyun.com/repository/google"}
+        maven{url "https://maven.aliyun.com/repository/jcenter"}
+        maven{url "https://maven.aliyun.com/nexus/content/groups/public"}
+        maven{url "https://maven.aliyun.com/repository/gradle-plugin"}
+
+//        jcenter()
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20"
@@ -22,7 +28,13 @@ apply plugin: 'kotlin-kapt'
 repositories {
     google()
     mavenCentral()
-    jcenter()
+    maven{url "https://jitpack.io" }
+    maven{url "https://maven.aliyun.com/repository/google"}
+    maven{url "https://maven.aliyun.com/repository/jcenter"}
+    maven{url "https://maven.aliyun.com/nexus/content/groups/public"}
+    maven{url "https://maven.aliyun.com/repository/gradle-plugin"}
+
+//    jcenter()
 }
 
 dependencies {
