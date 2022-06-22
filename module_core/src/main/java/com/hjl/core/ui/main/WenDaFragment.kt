@@ -14,10 +14,12 @@ import com.hjl.core.net.bean.HomeArticleBean
 import com.hjl.core.viewmodel.HomeViewModel
 import com.hjl.commonlib.extend.addDivider
 import com.hjl.jetpacklib.mvvm.view.BaseMVVMFragment2
+import com.jeremyliao.liveeventbus.LiveEventBus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import com.hjl.module_base.constants.EventKey
 
 /**
  * Author : long
@@ -69,6 +71,11 @@ class WenDaFragment : BaseMVVMFragment2<CoreFragmentWendaBinding,HomeViewModel>(
             }
             it.setOnEmptyData { showEmpty() }
         }
+
+        LiveEventBus.get<String>(EventKey.LOGIN_STATE_CHANGE).observe(this,{
+            articleAdapter.refresh()
+            articleAdapter.notifyDataSetChanged()
+        })
     }
 
     override fun loadData() {
@@ -78,6 +85,8 @@ class WenDaFragment : BaseMVVMFragment2<CoreFragmentWendaBinding,HomeViewModel>(
             if(getViewStatus() != MultipleStatusView.STATUS_CONTENT){
                 showError()
                 ToastUtil.show("status error : ${getViewStatus()}")
+            }else{
+                showComplete()
             }
         }
         lifecycleScope.launch(Dispatchers.IO) {

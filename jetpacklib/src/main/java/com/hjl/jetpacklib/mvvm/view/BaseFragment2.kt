@@ -61,7 +61,7 @@ abstract class BaseFragment2<VDB : ViewDataBinding> : Fragment(){
 
     override fun onResume() {
         super.onResume()
-
+        LogUtils.i(TAG,"isFirstLoad：$isFirstLoad")
         if (isFirstLoad or loadMultipleTime()){
             loadData()
             isFirstLoad = false

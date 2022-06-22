@@ -1,5 +1,3 @@
-import com.android.aaptcompiler.parseAsBool
-
 plugins {
     id("com.android.library")
     id("kotlin-android")
@@ -60,6 +58,7 @@ dependencies {
     api(project(":jetpacklib"))
 
     api(Dependencies.permissionx)
+    api(Dependencies.liveEventBus)
 
     // room
     api(Jetpack.room)

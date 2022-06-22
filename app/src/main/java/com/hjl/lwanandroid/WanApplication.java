@@ -4,6 +4,7 @@ import com.hjl.commonlib.base.BaseApplication;
 import com.hjl.commonlib.base.ResourceManager;
 import com.hjl.lwanandroid.skin.SkinResourceAcquirer;
 import com.hjl.module_base.datbase.WanDatabase;
+import com.jeremyliao.liveeventbus.core.LiveEventBusCore;
 
 import skin.support.SkinCompatManager;
 import skin.support.app.SkinAppCompatViewInflater;
@@ -22,6 +23,7 @@ public class WanApplication extends BaseApplication {
         super.onCreate();
 
         initSkinSupport();
+        initLiveEventBus();
         WanDatabase.Companion.getInstance(this);
     }
 
@@ -34,5 +36,10 @@ public class WanApplication extends BaseApplication {
 //                .setSkinStatusBarColorEnable(false)                     // 关闭状态栏换肤，默认打开[可选]
 //                .setSkinWindowBackgroundEnable(false)                   // 关闭windowBackground换肤，默认打开[可选]
                 .loadSkin();
+    }
+
+    private void initLiveEventBus(){
+        LiveEventBusCore.get().config()
+                .lifecycleObserverAlwaysActive(true);
     }
 }

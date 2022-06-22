@@ -43,7 +43,7 @@ class MainFragment : BaseFragment2<CoreFragmentMainBinding>() {
         )
 
         binding.fragmentMainVp.adapter = LazyFragmentStateAdapter(this,fragments)
-        binding.fragmentMainVp.offscreenPageLimit = fragments.size
+//        binding.fragmentMainVp.offscreenPageLimit = fragments.size
         binding.fragmentMainVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
 //        fragment_main_vp.isUserInputEnabled = false

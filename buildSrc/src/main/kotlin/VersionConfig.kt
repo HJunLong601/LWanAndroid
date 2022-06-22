@@ -10,6 +10,7 @@ object Android{
 object Dependencies{
     val bugly = "com.tencent.bugly:crashreport:3.2.1"
     val eventBus =  "org.greenrobot:eventbus:3.1.1"
+    val liveEventBus =  "io.github.jeremyliao:live-event-bus-x:1.8.0"
     val fastJson = "com.alibaba:fastjson:1.2.49"
     val glide = "com.github.bumptech.glide:glide:4.9.0"
     val glide_transformations = "jp.wasabeef:glide-transformations:4.0.1"

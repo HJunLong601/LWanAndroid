@@ -5,15 +5,15 @@ import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.hjl.commonlib.adapter.LazyFragmentStateAdapter
 import com.hjl.core.R
 import com.hjl.core.databinding.CoreActivityLoginBinding
-import com.hjl.core.repository.UserRepository
 import com.hjl.core.viewmodel.UserViewModel
 import com.hjl.jetpacklib.mvvm.view.BaseActivity
+import com.hjl.module_base.constants.EventKey
+import com.jeremyliao.liveeventbus.LiveEventBus
 
 //@Route(path = AConstant.CORE_LOGIN_ACTIVITY)
 class LoginActivity : BaseActivity<CoreActivityLoginBinding>() {
@@ -37,6 +37,7 @@ class LoginActivity : BaseActivity<CoreActivityLoginBinding>() {
         model.userstatus.observe(this, Observer {
             when(it){
                 UserViewModel.LOGIN_SUCC -> {
+                    LiveEventBus.get<String>(EventKey.LOGIN_STATE_CHANGE).post("update")
                     finish()
                 }
                 UserViewModel.REGISTER_SUCC -> {

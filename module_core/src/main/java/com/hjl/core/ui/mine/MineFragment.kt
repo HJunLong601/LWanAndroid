@@ -29,6 +29,8 @@ import com.hjl.jetpacklib.mvvm.view.BaseFragment2
 import com.hjl.commonlib.extend.addDivider
 import com.hjl.commonlib.extend.quickStartActivity
 import com.hjl.module_base.router.RouterName
+import com.jeremyliao.liveeventbus.LiveEventBus
+import com.hjl.module_base.constants.EventKey
 
 import kotlin.collections.ArrayList
 
@@ -86,17 +88,24 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
                 DensityUtil.dp2px(15F),0))
         }
 
-        if (SpUtils.getUserInfo().isNotEmpty()){
-            val userInfo = JsonUtils.parseObject(SpUtils.getUserInfo(),UserBean::class.java)
+        LiveEventBus.get<String>(EventKey.LOGIN_STATE_CHANGE).observe(this,{
+            updateUserState()
+        })
+        updateUserState()
+
+
+    }
+
+    private fun updateUserState() {
+        if (SpUtils.getUserInfo().isNotEmpty()) {
+            val userInfo = JsonUtils.parseObject(SpUtils.getUserInfo(), UserBean::class.java)
             binding.mineUserNameTv.text = userInfo.nickname
             binding.mineUserInfo.visibility = View.VISIBLE
             binding.mineUserInfo.text = "ID:${userInfo.id}    积分: ${userInfo.coinCount}"
-        }else{
+        } else {
             binding.mineUserNameTv.text = "去登陆"
             binding.mineUserInfo.visibility = View.GONE
         }
-
-
     }
 
     private fun buildItemList(itemList: ArrayList<MineItemBean>) {

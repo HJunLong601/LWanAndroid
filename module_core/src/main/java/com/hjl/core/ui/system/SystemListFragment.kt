@@ -10,7 +10,7 @@ import com.hjl.jetpacklib.mvvm.view.BaseMVVMFragment2
 
 /**
  * Author : long
- * Description :
+ * Description : 主页 - 体系 - 体系
  * Date : 2021/5/6
  */
 class SystemListFragment : BaseMVVMFragment2<CoreFragmentHomeSystemBinding, HomeViewModel>() {

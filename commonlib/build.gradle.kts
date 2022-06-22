@@ -50,7 +50,6 @@ dependencies {
 //    implementation fileTree(dir: "libs", include: ["*.jar"])
 
     api(Dependencies.bugly)
-    api(Dependencies.eventBus)
     api(Dependencies.fastJson)
     api(Dependencies.glide)
     api(Dependencies.glide_transformations)
