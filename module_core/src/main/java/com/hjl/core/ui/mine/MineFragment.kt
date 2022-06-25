@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
 import com.hjl.commonlib.base.BaseApplication
 import com.hjl.commonlib.base.ResourceManager
-
 import com.hjl.commonlib.customview.BaseTipDialog
+import com.hjl.commonlib.extend.addDivider
+import com.hjl.commonlib.extend.quickStartActivity
 import com.hjl.commonlib.utils.DensityUtil
 import com.hjl.commonlib.utils.JsonUtils
 import com.hjl.commonlib.utils.RecycleViewVerticalDivider
@@ -26,13 +27,9 @@ import com.hjl.core.utils.Constant
 import com.hjl.core.utils.SpUtils
 import com.hjl.core.utils.Utils
 import com.hjl.jetpacklib.mvvm.view.BaseFragment2
-import com.hjl.commonlib.extend.addDivider
-import com.hjl.commonlib.extend.quickStartActivity
+import com.hjl.module_base.constants.EventKey
 import com.hjl.module_base.router.RouterName
 import com.jeremyliao.liveeventbus.LiveEventBus
-import com.hjl.module_base.constants.EventKey
-
-import kotlin.collections.ArrayList
 
 /**
  * Author : long
@@ -111,7 +108,7 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
     private fun buildItemList(itemList: ArrayList<MineItemBean>) {
         itemList.add(MineItemBean("我的收藏", Constant.ACTION_COLLECT, R.drawable.core_icon_like))
         itemList.add(MineItemBean("主题皮肤", Constant.ACTION_SKIN, R.drawable.core_icon_skin))
-        itemList.add(MineItemBean("积分榜单", Constant.ACTION_STOCK, R.drawable.core_icon_integral))
+        itemList.add(MineItemBean("积分榜单", Constant.ACTION_RANK, R.drawable.core_icon_integral))
         itemList.add(MineItemBean("Maven查询", Constant.ACTION_MAVEN, R.drawable.core_icon_maven))
         itemList.add(MineItemBean("退出登录", Constant.ACTION_EXIT, R.drawable.core_icon_exit))
     }
@@ -132,9 +129,6 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
 
     private fun dispatchAction(action : String){
         when (action){
-            Constant.ACTION_STOCK -> {
-//                ARouter.getInstance().build(AConstant.MINUS_STOCK_ACTIVITY).navigation()
-            }
             Constant.ACTION_COLLECT -> {
                 if (Utils.hasCookie()){
                     mContext.startActivity(Intent(mContext, CollectListActivity::class.java))
@@ -155,6 +149,9 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
 
             Constant.ACTION_SKIN -> {
                 ARouter.getInstance().build(RouterName.SKIN_SKIN_ACTIVITY).navigation()
+            }
+            else -> {
+                ToastUtil.show("暂未开放")
             }
         }
     }

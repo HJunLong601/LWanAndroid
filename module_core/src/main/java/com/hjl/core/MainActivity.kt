@@ -26,7 +26,7 @@ class MainActivity : BaseActivity<CoreActivityMainBinding>() {
         val fragments = arrayListOf<Fragment>(MinusFragment(),MainFragment())
         val adapter = LazyFragmentPagerAdapter(supportFragmentManager, fragments)
         binding.activityMainVp.adapter = adapter
-        binding.activityMainVp.offscreenPageLimit = fragments.size
+//        binding.activityMainVp.offscreenPageLimit = fragments.size
         binding.activityMainVp.setCurrentItem(1,false)
 
     }

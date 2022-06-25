@@ -3,30 +3,50 @@ package com.hjl.core.ui
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.KeyEvent
-import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
 import com.hjl.commonlib.constant.Constant
 import com.hjl.commonlib.customview.CircleProgressButton
+import com.hjl.commonlib.utils.AndroidUtils
 import com.hjl.commonlib.utils.DensityUtil
 import com.hjl.commonlib.utils.LogUtils
 import com.hjl.commonlib.utils.StatusBarUtil
 import com.hjl.core.R
 import com.hjl.core.databinding.CoreActivitySimpleWebBinding
-
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebView
-import java.util.*
 
 open class SimpleWebActivity : AppCompatActivity() {
 
 
     lateinit var progressBar : CircleProgressButton
     lateinit var binding: CoreActivitySimpleWebBinding
+
+    val popupMenu : PopupMenu by lazy {
+        PopupMenu(this,binding.coreSwMenuIv).also {
+            it.menuInflater.inflate(R.menu.core_simple_web_menu,it.menu)
+            it.setOnMenuItemClickListener { item ->
+                when(item.itemId){
+                    R.id.core_sw_copy -> {
+                        AndroidUtils.setPrimaryClip(SimpleWebActivity@this,binding.coreSimpleWb.url)
+                        return@setOnMenuItemClickListener true
+                    }
+                    R.id.core_sw_browser -> {
+                        AndroidUtils.openBrowser(SimpleWebActivity@this,binding.coreSimpleWb.url)
+                        return@setOnMenuItemClickListener true
+                    }
+                }
+
+                return@setOnMenuItemClickListener false
+            }
+        }
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +79,14 @@ open class SimpleWebActivity : AppCompatActivity() {
         window.addContentView(progressBar,layoutParams)
         binding.coreSimpleWb.webChromeClient = SimpleWebViewClient()
         binding.coreSimpleWb.loadUrl(url)
+
+        binding.coreSwTitleTv.setOnClickListener {
+            binding.coreSimpleWb.scrollTo(0,0)
+        }
+
+        binding.coreSwMenuIv.setOnClickListener {
+            popupMenu.show()
+        }
     }
 
 
@@ -82,6 +110,10 @@ open class SimpleWebActivity : AppCompatActivity() {
             super.onProgressChanged(p0, p1)
         }
 
+        override fun onReceivedTitle(p0: WebView?, p1: String?) {
+            super.onReceivedTitle(p0, p1)
+            binding.coreSwTitleTv.text = p1
+        }
     }
 
     protected open fun setStatusBar() {

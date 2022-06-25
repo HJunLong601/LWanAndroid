@@ -52,8 +52,6 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 
-import com.jakewharton.rxbinding3.widget.RxTextView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,7 +60,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -602,7 +599,7 @@ public class AndroidUtils {
     }
 
 
-    public static void gotoBrowser(Context context, String url) {
+    public static void openBrowser(Context context, String url) {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
