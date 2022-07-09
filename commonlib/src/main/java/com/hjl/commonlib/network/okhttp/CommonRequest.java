@@ -119,7 +119,7 @@ public class CommonRequest {
         return request.build();
     }
 
-    // TODO: 2019/5/3 file upload request  /-- done --/
+    // done: 2019/5/3 file upload request  /-- done --/
     /**
      * 文件上传
      */
@@ -148,7 +148,7 @@ public class CommonRequest {
         FileNameMap filenameMap = URLConnection.getFileNameMap();
         String contentType = filenameMap.getContentTypeFor(filename);
         if (contentType == null) {
-            contentType = "application/octet-stream"; //* exe,所有的可执行程序
+            contentType = "application/octet-stream"; //* exe,所有的可执行程序 二进制流
         }
         return contentType;
     }

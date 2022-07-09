@@ -1,7 +1,6 @@
 package com.hjl.core.net.bean;
 
 import androidx.annotation.DrawableRes;
-import androidx.annotation.IdRes;
 
 /**
  * Author : long
@@ -42,6 +41,12 @@ public class MineItemBean {
     }
 
     public void setIconRes(int iconRes) {
+        this.iconRes = iconRes;
+    }
+
+    // 解决编译时报的一个错误
+    // Cannot find a setter for <android.widget.ImageView loadDrawable> that accepts parameter type 'int'
+    public void setIconRes(Integer iconRes) {
         this.iconRes = iconRes;
     }
 }

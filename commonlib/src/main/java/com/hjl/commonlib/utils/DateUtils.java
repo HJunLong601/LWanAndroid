@@ -1,5 +1,7 @@
 package com.hjl.commonlib.utils;
 
+import android.os.Looper;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,7 +22,8 @@ public class DateUtils {
         return sdf.format(millis);
     }
 
-    public static String getHttpRequetTime(long millis){
+    public static String getHttpRequestTime(long millis){
+        Looper.prepare();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss:SSS", Locale.getDefault());
         return sdf.format(millis);
     }

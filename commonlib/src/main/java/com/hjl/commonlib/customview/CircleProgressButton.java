@@ -10,7 +10,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -20,8 +19,6 @@ import androidx.annotation.Nullable;
 import com.hjl.commonlib.R;
 import com.hjl.commonlib.utils.DensityUtil;
 import com.hjl.commonlib.utils.LogUtils;
-
-import java.util.Arrays;
 
 
 /**
@@ -166,9 +163,9 @@ public class CircleProgressButton extends View {
                 break;
             case MotionEvent.ACTION_MOVE:
                 float x = event.getRawX() - mWidth;
-                float y = event.getRawY() - mHeight;
+                float y = Math.min(event.getRawY(),screenHeight) - mHeight; // getRawY
                 setX(Math.max(x,0));
-                setY(Math.max(y,0));
+                setY(Math.max(y, 0));
                 invalidate();
                 break;
             case MotionEvent.ACTION_UP:

@@ -3,7 +3,6 @@ package com.hjl.core.ui.main
 
 import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -35,14 +34,14 @@ class MainFragment : BaseFragment2<CoreFragmentMainBinding>() {
 
     override fun initView() {
 
-        val fragments = arrayListOf<Fragment>(
-            HomeFragment(),
-            WenDaFragment(),
-            HomeSystemFragment(),
-            MineFragment()
+        val clsList = arrayListOf<Class<*>>(
+            HomeFragment::class.java,
+            WenDaFragment::class.java,
+            HomeSystemFragment::class.java,
+            MineFragment::class.java
         )
 
-        binding.fragmentMainVp.adapter = LazyFragmentStateAdapter(this,fragments)
+        binding.fragmentMainVp.adapter = LazyFragmentStateAdapter(clsList,this)
 //        binding.fragmentMainVp.offscreenPageLimit = fragments.size
         binding.fragmentMainVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 

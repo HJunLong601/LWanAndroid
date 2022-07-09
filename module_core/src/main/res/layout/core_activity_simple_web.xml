@@ -33,6 +33,7 @@
                 android:textColor="@color/common_black"
                 android:gravity="center"
                 android:singleLine="true"
+                android:text="玩安卓"
                 tools:text="测试测试测试测试测试测试测试测试"/>
 
             <ImageView
