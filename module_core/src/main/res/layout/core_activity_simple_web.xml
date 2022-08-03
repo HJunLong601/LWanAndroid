@@ -40,7 +40,7 @@
                 android:id="@+id/core_sw_menu_iv"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:padding="@dimen/padding_small_size"
+                android:padding="@dimen/padding_normal_size"
                 android:src="@drawable/core_icon_menu_black"/>
 
         </LinearLayout>
