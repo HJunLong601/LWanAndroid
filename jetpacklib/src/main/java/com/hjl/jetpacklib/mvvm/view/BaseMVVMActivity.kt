@@ -7,7 +7,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import com.hjl.commonlib.base.BaseMultipleActivity
 import com.hjl.jetpacklib.R
-import com.hjl.jetpacklib.mvvm.BaseRepository
 import com.hjl.jetpacklib.mvvm.BaseViewModel
 import java.lang.reflect.ParameterizedType
 

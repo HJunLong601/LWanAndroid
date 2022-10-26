@@ -43,7 +43,7 @@ dependencies {
     // groovy sdk
     implementation localGroovy()
     // android build tools
-    implementation ("com.android.tools.build:gradle:4.2.0")
+    implementation ('com.android.tools.build:gradle:4.2.1')
 
     implementation ("org.ow2.asm:asm:7.1")
     implementation ("org.ow2.asm:asm-util:7.1")

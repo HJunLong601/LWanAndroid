@@ -1,5 +1,5 @@
 object Android{
-    val compileSdkVersion = 30
+    val compileSdkVersion = 31
     val minSdkVersion = 21
     val targetSdkVersion = 30
     val buildToolsVersion = "30.0.3"
@@ -20,11 +20,13 @@ object Dependencies{
     val location = "com.tencent.map.geolocation:TencentLocationSdk-openplatform:7.2.6"
 }
 
-object AndroidSupport{
-    val appcompat =  "androidx.appcompat:appcompat:1.2.0"
+object AndroidSupport {
+    val appcompat = "androidx.appcompat:appcompat:1.4.0"
+    val activityKtx = "androidx.activity:activity-ktx:1.4.0"
+    val fragmentKtx = "androidx.fragment:fragment-ktx:1.4.0"
     val material = "com.google.android.material:material:1.3.0"
     val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    val recyclerview =  "androidx.recyclerview:recyclerview:1.1.0"
+    val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
 }
 
 object RxJava2{

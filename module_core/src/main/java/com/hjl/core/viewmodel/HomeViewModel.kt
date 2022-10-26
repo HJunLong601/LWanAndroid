@@ -2,16 +2,14 @@ package com.hjl.core.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.paging.*
-import com.hjl.jetpacklib.mvvm.BaseViewModel
+import androidx.paging.cachedIn
 import com.hjl.commonlib.utils.LogUtils
 import com.hjl.core.net.await
-import com.hjl.core.net.bean.SystemListBean
-import com.hjl.core.net.bean.HomeArticleBean
 import com.hjl.core.net.bean.HomeBannerBean
 import com.hjl.core.net.bean.NavigationListBean
+import com.hjl.core.net.bean.SystemListBean
 import com.hjl.core.repository.HomeRepository
-import kotlinx.coroutines.flow.Flow
+import com.hjl.jetpacklib.mvvm.BaseViewModel
 
 /**
  * @author: long
@@ -21,8 +19,6 @@ import kotlinx.coroutines.flow.Flow
 class HomeViewModel : BaseViewModel() {
 
     private val repository = HomeRepository()
-
-
 
     val bannerData = MutableLiveData<List<HomeBannerBean>>()
     val systemListData = MutableLiveData<List<SystemListBean>>()

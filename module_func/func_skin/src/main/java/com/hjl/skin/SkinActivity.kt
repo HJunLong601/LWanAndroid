@@ -59,9 +59,12 @@ class SkinActivity : BaseActivity<SkinActivitySkinBinding>()  {
             backgroundColor = Color.parseColor("#C7EDCC"))
         )
 
-        skinList.add(SkinItemBean("枯草黄",
-            "yellow.skin",
-            backgroundColor = Color.parseColor("#D6D5B7"))
+        skinList.add(
+            SkinItemBean(
+                "枫叶黄",
+                "yellow.skin",
+                backgroundColor = Color.parseColor("#D6D5B7")
+            )
         )
 
         fillSkinList() // 网格线 填充空对象

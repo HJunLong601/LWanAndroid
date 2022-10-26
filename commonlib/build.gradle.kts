@@ -63,6 +63,8 @@ dependencies {
     api(AndroidSupport.material)
     api(AndroidSupport.lifecycle_extensions)
     api(AndroidSupport.recyclerview)
+    api(AndroidSupport.activityKtx)
+    api(AndroidSupport.fragmentKtx)
 
     // RxJava2
     api(RxJava2.rxjava2)

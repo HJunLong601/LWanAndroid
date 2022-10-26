@@ -13,8 +13,8 @@ buildscript {
     }
 
     dependencies {
-        classpath ("com.android.tools.build:gradle:4.2.0")
-        classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:${Android.kotlinVersion}")
+        classpath("com.android.tools.build:gradle:4.2.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Android.kotlinVersion}")
         classpath ("com.didiglobal.booster:booster-gradle-plugin:4.4.0")
         classpath ( "com.alibaba:arouter-register:1.0.2")
     }
