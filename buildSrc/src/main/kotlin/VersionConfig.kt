@@ -21,7 +21,7 @@ object Dependencies{
 }
 
 object AndroidSupport {
-    val appcompat = "androidx.appcompat:appcompat:1.4.0"
+    val appcompat = "androidx.appcompat:appcompat:1.2.0"
     val activityKtx = "androidx.activity:activity-ktx:1.4.0"
     val fragmentKtx = "androidx.fragment:fragment-ktx:1.4.0"
     val material = "com.google.android.material:material:1.3.0"

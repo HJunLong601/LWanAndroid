@@ -5,7 +5,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.fastjson.JSONObject
-import com.hjl.jetpacklib.mvvm.recycleview.OnItemChildClickListener
+import com.hjl.commonlib.extend.addDivider
+import com.hjl.commonlib.extend.quickStartActivity
 import com.hjl.commonlib.utils.LogUtils
 import com.hjl.commonlib.utils.SpUtils
 import com.hjl.commonlib.utils.ToastUtil
@@ -17,14 +18,14 @@ import com.hjl.core.net.bean.HomeArticleBean
 import com.hjl.core.net.bean.HomeBannerBean
 import com.hjl.core.utils.CACHE_BANNER
 import com.hjl.core.viewmodel.HomeViewModel
-import com.hjl.commonlib.extend.addDivider
-import com.hjl.commonlib.extend.quickStartActivity
+import com.hjl.jetpacklib.mvvm.recycleview.OnItemChildClickListener
 import com.hjl.jetpacklib.mvvm.view.BaseMVVMFragment2
 import com.hjl.module_base.CacheUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * @author: long
@@ -79,11 +80,11 @@ class HomeFragment : BaseMVVMFragment2<CoreFragmentHomeBinding, HomeViewModel>()
                     if (bean.isCollect){
                         viewModel.removeCollect(bean.id)
                         bean.isCollect = false
-                        it.notifyDataSetChanged()
+                        it.notifyItemChanged(position)
                     }else{
                         viewModel.collectArticle(bean.id)
                         bean.isCollect = true
-                        it.notifyDataSetChanged()
+                        it.notifyItemChanged(position)
                     }
                 }
             }
@@ -95,26 +96,21 @@ class HomeFragment : BaseMVVMFragment2<CoreFragmentHomeBinding, HomeViewModel>()
             addDivider()
         }
 
-
-
-        binding.homeRefresh.setOnRefreshListener {
-            homeArticleAdapter.refresh()
-            LogUtils.i("refresh")
-        }
-
-        lifecycleScope.launch(Dispatchers.IO) {
-            viewModel.getHomePagingData().collect{
-                LogUtils.i("getData")
-                homeArticleAdapter.submitData(it)
+        lifecycleScope.launchWhenStarted {
+            withContext(Dispatchers.IO) {
+                viewModel.getHomePagingData().collect {
+                    LogUtils.i("submitData")
+                    homeArticleAdapter.submitData(it)
+                }
             }
         }
 
         // 先加载缓存的Banner 之后再加载最新的
-        CacheUtils.getCache(CACHE_BANNER){
-            if (it.isNotEmpty()){
+        CacheUtils.getCache(CACHE_BANNER) {
+            if (it.isNotEmpty()) {
                 val data = JSONObject.parseArray(it, HomeBannerBean::class.java)
-                LogUtils.i("Banner","get Banner cache :$data")
-                lifecycleScope.launch(Dispatchers.Main){ homeArticleAdapter.setBannerData(data)}
+                LogUtils.i("Banner", "get Banner cache :$data")
+                lifecycleScope.launch(Dispatchers.Main) { homeArticleAdapter.setBannerData(data) }
                 lifecycleScope.launch(Dispatchers.IO) {
                     delay(8000)
                     LogUtils.i("loadBannerData")
