@@ -10,10 +10,10 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.hjl.jetpacklib.mvvm.recycleview.OnItemChildClickListener
-import com.hjl.jetpacklib.mvvm.recycleview.OnItemClickListener
 import com.hjl.commonlib.utils.LogUtils
 import com.hjl.commonlib.utils.ToastUtil
+import com.hjl.jetpacklib.mvvm.recycleview.OnItemChildClickListener
+import com.hjl.jetpacklib.mvvm.recycleview.OnItemClickListener
 import kotlinx.coroutines.*
 import java.lang.reflect.ParameterizedType
 
@@ -44,7 +44,6 @@ abstract class PagingDataAdapter<
 
         if (viewType == HOLDER_HEAD){
             headerView = LayoutInflater.from(parent.context).inflate(headLayoutRes, parent, false)
-            bindHeaderView(headerView!!)
             return HeadViewHolder(headerView!!)
         }
 
@@ -67,24 +66,30 @@ abstract class PagingDataAdapter<
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is PagingDataViewHolder<*> -> {
+                val realPosition = if (headLayoutRes != 0) {
+                    position - 1
+                } else {
+                    position
+                }
+                bindData(holder as VH, realPosition)
+                onItemClickListener?.let {
+                    holder.setOnItemClickListener(it, getItem(realPosition)!!)
+                }
+                onItemChildClickListener?.let {
+                    holder.setOnItemChildClickListener(it, getItem(realPosition)!!)
+                }
+            }
 
-        if (holder is PagingDataViewHolder<*>){
-            val realPosition = if (headLayoutRes != 0){
-                position - 1
-            }else{
-                position
-            }
-            bindData(holder as VH,realPosition)
-            onItemClickListener?.let {
-                holder.setOnItemClickListener(it,getItem(realPosition)!!)
-            }
-            onItemChildClickListener?.let {
-                holder.setOnItemChildClickListener(it,getItem(realPosition)!!)
+            is HeadViewHolder -> {
+                bindHeaderView(holder)
             }
         }
+
     }
 
-    open fun bindHeaderView(view : View){
+    open fun bindHeaderView(holder: HeadViewHolder) {
 
     }
 
@@ -103,6 +108,7 @@ abstract class PagingDataAdapter<
         addLoadStateListener { loadStates ->
             when(loadStates.refresh){
                 is LoadState.Loading ->{
+                    LogUtils.i("refresh Loading")
                     refreshLayout.isRefreshing = true
                     isNotifiedRefreshDone = false
                 }
