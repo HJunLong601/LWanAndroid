@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/common_white"
-        app:linkUrl="@{data.link}">
+        linkUrl="@{data.link}">
 
         <TextView
             android:id="@+id/core_item_collect_author"

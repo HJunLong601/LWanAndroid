@@ -12,9 +12,9 @@ include(":skin:skin-yellow")
 rootProject.name = "LWanAndroid"
 
 gradle.addBuildListener(object : BuildListener{
-    override fun buildStarted(gradle: Gradle) {
-        println("---- Build Start ----")
-    }
+//    override fun buildStarted(gradle: Gradle) {
+//        println("---- Build Start ----")
+//    }
 
     override fun settingsEvaluated(settings: Settings) {
         println("---- Evaluate Setting Finish ----")

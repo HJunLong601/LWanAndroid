@@ -1,25 +1,24 @@
 import com.android.aaptcompiler.parseAsBool
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-android-extensions")
     id("kotlin-kapt")
 
     id("com.didiglobal.booster")
-    id("com.alibaba.arouter")
+    id("therouter")
     id("com.hjl.plugin")
 }
 
 android {
 
-    compileSdkVersion(Android.compileSdkVersion)
-    buildToolsVersion(Android.buildToolsVersion)
+    compileSdk = Android.compileSdkVersion
+    buildToolsVersion = Android.buildToolsVersion
 
     defaultConfig {
-        applicationId("com.hjl.lwanandroid")
+        applicationId = "com.hjl.lwanandroid"
         minSdkVersion(Android.minSdkVersion)
         targetSdkVersion(Android.targetSdkVersion)
         versionCode = 1
@@ -27,12 +26,12 @@ android {
     }
 
     signingConfigs {
-        create("release") {
-            storeFile(File(properties["RELEASE_STORE_FILE"] as String))
-            storePassword(properties["RELEASE_STORE_PASSWORD"] as String)
-            keyAlias(properties["RELEASE_KEY_ALIAS"] as String)
-            keyPassword(properties["RELEASE_KEY_PASSWORD"] as String)
-        }
+//        create("release") {
+//            storeFile(File(properties["RELEASE_STORE_FILE"] as String))
+//            storePassword(properties["RELEASE_STORE_PASSWORD"] as String)
+//            keyAlias(properties["RELEASE_KEY_ALIAS"] as String)
+//            keyPassword(properties["RELEASE_KEY_PASSWORD"] as String)
+//        }
     }
 
     compileOptions {
@@ -67,7 +66,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("release")
+//            signingConfig = signingConfigs.getByName("release")
         }
     }
 

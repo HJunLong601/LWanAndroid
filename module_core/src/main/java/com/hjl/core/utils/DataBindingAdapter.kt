@@ -12,7 +12,7 @@ import com.hjl.core.ui.SimpleWebActivity
  */
 
 
-@BindingAdapter("app:linkUrl")
+@BindingAdapter("linkUrl")
 fun jumpUrl(view: View, url : String){
     view.setOnClickListener { SimpleWebActivity.loadUrl(view.context as Activity,url)}
 }

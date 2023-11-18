@@ -3,8 +3,7 @@ object Android{
     val minSdkVersion = 21
     val targetSdkVersion = 30
     val buildToolsVersion = "30.0.3"
-    val kotlinVersion = "1.4.0"
-    val gradleVersion = "4.0.0"
+    val kotlinVersion = "1.5.20"
 }
 
 object Dependencies{
@@ -14,10 +13,10 @@ object Dependencies{
     val fastJson = "com.alibaba:fastjson:1.2.49"
     val glide = "com.github.bumptech.glide:glide:4.9.0"
     val glide_transformations = "jp.wasabeef:glide-transformations:4.0.1"
-    val arouter = "com.alibaba:arouter-api:1.5.2"
-    val arouter_compiler = "com.alibaba:arouter-compiler:1.5.2"
     val permissionx = "com.permissionx.guolindev:permissionx:1.1.1"
     val location = "com.tencent.map.geolocation:TencentLocationSdk-openplatform:7.2.6"
+    val router = "cn.therouter:router:1.2.1"
+    val routerApt = "cn.therouter:apt:1.2.1"
 }
 
 object AndroidSupport {
@@ -55,6 +54,7 @@ object View{
     // 分组RecyclerView
     val GroupedRecyclerViewAdapter =  "com.github.donkingliang:GroupedRecyclerViewAdapter:2.4.0"
     val banner = "com.youth.banner:banner:2.1.0"
+    val refreshlayout ="androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }
 
 object WebView{
@@ -64,7 +64,7 @@ object WebView{
 
 object KT{
     val ktx = "androidx.core:core-ktx:1.6.0"
-    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Android.kotlinVersion}"
+    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0"
     val kt_stdlib_jdk7 ="org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Android.kotlinVersion}"
 }
 

@@ -1,7 +1,5 @@
 package com.hjl.core.net.bean;
 
-import androidx.annotation.DrawableRes;
-
 /**
  * Author : long
  * Description : MineFragment - RecyclerView Item Bean
@@ -11,7 +9,7 @@ public class MineItemBean {
 
     String itemName;
     String action;
-    @DrawableRes
+
     int iconRes;
 
     public MineItemBean(String itemName, String action, int iconRes) {
@@ -44,9 +42,9 @@ public class MineItemBean {
         this.iconRes = iconRes;
     }
 
-    // 解决编译时报的一个错误
-    // Cannot find a setter for <android.widget.ImageView loadDrawable> that accepts parameter type 'int'
-    public void setIconRes(Integer iconRes) {
-        this.iconRes = iconRes;
-    }
+//    // 解决编译时报的一个错误
+//    // Cannot find a setter for <android.widget.ImageView loadDrawable> that accepts parameter type 'int'
+//    public void setIconRes(Integer iconRes) {
+//        this.iconRes = iconRes;
+//    }
 }

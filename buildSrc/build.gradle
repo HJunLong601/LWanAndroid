@@ -2,21 +2,22 @@
 
 buildscript {
     ext {
-        booster_version = '4.4.0'
+        booster_version = '4.16.3'
     }
     repositories {
-        google()
-        mavenCentral()
-        maven{url "https://jitpack.io" }
-        maven{url "https://maven.aliyun.com/repository/google"}
-        maven{url "https://maven.aliyun.com/repository/jcenter"}
-        maven{url "https://maven.aliyun.com/nexus/content/groups/public"}
-        maven{url "https://maven.aliyun.com/repository/gradle-plugin"}
+//        google()
+//        mavenCentral()
+        maven { url "https://maven.aliyun.com/repository/central" }
+        maven { url "https://jitpack.io" }
+        maven { url "https://maven.aliyun.com/repository/google" }
+        maven { url "https://maven.aliyun.com/repository/jcenter" }
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public" }
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
 
 //        jcenter()
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20"
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21'
     }
 }
 
@@ -26,13 +27,14 @@ apply plugin: 'kotlin-kapt'
 
 
 repositories {
-    google()
-    mavenCentral()
-    maven{url "https://jitpack.io" }
-    maven{url "https://maven.aliyun.com/repository/google"}
-    maven{url "https://maven.aliyun.com/repository/jcenter"}
-    maven{url "https://maven.aliyun.com/nexus/content/groups/public"}
-    maven{url "https://maven.aliyun.com/repository/gradle-plugin"}
+//    google()
+//    mavenCentral()
+    maven { url "https://maven.aliyun.com/repository/central" }
+    maven { url "https://jitpack.io" }
+    maven { url "https://maven.aliyun.com/repository/google" }
+    maven { url "https://maven.aliyun.com/repository/jcenter" }
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public" }
+    maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
 
 //    jcenter()
 }
@@ -43,12 +45,14 @@ dependencies {
     // groovy sdk
     implementation localGroovy()
     // android build tools
-    implementation ('com.android.tools.build:gradle:4.2.1')
+    implementation('com.android.tools.build:gradle:7.4.2')
 
-    implementation ("org.ow2.asm:asm:7.1")
-    implementation ("org.ow2.asm:asm-util:7.1")
-    implementation ("org.ow2.asm:asm-commons:7.1")
-    implementation ("org.javassist:javassist:3.23.1-GA")
+    implementation("org.ow2.asm:asm:7.1")
+    implementation("org.ow2.asm:asm-util:7.1")
+    implementation("org.ow2.asm:asm-commons:7.1")
+    implementation("org.javassist:javassist:3.23.1-GA")
+    implementation("commons-io:commons-io:2.4")
+    implementation("commons-codec:commons-codec:1.10")
 
 
     kapt "com.google.auto.service:auto-service:1.0"
@@ -57,7 +61,7 @@ dependencies {
 
 
     Properties properties = new Properties()
-    properties.load(new FileReader(new File(rootDir.parentFile,"gradle.properties")))
+    properties.load(new FileReader(new File(rootDir.parentFile, "gradle.properties")))
     def isEnableSkin = properties.getProperty("isEnableSkin").toBoolean()
     if (isEnableSkin.toBoolean()){
         implementation project(":skin-plugin")
@@ -83,6 +87,10 @@ sourceSets {
             srcDir 'src/main/resources'
         }
     }
+}
+// https://docs.gradle.org/7.5/javadoc/org/gradle/api/file/DuplicatesStrategy.html
+tasks.findByName("processResources").configure {
+    duplicatesStrategy 'include'
 }
 
 tasks.withType(JavaCompile) {

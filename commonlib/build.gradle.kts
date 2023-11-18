@@ -1,19 +1,16 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-android-extensions")
     id("kotlin-kapt")
 }
 
 android {
-    compileSdkVersion(Android.compileSdkVersion)
-    buildToolsVersion(Android.buildToolsVersion)
+    compileSdk = Android.compileSdkVersion
+    buildToolsVersion = Android.buildToolsVersion
 
     defaultConfig {
         minSdkVersion(Android.minSdkVersion)
         targetSdkVersion(Android.targetSdkVersion)
-        versionCode(1)
-        versionName("1.0")
     }
 
     kotlinOptions {
@@ -54,9 +51,11 @@ dependencies {
     api(Dependencies.glide)
     api(Dependencies.glide_transformations)
 
-    // ARouter
-    api(Dependencies.arouter)
-//    kapt(Dependencies.arouter_compiler)
+    // Router
+    api(Dependencies.router) {
+//        exclude("androidx.appcompat","androidx.appcompat:appcompat:1.3.0")
+    }
+
 
     // support
     api(AndroidSupport.appcompat)
@@ -88,6 +87,7 @@ dependencies {
     api(View.photoView)
     api(View.smartRefreshLayout)
     api(View.shimmerlayout)
+    api(View.refreshlayout)
     api(View.BRVAH)
 
     // kotlin && coroutines

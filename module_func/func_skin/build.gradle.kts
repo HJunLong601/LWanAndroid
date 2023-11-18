@@ -1,19 +1,16 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-android-extensions")
     id("kotlin-kapt")
 }
 
 android {
-    compileSdkVersion(Android.compileSdkVersion)
-    buildToolsVersion(Android.buildToolsVersion)
+    compileSdk = Android.compileSdkVersion
+    buildToolsVersion = Android.buildToolsVersion
 
     defaultConfig {
         minSdkVersion(Android.minSdkVersion)
         targetSdkVersion(Android.targetSdkVersion)
-        versionCode(1)
-        versionName("1.0")
     }
 
     kotlinOptions {
@@ -38,12 +35,6 @@ android {
     }
 
 }
-// kotlin 配置ARouter
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.name)
-    }
-}
 
 
 dependencies {
@@ -57,7 +48,7 @@ dependencies {
     api(SkinSupport.skin_cardview)
     api(SkinSupport.skin_constraint)
 
-    kapt(Dependencies.arouter_compiler)
+    kapt(Dependencies.routerApt)
 
 
 }

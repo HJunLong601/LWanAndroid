@@ -4,7 +4,6 @@ import android.content.Intent
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.alibaba.android.arouter.launcher.ARouter
 import com.hjl.commonlib.base.BaseApplication
 import com.hjl.commonlib.base.ResourceManager
 import com.hjl.commonlib.customview.BaseTipDialog
@@ -30,6 +29,7 @@ import com.hjl.jetpacklib.mvvm.view.BaseFragment2
 import com.hjl.module_base.constants.EventKey
 import com.hjl.module_base.router.RouterName
 import com.jeremyliao.liveeventbus.LiveEventBus
+import com.therouter.TheRouter
 
 /**
  * Author : long
@@ -148,7 +148,7 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
             }
 
             Constant.ACTION_SKIN -> {
-                ARouter.getInstance().build(RouterName.SKIN_SKIN_ACTIVITY).navigation()
+                TheRouter.build(RouterName.SKIN_SKIN_ACTIVITY).navigation()
             }
             else -> {
                 ToastUtil.show("暂未开放")

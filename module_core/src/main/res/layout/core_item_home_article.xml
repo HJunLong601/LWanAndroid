@@ -15,7 +15,7 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:layout_height="wrap_content"
-        app:linkUrl="@{bean.link}">
+        linkUrl="@{bean.link}">
 
         <TextView
             android:id="@+id/home_article_author_tv"

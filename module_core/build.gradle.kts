@@ -1,19 +1,16 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-android-extensions")
     id("kotlin-kapt")
 }
 
 android {
-    compileSdkVersion(Android.compileSdkVersion)
-    buildToolsVersion(Android.buildToolsVersion)
+    compileSdk = Android.compileSdkVersion
+    buildToolsVersion = Android.buildToolsVersion
 
     defaultConfig {
         minSdkVersion(Android.minSdkVersion)
         targetSdkVersion(Android.targetSdkVersion)
-        versionCode = 1
-        versionName = "1.0"
     }
 
     compileOptions {
@@ -66,14 +63,6 @@ android {
 
 }
 
-
-// 2、kotlin 配置ARouter
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.name)
-    }
-}
-
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
@@ -82,8 +71,8 @@ dependencies {
     implementation(View.GroupedRecyclerViewAdapter)
     implementation(View.banner)
     api(View.flexbox)
-    
+
     api(Jetpack.viewModel)
-    kapt(Dependencies.arouter_compiler)
+    kapt(Dependencies.routerApt)
 }
 

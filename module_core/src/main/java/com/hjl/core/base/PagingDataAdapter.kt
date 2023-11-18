@@ -14,7 +14,11 @@ import com.hjl.commonlib.utils.LogUtils
 import com.hjl.commonlib.utils.ToastUtil
 import com.hjl.jetpacklib.mvvm.recycleview.OnItemChildClickListener
 import com.hjl.jetpacklib.mvvm.recycleview.OnItemClickListener
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.lang.reflect.ParameterizedType
 
 /**

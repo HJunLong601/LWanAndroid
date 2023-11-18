@@ -2,13 +2,13 @@ package com.hjl.skin
 
 import android.graphics.Color
 import androidx.recyclerview.widget.GridLayoutManager
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.hjl.commonlib.extend.addDivider
 
 
 import com.hjl.jetpacklib.mvvm.view.BaseActivity
 import com.hjl.module_base.router.RouterName
 import com.hjl.skin.databinding.SkinActivitySkinBinding
+import com.therouter.router.Route
 import skin.support.SkinCompatManager
 
 @Route(path = RouterName.SKIN_SKIN_ACTIVITY)

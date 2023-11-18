@@ -1,9 +1,8 @@
 package com.hjl.jetpacklib.mvvm
 
-import android.annotation.SuppressLint
 import android.view.View
 import android.widget.ImageView
-import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 
@@ -29,8 +28,12 @@ fun bindFocusLiveData(view : View,liveData: MutableLiveData<Boolean>){
     }
 }
 
-@SuppressLint("ResourceType")
+//@SuppressLint("ResourceType")
+//@BindingAdapter("loadDrawable")
+//fun ImageView.setImageTint(drawableId: Int) {
+//    setImageResource(drawableId)
+//}
 @BindingAdapter("loadDrawable")
-fun ImageView.setImageTint(@ColorInt color: Int) {
-    setImageResource(color)
+fun setImageTint(view: ImageView, @DrawableRes drawableId: Int) {
+    view.setImageResource(drawableId)
 }

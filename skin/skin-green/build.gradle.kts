@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Android.compileSdkVersion)
-    buildToolsVersion(Android.buildToolsVersion)
+    compileSdk = Android.compileSdkVersion
+    buildToolsVersion = Android.buildToolsVersion
 
     defaultConfig {
-        applicationId("com.hjl.lwanandroid.green")
+        applicationId = "com.hjl.lwanandroid.green"
         minSdkVersion(Android.minSdkVersion)
         targetSdkVersion(Android.targetSdkVersion)
         versionCode = 1
