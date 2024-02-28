@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/common_base_theme_color"
             android:layout_marginTop="@dimen/margin_normal_size"
-            android:text="去登录"
+            android:text="@string/go_to_login"
             android:drawablePadding="@dimen/padding_small_size"
             android:drawableStart="@drawable/core_icon_arrow_left_circle"
             android:layout_marginEnd="@dimen/margin_small_size"
@@ -62,7 +62,7 @@
                 android:maxLines="1"
                 android:layout_gravity="center"
                 android:textCursorDrawable="@drawable/core_login_et_cursor"
-                android:hint="请输入帐号" />
+                android:hint="@string/please_input_account" />
 
 
         </LinearLayout>
@@ -108,7 +108,7 @@
                 android:paddingStart="@dimen/padding_small_size"
                 android:maxLines="1"
                 android:inputType="textPassword"
-                android:hint="请输入密码"
+                android:hint="@string/please_input_password"
                 android:textCursorDrawable="@drawable/core_login_et_cursor"
                 android:textSize="@dimen/common_text_content_size" />
 
@@ -156,7 +156,7 @@
                 android:textColorHint="@color/common_text_gray"
                 android:maxLines="1"
                 android:inputType="textPassword"
-                android:hint="请再次输入密码"
+                android:hint="@string/please_input_password_again"
                 android:textCursorDrawable="@drawable/core_login_et_cursor"
                 android:textSize="@dimen/common_text_content_size" />
 
@@ -181,7 +181,7 @@
             android:layout_marginEnd="@dimen/margin_normal_size"
             android:textSize="@dimen/common_text_content_size"
             android:textColor="@color/common_white"
-            android:text="注册"
+            android:text="@string/register"
             app:layout_constraintTop_toBottomOf="@+id/register_confirm_pass_ll"
             app:layout_constraintStart_toStartOf="@+id/register_password_line"
             app:layout_constraintEnd_toEndOf="@+id/register_password_line" />

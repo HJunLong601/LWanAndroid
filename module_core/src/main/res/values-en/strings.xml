@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="core_string_noname">Anonymous</string>
+
+    <string name="core_string_all_search_history">All the search records</string>
+    <string name="core_string_clear_search_history">Clear search records</string>
+    <string name="core_string_key_value_format">%s : %s</string>
+    <string name="core_string_group">group</string>
+    <string name="core_string_artifact">artifact</string>
+    <string name="core_string_version">version</string>
+    <string name="google_maven_search">Query Google Maven library</string>
+    <string name="input_google_pkg_name">Enter the Google package name to query</string>
+    <string name="baidu_search">Baidu Search</string>
+    <string name="google_search">Google</string>
+    <string name="login">Login</string>
+    <string name="please_input_password">Please enter password</string>
+    <string name="please_input_account">Please enter your account number</string>
+    <string name="register_account">Register an account</string>
+    <string name="please_input_password_again">Please enter your password again</string>
+    <string name="register">Register</string>
+    <string name="go_to_login">Login</string>
+
+</resources>

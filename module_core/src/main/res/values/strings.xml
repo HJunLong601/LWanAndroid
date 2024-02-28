@@ -8,5 +8,16 @@
     <string name="core_string_group">group</string>
     <string name="core_string_artifact">artifact</string>
     <string name="core_string_version">version</string>
+    <string name="google_maven_search">Google Maven查询</string>
+    <string name="input_google_pkg_name">输入要查询的Google包名</string>
+    <string name="baidu_search">百度搜索</string>
+    <string name="google_search">Google</string>
+    <string name="login">登录</string>
+    <string name="please_input_password">请输入密码</string>
+    <string name="please_input_account">请输入帐号</string>
+    <string name="register_account">注册帐号</string>
+    <string name="please_input_password_again">请再次输入密码</string>
+    <string name="register">注册</string>
+    <string name="go_to_login">去登录</string>
 
 </resources>

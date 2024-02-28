@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -18,7 +17,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/common_base_theme_color"
             android:layout_marginTop="@dimen/margin_normal_size"
-            android:text="注册帐号"
+            android:text="@string/register_account"
             android:drawablePadding="@dimen/padding_small_size"
             android:drawableEnd="@drawable/core_icon_arrow_right_circle"
             app:layout_constraintTop_toTopOf="parent"
@@ -62,7 +61,7 @@
                 android:textColorHint="@color/common_text_gray"
                 android:layout_gravity="center"
                 android:textCursorDrawable="@drawable/core_login_et_cursor"
-                android:hint="请输入帐号" />
+                android:hint="@string/please_input_account" />
 
 
         </LinearLayout>
@@ -102,7 +101,7 @@
                 android:layout_weight="1"
                 android:background="@color/common_white"
                 android:gravity="center|start"
-                android:hint="请输入密码"
+                android:hint="@string/please_input_password"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:textColor="@color/common_black"
@@ -134,7 +133,7 @@
             android:layout_marginEnd="@dimen/margin_normal_size"
             android:textSize="@dimen/common_text_content_size"
             android:textColor="@color/common_white"
-            android:text="登录"
+            android:text="@string/login"
             app:layout_constraintTop_toBottomOf="@+id/login_password_line"
             app:layout_constraintStart_toStartOf="@+id/login_password_line"
             app:layout_constraintEnd_toEndOf="@+id/login_password_line" />
