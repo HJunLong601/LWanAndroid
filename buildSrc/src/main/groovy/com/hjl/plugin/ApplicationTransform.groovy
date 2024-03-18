@@ -31,32 +31,32 @@ class ApplicationTransform extends Transform {
     }
 
       /**
-      * 需要处理的数据类型，目前 ContentType 有六种枚举类型，通常我们使用比较频繁的有前两种：
-      *      1、CONTENT_CLASS：表示需要处理 java 的 class 文件。
-      *      2、CONTENT_JARS：表示需要处理 java 的 class 与 资源文件。
-      *      3、CONTENT_RESOURCES：表示需要处理 java 的资源文件。
-      *      4、CONTENT_NATIVE_LIBS：表示需要处理 native 库的代码。
-      *      5、CONTENT_DEX：表示需要处理 DEX 文件。
-      *      6、CONTENT_DEX_WITH_RESOURCES：表示需要处理 DEX 与 java 的资源文件。
-      *
-      * @return
-      */
+ *需要处理的数据类型，目前ContentType有六种枚举类型，通常我们使用比较频繁的有前两种：
+ *1、CONTENT_CLASS：表示需要处理java的class文件。
+ *2、CONTENT_JARS：表示需要处理java的class与资源文件。
+ *3、CONTENT_RESOURCES：表示需要处理java的资源文件。
+ *4、CONTENT_NATIVE_LIBS：表示需要处理native库的代码。
+ *5、CONTENT_DEX：表示需要处理DEX文件。
+ *6、CONTENT_DEX_WITH_RESOURCES：表示需要处理DEX与java的资源文件。
+ *
+ *@return
+ */
     @Override
     Set<QualifiedContent.ContentType> getInputTypes() {
         return TransformManager.CONTENT_CLASS
     }
 
      /**
-      * 表示 Transform 要操作的内容范围，目前 Scope 有五种基本类型：
-      *      1、PROJECT                   只有项目内容
-      *      2、SUB_PROJECTS              只有子项目
-      *      3、EXTERNAL_LIBRARIES        只有外部库
-      *      4、TESTED_CODE               由当前变体（包括依赖项）所测试的代码
-      *      5、PROVIDED_ONLY             只提供本地或远程依赖项
-      *      SCOPE_FULL_PROJECT 是一个 Scope 集合，包含 Scope.PROJECT, Scope.SUB_PROJECTS, Scope.EXTERNAL_LIBRARIES 这三项，即当前 Transform 的作用域包括当前项目、子项目以及外部的依赖库
-      *
-      * @return
-      */
+ *表示Transform要操作的内容范围，目前Scope有五种基本类型：
+ *1、PROJECT只有项目内容
+ *2、SUB_PROJECTS只有子项目
+ *3、EXTERNAL_LIBRARIES只有外部库
+ *4、TESTED_CODE由当前变体（包括依赖项）所测试的代码
+ *5、PROVIDED_ONLY只提供本地或远程依赖项
+ *SCOPE_FULL_PROJECT是一个Scope集合，包含Scope.PROJECT,Scope.SUB_PROJECTS,Scope.EXTERNAL_LIBRARIES这三项，即当前Transform的作用域包括当前项目、子项目以及外部的依赖库
+ *
+ *@return
+ */
 
     @Override
     Set<QualifiedContent.Scope> getScopes() {

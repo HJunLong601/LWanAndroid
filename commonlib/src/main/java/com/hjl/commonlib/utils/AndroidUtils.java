@@ -6,8 +6,10 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.MemoryInfo;
 import android.app.ActivityManager.RunningAppProcessInfo;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ComponentName;
@@ -43,6 +45,7 @@ import android.telephony.gsm.GsmCellLocation;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -50,7 +53,6 @@ import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -145,6 +147,30 @@ public class AndroidUtils {
             e.printStackTrace();
         }
         return debugable;
+    }
+
+    public static void restartApp(Context context) {
+        Log.e("AppRestart", "restartApp");
+        // 获取应用的包名
+        String packageName = context.getPackageName();
+        // 获取PackageManager实例
+        PackageManager packageManager = context.getPackageManager();
+        // 通过包名获取启动Intent
+        Intent intent = packageManager.getLaunchIntentForPackage(packageName);
+
+        if (intent != null) {
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_CANCEL_CURRENT);
+
+            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            alarmManager.setExact(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
+
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(0);
+        } else {
+            // 处理无法获取启动Intent的情况
+            Log.e("AppRestart", "Failed to restart application: Launch intent is null.");
+        }
     }
 
     public static String getProcessName(Context context, int pid) {

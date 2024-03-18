@@ -7,4 +7,5 @@ package com.hjl.module_base.router;
  */
 public interface RouterName {
     String SKIN_SKIN_ACTIVITY = "/skin/SkinActivity";
+    String LANGUAGE_SETTING = "/language/LanguageSettingActivity";
 }

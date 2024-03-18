@@ -100,5 +100,7 @@ dependencies {
     if (parseAsBool(properties["isEnableSkin"].toString())!!) {
         implementation(project(":module_func:func_skin"))
     }
+    implementation(project(":module_func:func_language"))
+
 
 }

@@ -1,0 +1,16 @@
+[
+  {
+    "path": "/skin/SkinActivity",
+    "className": "com.hjl.skin.SkinActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/language/LanguageSettingActivity",
+    "className": "com.hjl.language.impl.LanguageSettingActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  }
+]

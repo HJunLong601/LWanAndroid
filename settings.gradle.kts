@@ -4,6 +4,7 @@ include(":module_base")
 include(":module_core")
 include(":jetpacklib")
 include(":module_func:func_skin")
+include(":module_func:func_language")
 
 include(":skin:skin-dark")
 include(":skin:skin-green")

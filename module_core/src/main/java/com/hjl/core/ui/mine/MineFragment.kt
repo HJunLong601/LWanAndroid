@@ -110,6 +110,13 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
         itemList.add(MineItemBean("主题皮肤", Constant.ACTION_SKIN, R.drawable.core_icon_skin))
         itemList.add(MineItemBean("积分榜单", Constant.ACTION_RANK, R.drawable.core_icon_integral))
         itemList.add(MineItemBean("Maven查询", Constant.ACTION_MAVEN, R.drawable.core_icon_maven))
+        itemList.add(
+            MineItemBean(
+                "语言设置",
+                Constant.ACTION_LANGUAGE,
+                R.drawable.core_icon_language
+            )
+        )
         itemList.add(MineItemBean("退出登录", Constant.ACTION_EXIT, R.drawable.core_icon_exit))
     }
 
@@ -143,6 +150,7 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
                     ToastUtil.show("您尚未登录")
                 }
             }
+
             Constant.ACTION_MAVEN -> {
                 quickStartActivity(MavenActivity::class.java)
             }
@@ -150,6 +158,11 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
             Constant.ACTION_SKIN -> {
                 TheRouter.build(RouterName.SKIN_SKIN_ACTIVITY).navigation()
             }
+
+            Constant.ACTION_LANGUAGE -> {
+                TheRouter.build(RouterName.LANGUAGE_SETTING).navigation()
+            }
+
             else -> {
                 ToastUtil.show("暂未开放")
             }

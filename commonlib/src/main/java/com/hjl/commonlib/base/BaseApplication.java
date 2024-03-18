@@ -48,7 +48,7 @@ public class BaseApplication extends Application {
 
         initX5Core();
         initARouter();
-        initModule(modules);
+//        initModule(modules);
 
     }
 

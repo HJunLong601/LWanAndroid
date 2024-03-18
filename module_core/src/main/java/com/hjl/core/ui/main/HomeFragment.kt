@@ -36,20 +36,21 @@ class HomeFragment : BaseMVVMFragment2<CoreFragmentHomeBinding, HomeViewModel>()
 
     private lateinit var homeArticleAdapter: ArticleAdapter
 
-    private var currentCookie : String = ""
+    private var currentCookie: String = ""
 
     override fun initLayoutResID(): Int {
         return R.layout.core_fragment_home
     }
 
     override fun initData() {
-        viewModel.bannerData.observe(this, Observer {
-            if (it.isNullOrEmpty()) return@Observer
-            homeArticleAdapter.setBannerData(it.toMutableList())
-        })
+
     }
 
     override fun initView() {
+        viewModel.bannerData.observe(viewLifecycleOwner, Observer {
+            if (it.isNullOrEmpty()) return@Observer
+            homeArticleAdapter.setBannerData(it.toMutableList())
+        })
 
         binding.coreTitleLl.apply {
             titleCenterTv.text = "首页"

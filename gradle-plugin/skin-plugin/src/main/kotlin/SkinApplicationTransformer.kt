@@ -18,7 +18,7 @@ class SkinApplicationTransformer : ClassTransformer{
     private lateinit var logger: PrintWriter
 
     companion object{
-        val DEST_CLASS_NAME = "com/hjl/lwanandroid/skin/SkinBaseActivity"
+        val DEST_CLASS_NAME = "com/hjl/lwanandroid/WanBaseActivity"
         val targetClsList = arrayListOf(
             "com/hjl/commonlib/base/BaseMultipleActivity",
             "com/hjl/jetpacklib/mvvm/view/BaseActivity",
@@ -42,7 +42,7 @@ class SkinApplicationTransformer : ClassTransformer{
     }
 
     override fun transform(context: TransformContext, klass: ClassNode): ClassNode {
-//        println("SkinApplicationTransformer transform")
+        this.logger.append("SkinApplicationTransformer transform ${klass.name}").append("\n")
         if (targetClsList.contains(klass.name)){
             println("get klass name:${klass.name}")
             klass.superName = DEST_CLASS_NAME

@@ -1,0 +1,7 @@
+<!-- res/drawable/checkbox_selector.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Checked state -->
+    <item android:color="@color/common_base_theme_color" android:state_checked="true" />
+    <!-- Unchecked state -->
+    <item android:color="@color/common_base_theme_color" android:state_checked="false" />
+</selector>
