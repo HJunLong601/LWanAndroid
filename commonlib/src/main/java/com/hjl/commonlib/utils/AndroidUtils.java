@@ -6,10 +6,8 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.MemoryInfo;
 import android.app.ActivityManager.RunningAppProcessInfo;
-import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.PendingIntent;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ComponentName;
@@ -149,21 +147,22 @@ public class AndroidUtils {
         return debugable;
     }
 
-    public static void restartApp(Context context) {
+    public static void restartApp(Activity activity) {
         Log.e("AppRestart", "restartApp");
         // 获取应用的包名
-        String packageName = context.getPackageName();
+        String packageName = activity.getPackageName();
         // 获取PackageManager实例
-        PackageManager packageManager = context.getPackageManager();
+        PackageManager packageManager = activity.getPackageManager();
         // 通过包名获取启动Intent
         Intent intent = packageManager.getLaunchIntentForPackage(packageName);
 
         if (intent != null) {
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_CANCEL_CURRENT);
-
-            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            alarmManager.setExact(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            activity.startActivity(intent);
+//            PendingIntent pendingIntent = PendingIntent.getActivity(activity, 0, intent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_CANCEL_CURRENT);
+//
+//            AlarmManager alarmManager = (AlarmManager) activity.getSystemService(Context.ALARM_SERVICE);
+//            alarmManager.setExact(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
 
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(0);
