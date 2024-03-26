@@ -21,7 +21,7 @@ android {
     }
 
     dataBinding {
-        isEnabled = true
+        enable = true
     }
 
     kotlinOptions {
@@ -38,6 +38,7 @@ android {
             )
         }
     }
+    namespace = "com.hjl.module_base"
 
 }
 

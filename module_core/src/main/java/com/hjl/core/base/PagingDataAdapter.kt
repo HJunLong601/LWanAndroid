@@ -99,10 +99,12 @@ abstract class PagingDataAdapter<
 
     fun setOnEmptyData(onEmpty : () -> Unit){
         addLoadStateListener {
-            when(it.append){
+            when (it.append) {
                 is LoadState.NotLoading -> {
                     if (it.append.endOfPaginationReached && itemCount == 0) onEmpty.invoke()
                 }
+
+                else -> {}
             }
         }
     }

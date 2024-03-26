@@ -40,7 +40,7 @@ android {
     }
 
     dataBinding {
-        isEnabled = true
+        enable = true
     }
 
     buildTypes {
@@ -69,6 +69,7 @@ android {
 //            signingConfig = signingConfigs.getByName("release")
         }
     }
+    namespace = "com.hjl.lwanandroid"
 
 //    applicationVariants.all { variant ->
 //

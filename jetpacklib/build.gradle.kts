@@ -24,7 +24,7 @@ android {
     }
 
     dataBinding {
-        isEnabled = true
+        enable = true
     }
 
     buildTypes {
@@ -34,6 +34,7 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+    namespace = "com.hjl.jetpacklib"
 
 }
 

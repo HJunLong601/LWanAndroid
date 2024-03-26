@@ -19,7 +19,7 @@ android {
     }
 
     dataBinding {
-        isEnabled = true
+        enable = true
     }
 
     buildTypes {
@@ -33,6 +33,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    namespace = "com.hjl.core"
 
 //    /*3.设置模块化时编译模块等;*/
 //    sourceSets.main {

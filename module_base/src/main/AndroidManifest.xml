@@ -1,11 +1,10 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.module_base">
-
-
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
 
     <application>
-        <meta-data android:name="TencentMapSDK" android:value="JFGBZ-OYVEU-ED6VH-BEEQN-XV5PJ-FZFTC" />
+        <meta-data
+            android:name="TencentMapSDK"
+            android:value="JFGBZ-OYVEU-ED6VH-BEEQN-XV5PJ-FZFTC" />
     </application>
 
 </manifest>

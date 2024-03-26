@@ -23,7 +23,7 @@ android {
     }
 
     dataBinding {
-        isEnabled = true
+        enable = true
     }
 
     buildTypes {
@@ -36,6 +36,7 @@ android {
             )
         }
     }
+    namespace = "com.hjl.language"
 
 }
 
