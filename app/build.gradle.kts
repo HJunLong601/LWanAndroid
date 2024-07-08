@@ -9,7 +9,7 @@ plugins {
 
     id("com.didiglobal.booster")
     id("therouter")
-    id("com.hjl.plugin")
+//    id("com.hjl.plugin")
 }
 
 android {
