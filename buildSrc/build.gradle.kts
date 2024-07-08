@@ -15,8 +15,8 @@ buildscript{
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:7.4.2")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("com.android.tools.build:gradle-api:7.4.2")
+//        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
 
     }
 
@@ -46,7 +46,7 @@ dependencies {
     // groovy sdk
     implementation(localGroovy())
     // android build tools
-    implementation ("com.android.tools.build:gradle:7.4.2")
+    implementation ("com.android.tools.build:gradle-api:7.4.2")
 
 
     // third dependencies
@@ -57,12 +57,12 @@ dependencies {
     implementation("commons-io:commons-io:2.4")
     implementation("commons-codec:commons-codec:1.10")
 
-    implementation(project(":skin-plugin"))
-
-    val booster_version = "4.16.3"
-    annotationProcessor("com.google.auto.service:auto-service:1.0")
-    api("com.didiglobal.booster:booster-api:$booster_version")
-    api("com.didiglobal.booster:booster-transform-asm:$booster_version")
+//    implementation(project(":skin-plugin"))
+//
+//    val booster_version = "4.16.3"
+//    annotationProcessor("com.google.auto.service:auto-service:1.0")
+//    api("com.didiglobal.booster:booster-api:$booster_version")
+//    api("com.didiglobal.booster:booster-transform-asm:$booster_version")
 }
 
 tasks.withType(JavaCompile::class.java){

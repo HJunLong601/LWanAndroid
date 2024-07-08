@@ -17,6 +17,6 @@ fun <BVM : BaseViewModel> initViewModel(
         vmClass: Class<BVM>,
         rClass: Class<out BaseRepository>
 ) = object : ViewModelProvider.NewInstanceFactory(){
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return vmClass.getConstructor(rClass).newInstance(rClass.newInstance()) as T
     }}.create(vmClass)
