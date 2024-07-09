@@ -74,7 +74,7 @@ object Jetpack{
     val room = "androidx.room:room-runtime:2.2.0"
     val room_compiler = "androidx.room:room-compiler:2.2.0"
     val room_ktx = "androidx.room:room-ktx:2.2.0"
-    val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
 
 }
 

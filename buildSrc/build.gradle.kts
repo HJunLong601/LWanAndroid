@@ -59,7 +59,7 @@ dependencies {
 
 //    implementation(project(":skin-plugin"))
 //
-//    val booster_version = "4.16.3"
+    val booster_version = "4.16.3"
 //    annotationProcessor("com.google.auto.service:auto-service:1.0")
 //    api("com.didiglobal.booster:booster-api:$booster_version")
 //    api("com.didiglobal.booster:booster-transform-asm:$booster_version")
