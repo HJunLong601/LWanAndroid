@@ -3,7 +3,7 @@ object Android{
     val minSdkVersion = 21
     val targetSdkVersion = 30
     val buildToolsVersion = "30.0.3"
-    val kotlinVersion = "1.7.20"
+    val kotlinVersion = "1.6.21"
 }
 
 object Dependencies{

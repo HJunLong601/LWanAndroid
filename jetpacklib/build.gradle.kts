@@ -9,9 +9,8 @@ android {
     buildToolsVersion = Android.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion(Android.minSdkVersion)
-        targetSdkVersion(Android.targetSdkVersion)
-
+        minSdk = Android.minSdkVersion
+        targetSdk = Android.targetSdkVersion
     }
 
     kotlinOptions {

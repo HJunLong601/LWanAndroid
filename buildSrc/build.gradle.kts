@@ -2,7 +2,7 @@
 
 buildscript{
 
-    val kotlinVersion = "1.7.20"
+    val kotlinVersion = "1.6.21"
 
     repositories {
         maven("https://maven.aliyun.com/repository/central" )
@@ -16,7 +16,7 @@ buildscript{
 
     dependencies {
         classpath("com.android.tools.build:gradle-api:7.4.2")
-//        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
 
     }
 
@@ -57,12 +57,12 @@ dependencies {
     implementation("commons-io:commons-io:2.4")
     implementation("commons-codec:commons-codec:1.10")
 
-//    implementation(project(":skin-plugin"))
-//
-    val booster_version = "4.16.3"
+    implementation(project(":skin-plugin"))
+
+    val kotlinVersion = "1.6.21"
 //    annotationProcessor("com.google.auto.service:auto-service:1.0")
-//    api("com.didiglobal.booster:booster-api:$booster_version")
-//    api("com.didiglobal.booster:booster-transform-asm:$booster_version")
+    api("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+    api("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
 }
 
 tasks.withType(JavaCompile::class.java){

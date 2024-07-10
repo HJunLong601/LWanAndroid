@@ -1,3 +1,4 @@
+package com.hjl.plugin;
 
 class ReleaseInfoExtension{
     String versionName;

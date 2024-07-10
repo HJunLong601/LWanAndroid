@@ -1,4 +1,4 @@
-
+package com.hjl.plugin;
 
 import com.android.build.api.transform.Context
 import com.android.build.api.transform.DirectoryInput

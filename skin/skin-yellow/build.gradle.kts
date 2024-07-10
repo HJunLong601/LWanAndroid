@@ -9,8 +9,8 @@ android {
 
     defaultConfig {
         applicationId = "com.hjl.lwanandroid.yellow"
-        minSdkVersion(Android.minSdkVersion)
-        targetSdkVersion(Android.targetSdkVersion)
+        minSdk = Android.minSdkVersion
+        targetSdk = Android.targetSdkVersion
         versionCode = 1
         versionName = "1.0"
     }

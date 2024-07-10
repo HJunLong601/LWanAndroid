@@ -1,3 +1,5 @@
+package com.hjl.plugin;
+
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.AdviceAdapter;

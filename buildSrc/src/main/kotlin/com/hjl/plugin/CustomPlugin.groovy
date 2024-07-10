@@ -1,3 +1,5 @@
+package com.hjl.plugin;
+
 import com.android.build.gradle.AppExtension
 import com.hjl.plugin.ApplicationTransform
 import com.hjl.plugin.MethodTransform

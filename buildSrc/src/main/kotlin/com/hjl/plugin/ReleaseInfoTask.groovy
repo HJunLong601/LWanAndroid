@@ -1,3 +1,4 @@
+package com.hjl.plugin;
 
 import groovy.xml.MarkupBuilder
 import org.gradle.api.DefaultTask
