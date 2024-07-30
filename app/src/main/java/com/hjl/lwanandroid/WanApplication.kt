@@ -12,6 +12,7 @@ import com.hjl.language.impl.SPLanguageSetting
 import com.hjl.lwanandroid.skin.SkinResourceAcquirer
 import com.hjl.module_base.datbase.WanDatabase.Companion.getInstance
 import com.jeremyliao.liveeventbus.core.LiveEventBusCore
+import dagger.hilt.android.HiltAndroidApp
 import skin.support.SkinCompatManager
 import skin.support.app.SkinAppCompatViewInflater
 import skin.support.app.SkinCardViewInflater
@@ -19,6 +20,7 @@ import skin.support.constraint.app.SkinConstraintViewInflater
 import skin.support.design.app.SkinMaterialViewInflater
 
 
+@HiltAndroidApp
 class WanApplication : BaseApplication() {
     override fun attachBaseContext(base: Context) {
         MultiLanguage.init(base, SPLanguageSetting())

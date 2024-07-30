@@ -42,5 +42,7 @@ dependencies {
 
     api(project(":commonlib"))
     api(Jetpack.paging3)
+    api(Jetpack.hilt)
+    kapt(Jetpack.hilt_compiler)
 }
 

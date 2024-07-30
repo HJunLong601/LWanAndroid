@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -69,11 +70,15 @@ dependencies {
 
     api(project(":module_base"))
 
+    api(View.flexbox)
     implementation(View.GroupedRecyclerViewAdapter)
     implementation(View.banner)
-    api(View.flexbox)
 
+
+    implementation(Jetpack.hilt)
     api(Jetpack.viewModel)
+
     kapt(Dependencies.routerApt)
+    kapt(Jetpack.hilt_compiler)
 }
 

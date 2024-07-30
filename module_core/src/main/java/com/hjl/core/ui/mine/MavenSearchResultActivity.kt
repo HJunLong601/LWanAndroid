@@ -12,7 +12,9 @@ import com.hjl.core.databinding.CoreActivityMavenSearchResultBinding
 import com.hjl.core.viewmodel.MavenViewModel
 import com.hjl.commonlib.extend.addDivider
 import com.hjl.jetpacklib.mvvm.view.BaseMVVMActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MavenSearchResultActivity : BaseMVVMActivity<CoreActivityMavenSearchResultBinding, MavenViewModel>() {
 
     private lateinit var resultAdapter: MavenSearchResultAdapter

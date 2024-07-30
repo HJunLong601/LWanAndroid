@@ -69,7 +69,7 @@ public object MultiLanguage {
 
     fun getSystemLocale(): Locale {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            ConfigurationCompat.getLocales(Resources.getSystem().configuration).get(0)
+            ConfigurationCompat.getLocales(Resources.getSystem().configuration).get(0)!!
         } else {
             Locale.getDefault()
         }

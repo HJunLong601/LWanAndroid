@@ -9,6 +9,7 @@ plugins {
 
     id("com.didiglobal.booster")
     id("therouter")
+    id("dagger.hilt.android.plugin")
 //    id("com.hjl.plugin")
 }
 
@@ -91,6 +92,11 @@ fun buildTime(): String {
     return sdf.format(date)
 }
 
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
@@ -101,6 +107,9 @@ dependencies {
     if (parseAsBool(properties["isEnableSkin"].toString())!!) {
         implementation(project(":module_func:func_skin"))
     }
+    kapt(Jetpack.hilt_compiler)
+
+    implementation(Jetpack.hilt)
     implementation(project(":module_func:func_language"))
 
 

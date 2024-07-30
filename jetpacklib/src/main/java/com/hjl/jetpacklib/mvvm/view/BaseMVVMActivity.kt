@@ -24,23 +24,16 @@ abstract class BaseMVVMActivity<VDB : ViewDataBinding,BVM : BaseViewModel> : Bas
     // 做一层兼容
     protected lateinit var binding : VDB
 
-
-    @Suppress("UNCHECKED_CAST")
-    override fun onCreate(savedInstanceState: Bundle?) {
-
+    private fun buildViewModel() {
         val arguments = (this.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments
         val bvmClass: Class<BVM> = arguments[1] as Class<BVM>
         viewModel = ViewModelProvider(this).get(bvmClass)
-
-
-        super.onCreate(savedInstanceState)
-
     }
 
 
     override fun initBaseView() {
         super.initBaseView()
-
+        buildViewModel()
         dataBinding = DataBindingUtil.bind(mMultipleStateView.getmContentView())
         dataBinding!!.lifecycleOwner = this
         binding =  checkNotNull(dataBinding)

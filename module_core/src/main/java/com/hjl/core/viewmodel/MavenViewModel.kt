@@ -4,19 +4,21 @@ import androidx.lifecycle.MutableLiveData
 import com.hjl.core.net.bean.MavenItemBean
 import com.hjl.core.repository.MavenRepository
 import com.hjl.jetpacklib.mvvm.BaseViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
 /**
  * author: long
  * description please add a description here
  * Date: 2021/5/14
  */
-class MavenViewModel : BaseViewModel() {
-
-    private val repository = MavenRepository()
+@HiltViewModel
+class MavenViewModel @Inject constructor(val repository : MavenRepository): BaseViewModel() {
 
     val googlePackageList = MutableLiveData<List<String>>()
     val googleMavenList = MutableLiveData<List<MavenItemBean>>()

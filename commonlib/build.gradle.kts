@@ -53,9 +53,7 @@ dependencies {
     api(Dependencies.glide_transformations)
 
     // Router
-    api(Dependencies.router) {
-//        exclude("androidx.appcompat","androidx.appcompat:appcompat:1.3.0")
-    }
+    api(Dependencies.router)
 
 
     // support

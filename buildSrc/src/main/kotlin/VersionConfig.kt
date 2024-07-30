@@ -71,6 +71,8 @@ object KT{
 object Jetpack{
     val paging3 = "androidx.paging:paging-runtime:3.0.0"
     val paging3_rxjava = "androidx.paging:paging-rxjava2:3.0.0" // optional
+    val hilt = "com.google.dagger:hilt-android:2.44"
+    val hilt_compiler = "com.google.dagger:hilt-compiler:2.44"
     val room = "androidx.room:room-runtime:2.2.0"
     val room_compiler = "androidx.room:room-compiler:2.2.0"
     val room_ktx = "androidx.room:room-ktx:2.2.0"

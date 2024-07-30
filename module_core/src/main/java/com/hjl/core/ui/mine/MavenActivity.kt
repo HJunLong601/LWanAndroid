@@ -19,8 +19,10 @@ import com.hjl.commonlib.extend.addDivider
 import com.hjl.jetpacklib.mvvm.recycleview.SimpleTextAdapter
 import com.hjl.jetpacklib.mvvm.view.BaseMVVMActivity
 import com.jakewharton.rxbinding3.widget.editorActions
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
+@AndroidEntryPoint
 class MavenActivity : BaseMVVMActivity<CoreActivityMavenBinding, MavenViewModel>() {
 
     private lateinit var tipAdapter : SimpleTextAdapter<BaseItemSimpleTextBinding>
@@ -64,7 +66,7 @@ class MavenActivity : BaseMVVMActivity<CoreActivityMavenBinding, MavenViewModel>
 
         binding.coreMavenSearchEv.doAfterTextChanged {
             if (it.toString().isNotEmpty()){
-                viewModel.searchKeyChannel.offer(it.toString())
+                viewModel.searchKeyChannel.trySend(it.toString())
             }else{
                 binding.coreMavenTipRv.visibility = View.GONE
             }
