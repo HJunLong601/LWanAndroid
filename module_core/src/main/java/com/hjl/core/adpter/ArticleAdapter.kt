@@ -1,11 +1,13 @@
 package com.hjl.core.adpter
 
+
 import android.app.Activity
 import android.content.Context
 import android.text.Html
 import android.text.SpannableStringBuilder
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
+import com.hjl.commonlib.base.BaseApplication
 import com.hjl.commonlib.base.ResourceManager
 import com.hjl.commonlib.customview.SpannableStringUtils
 import com.hjl.commonlib.utils.LogUtils
@@ -88,7 +90,7 @@ class ArticleAdapter(private val context : Context)
         if (item.isTop){
             SpannableStringUtils.addStartRoundBackgroundSpanString(
                 sb,
-                "顶",
+                BaseApplication.getApplication().getString(R.string.top),
                 ResourceManager.getInstance().getColor(context,R.color.common_red),
                 ResourceManager.getInstance().getColor(context,R.color.common_red)
             )
@@ -96,7 +98,7 @@ class ArticleAdapter(private val context : Context)
         if (item.isFresh){
             SpannableStringUtils.addStartRoundBackgroundSpanString(
                 sb,
-                "新",
+                BaseApplication.getApplication().getString(R.string.txt_new),
                 ResourceManager.getInstance().getColor(context,R.color.common_red),
                 ResourceManager.getInstance().getColor(context,R.color.common_red)
             )

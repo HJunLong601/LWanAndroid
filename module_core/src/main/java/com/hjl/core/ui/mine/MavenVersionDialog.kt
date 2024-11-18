@@ -1,20 +1,21 @@
 package com.hjl.core.ui.mine
 
+
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hjl.jetpacklib.mvvm.recycleview.OnItemClickListener
+import com.hjl.commonlib.base.BaseApplication
+import com.hjl.commonlib.extend.addDivider
 import com.hjl.commonlib.utils.AndroidUtils
 import com.hjl.commonlib.utils.DensityUtil
 import com.hjl.commonlib.utils.ToastUtil
-
 import com.hjl.core.R
 import com.hjl.core.adpter.MavenVersionAdapter
 import com.hjl.core.databinding.CoreDialogMavenVersionBinding
 import com.hjl.core.net.bean.MavenItemBean
 import com.hjl.jetpacklib.mvvm.BaseDialog
-import com.hjl.commonlib.extend.addDivider
+import com.hjl.jetpacklib.mvvm.recycleview.OnItemClickListener
 
 /**
  * author: long
@@ -40,7 +41,9 @@ class MavenVersionDialog(context: Context,val data : Map.Entry<String, List<Mave
                     bean: MavenItemBean.MavenVersionBean
                 ) {
                     AndroidUtils.setPrimaryClip(context,bean.content)
-                    ToastUtil.show("gradle 依赖已复制至粘贴板")
+                    ToastUtil.show(
+                        BaseApplication.getApplication().getString(R.string.grdl_dpndncy_hs_bn_)
+                    )
                 }
 
             })

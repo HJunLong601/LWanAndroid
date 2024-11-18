@@ -1,17 +1,13 @@
 package com.hjl.core.ui.login
 
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-
+import com.hjl.commonlib.base.BaseApplication
 import com.hjl.commonlib.utils.ToastUtil
 import com.hjl.core.R
 import com.hjl.core.databinding.CoreFragmentLoginBinding
-
-import com.hjl.core.repository.UserRepository
 import com.hjl.core.viewmodel.UserViewModel
 import com.hjl.jetpacklib.mvvm.view.BaseMVVMFragment2
-
 
 
 /**
@@ -64,7 +60,9 @@ class LoginFragment : BaseMVVMFragment2<CoreFragmentLoginBinding, UserViewModel>
             if (binding.loginAccountEt.text.toString().isNotEmpty() && binding.loginPasswordEt.text.toString().isNotEmpty()){
                 viewModel.login(binding.loginAccountEt.text.toString(),binding.loginPasswordEt.text.toString())
             }else{
-                ToastUtil.show("请填写账号和密码噢")
+                ToastUtil.show(
+                    BaseApplication.getApplication().getString(R.string.pls_fll_n_yr_ccnt_n)
+                )
             }
 
         }

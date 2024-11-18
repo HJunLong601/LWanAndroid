@@ -1,10 +1,12 @@
 package com.hjl.core.ui.main
 
+
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.fastjson.JSONObject
+import com.hjl.commonlib.base.BaseApplication
 import com.hjl.commonlib.extend.addDivider
 import com.hjl.commonlib.extend.quickStartActivity
 import com.hjl.commonlib.utils.LogUtils
@@ -23,7 +25,6 @@ import com.hjl.jetpacklib.mvvm.view.BaseMVVMFragment2
 import com.hjl.module_base.CacheUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -53,7 +54,7 @@ class HomeFragment : BaseMVVMFragment2<CoreFragmentHomeBinding, HomeViewModel>()
         })
 
         binding.coreTitleLl.apply {
-            titleCenterTv.text = "首页"
+            titleCenterTv.text = BaseApplication.getApplication().getString(R.string.home_page)
             titleRightIv.setImageResource(R.drawable.view_icon_search_white)
             titleRightIv.setOnClickListener(this@HomeFragment)
         }
@@ -74,7 +75,9 @@ class HomeFragment : BaseMVVMFragment2<CoreFragmentHomeBinding, HomeViewModel>()
                 override fun onItemChildClick(position: Int, view: View, bean: HomeArticleBean.Article) {
 
                     if (SpUtils.getCookie().isNullOrEmpty()){
-                        ToastUtil.show("您尚未登录或登录已过期")
+                        ToastUtil.show(
+                            BaseApplication.getApplication().getString(R.string.y_hv_nt_lggd_n_r_yr)
+                        )
                         return
                     }
 

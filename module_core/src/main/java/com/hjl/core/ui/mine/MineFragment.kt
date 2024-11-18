@@ -40,14 +40,16 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
 
     val tipDialog by lazy {
         BaseTipDialog(mContext,BaseTipDialog.TipDialogEnum.DIALOG_TIP)
-                .setTitle("确定退出登录？").also { dialog ->
+            .setTitle(BaseApplication.getApplication().getString(R.string.r_y_sr_t_lg_t))
+            .also { dialog ->
                 dialog.setOnConfirmClickListener {
                     lifecycleScope.launchNetRequest({
                         coreApiServer.logout().await()
                         com.hjl.commonlib.utils.SpUtils.clearCookie()
                         SpUtils.saveUserInfo("")
                         BaseApplication.runOnUIThread {
-                            binding.mineUserNameTv.text = "去登陆"
+                            binding.mineUserNameTv.text =
+                                BaseApplication.getApplication().getString(R.string.go_log_in)
                             binding.mineUserInfo.visibility = View.GONE
                             dialog.dismiss()
                         }
@@ -98,26 +100,61 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
             val userInfo = JsonUtils.parseObject(SpUtils.getUserInfo(), UserBean::class.java)
             binding.mineUserNameTv.text = userInfo.nickname
             binding.mineUserInfo.visibility = View.VISIBLE
-            binding.mineUserInfo.text = "ID:${userInfo.id}    积分: ${userInfo.coinCount}"
+            binding.mineUserInfo.text = String.format(
+                BaseApplication.getApplication().getString(R.string.id_s_points_s),
+                userInfo.id,
+                userInfo.coinCount
+            )
         } else {
-            binding.mineUserNameTv.text = "去登陆"
+            binding.mineUserNameTv.text =
+                BaseApplication.getApplication().getString(R.string.go_log_in)
             binding.mineUserInfo.visibility = View.GONE
         }
     }
 
     private fun buildItemList(itemList: ArrayList<MineItemBean>) {
-        itemList.add(MineItemBean("我的收藏", Constant.ACTION_COLLECT, R.drawable.core_icon_like))
-        itemList.add(MineItemBean("主题皮肤", Constant.ACTION_SKIN, R.drawable.core_icon_skin))
-        itemList.add(MineItemBean("积分榜单", Constant.ACTION_RANK, R.drawable.core_icon_integral))
-        itemList.add(MineItemBean("Maven查询", Constant.ACTION_MAVEN, R.drawable.core_icon_maven))
         itemList.add(
             MineItemBean(
-                "语言设置",
+                BaseApplication.getApplication().getString(R.string.my_collection),
+                Constant.ACTION_COLLECT,
+                R.drawable.core_icon_like
+            )
+        )
+        itemList.add(
+            MineItemBean(
+                BaseApplication.getApplication().getString(R.string.theme_skin),
+                Constant.ACTION_SKIN,
+                R.drawable.core_icon_skin
+            )
+        )
+        itemList.add(
+            MineItemBean(
+                BaseApplication.getApplication().getString(R.string.points_ranking),
+                Constant.ACTION_RANK,
+                R.drawable.core_icon_integral
+            )
+        )
+        itemList.add(
+            MineItemBean(
+                BaseApplication.getApplication().getString(R.string.maven_query),
+                Constant.ACTION_MAVEN,
+                R.drawable.core_icon_maven
+            )
+        )
+        itemList.add(
+            MineItemBean(
+                BaseApplication.getApplication().getString(R.string.language_settings),
                 Constant.ACTION_LANGUAGE,
                 R.drawable.core_icon_language
             )
         )
-        itemList.add(MineItemBean("退出登录", Constant.ACTION_EXIT, R.drawable.core_icon_exit))
+        itemList.add(
+            MineItemBean(
+                BaseApplication.getApplication().getString(R.string.log_out_and_log_in),
+                Constant.ACTION_EXIT,
+                R.drawable.core_icon_exit
+            )
+        )
     }
 
     override fun loadData() {
@@ -147,7 +184,9 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
                 if (Utils.hasCookie()){
                     tipDialog.show()
                 }else{
-                    ToastUtil.show("您尚未登录")
+                    ToastUtil.show(
+                        BaseApplication.getApplication().getString(R.string.y_hv_nt_lggd_n_yt)
+                    )
                 }
             }
 
@@ -164,7 +203,7 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
             }
 
             else -> {
-                ToastUtil.show("暂未开放")
+                ToastUtil.show(BaseApplication.getApplication().getString(R.string.not_yet_open))
             }
         }
     }

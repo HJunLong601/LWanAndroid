@@ -6,6 +6,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.flexbox.FlexboxLayoutManager
+import com.hjl.commonlib.base.BaseApplication
+import com.hjl.commonlib.extend.addDivider
+import com.hjl.commonlib.extend.hideKeyboard
 import com.hjl.core.R
 import com.hjl.core.adpter.ArticleAdapter
 import com.hjl.core.adpter.HomeSearchHistoryAdapter
@@ -14,13 +17,10 @@ import com.hjl.core.adpter.HomeWebCommonlyAdapter
 import com.hjl.core.databinding.CoreActivityHomeSearchBinding
 import com.hjl.core.utils.Constant
 import com.hjl.core.viewmodel.HomeSearchViewModel
-import com.hjl.commonlib.extend.addDivider
-import com.hjl.commonlib.extend.hideKeyboard
 import com.hjl.jetpacklib.mvvm.view.BaseMVVMActivity
 import com.jakewharton.rxbinding3.widget.editorActions
 import com.jakewharton.rxbinding3.widget.textChanges
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
@@ -108,7 +108,8 @@ class HomeSearchActivity : BaseMVVMActivity<CoreActivityHomeSearchBinding, HomeS
                 mHomeSearchHistoryAdapter.setNewData(emptyList())
                 viewModel.clearHistory()
             }else{
-                binding.homeSearchStateTv.text = "清除搜索记录"
+                binding.homeSearchStateTv.text = BaseApplication.getApplication()
+                    .getString(R.string.core_string_clear_search_history)
                 viewModel.getHistorySearch(false)
             }
         }

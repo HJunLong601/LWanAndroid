@@ -7,6 +7,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hjl.commonlib.adapter.LazyFragmentStateAdapter
+import com.hjl.commonlib.base.BaseApplication
 import com.hjl.commonlib.base.ResourceManager
 import com.hjl.core.R
 import com.hjl.core.databinding.CoreFragmentMainBinding
@@ -47,7 +48,12 @@ class MainFragment : BaseFragment2<CoreFragmentMainBinding>() {
 
 //        fragment_main_vp.isUserInputEnabled = false
 
-        val tabList = arrayOf("首页","问答","体系","我的")
+        val tabList = arrayOf(
+            BaseApplication.getApplication().getString(R.string.home_page),
+            BaseApplication.getApplication().getString(R.string.qa),
+            BaseApplication.getApplication().getString(R.string.system),
+            BaseApplication.getApplication().getString(R.string.my)
+        )
         val tabSelectedIconList = arrayOf(
             R.drawable.core_icon_home,
             R.drawable.core_icon_wenda,

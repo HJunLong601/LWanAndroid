@@ -1,16 +1,18 @@
 package com.hjl.core.ui.mine
 
+
 import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hjl.commonlib.base.BaseApplication
 import com.hjl.commonlib.constant.Constant
+import com.hjl.commonlib.extend.addDivider
 import com.hjl.commonlib.utils.LogUtils
 import com.hjl.core.R
 import com.hjl.core.adpter.MavenSearchResultAdapter
 import com.hjl.core.databinding.CoreActivityMavenSearchResultBinding
 import com.hjl.core.viewmodel.MavenViewModel
-import com.hjl.commonlib.extend.addDivider
 import com.hjl.jetpacklib.mvvm.view.BaseMVVMActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,7 +28,8 @@ class MavenSearchResultActivity : BaseMVVMActivity<CoreActivityMavenSearchResult
     override fun initData() {
         val key = intent.getStringExtra(Constant.INTENT_KEY01)
         LogUtils.i("start Search")
-        binding.coreMavenTitle.titleCenterTv.text = "查询结果"
+        binding.coreMavenTitle.titleCenterTv.text =
+            BaseApplication.getApplication().getString(R.string.query_results)
         viewModel.searchMaven(key!!)
 
         viewModel.googleMavenList.observe(this, Observer {

@@ -1,18 +1,18 @@
 package com.hjl.core.ui.mine
 
+
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hjl.commonlib.base.BaseApplication
+import com.hjl.commonlib.extend.addDivider
 import com.hjl.core.R
 import com.hjl.core.adpter.CollectListAdapter
 import com.hjl.core.databinding.CoreActivityCollectListBinding
 import com.hjl.core.repository.paging.CollectArticlePagingSource
-import com.hjl.commonlib.extend.addDivider
 import com.hjl.jetpacklib.mvvm.view.BaseActivity
-
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class CollectListActivity : BaseActivity<CoreActivityCollectListBinding>() {
@@ -34,7 +34,8 @@ class CollectListActivity : BaseActivity<CoreActivityCollectListBinding>() {
     }
 
     override fun initView() {
-        binding.baseTitleLayout.titleCenterTv.text = "我的收藏"
+        binding.baseTitleLayout.titleCenterTv.text =
+            BaseApplication.getApplication().getString(R.string.my_collection)
         binding.baseTitleLayout.titleLeftIv.setOnClickListener { finish() }
         mAdapter = CollectListAdapter()
         binding.coreCollectRv.apply {

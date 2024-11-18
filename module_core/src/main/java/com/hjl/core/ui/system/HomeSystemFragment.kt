@@ -1,9 +1,11 @@
 package com.hjl.core.ui.system
 
+
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hjl.commonlib.adapter.LazyFragmentStateAdapter
+import com.hjl.commonlib.base.BaseApplication
 import com.hjl.commonlib.utils.LogUtils
 import com.hjl.core.R
 import com.hjl.core.databinding.CoreFragmentSystemMainBinding
@@ -25,7 +27,10 @@ class HomeSystemFragment : BaseFragment2<CoreFragmentSystemMainBinding>() {
 
     override fun initView() {
 
-        val titles = arrayOf("体系", "导航")
+        val titles = arrayOf(
+            BaseApplication.getApplication().getString(R.string.system),
+            BaseApplication.getApplication().getString(R.string.navigation)
+        )
         val fragments = arrayListOf<Fragment>(SystemListFragment(), SystemNavigationFragment())
 
         binding.coreSystemMainVp.apply {

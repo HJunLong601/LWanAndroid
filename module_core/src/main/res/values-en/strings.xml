@@ -21,4 +21,41 @@
     <string name="register">Register</string>
     <string name="go_to_login">Login</string>
 
+    <string name="cancel">cancel</string>
+    <string name="vryn_s_srchng">Everyone is searching</string>
+    <string name="welcome_to_use">Welcome to use</string>
+    <string name="play_android">Play Android</string>
+    <string name="please_log_in">Please log in</string>
+    <string name="its_already_the_end">It\'s already the end</string>
+    <string name="click_to_retry">Click to retry</string>
+    <string name="txt_new">new</string>
+    <string name="top">top</string>
+    <string name="i_understand_now">I understand now</string>
+    <string name="ths_prmssn_s_t_nsr_">This permission is to ensure the normal use of related functions. Refusing it may result in incomplete or even crashing functions!</string>
+    <string name="y_nd_t_mnlly_nbl_pr">You need to manually enable permissions in the application settings</string>
+    <string name="pls_fll_n_yr_ccnt_n">Please fill in your account and password</string>
+    <string name="y_hv_nt_lggd_n_r_yr">You have not logged in or your login has expired</string>
+    <string name="home_page">home page</string>
+    <string name="system">system</string>
+    <string name="qa">Q&amp;A</string>
+    <string name="my">my</string>
+    <string name="my_collection">My collection</string>
+    <string name="y_mst_ntr_kywrds_f_">You must enter keywords of at least four characters~</string>
+    <string name="query_results">Query results</string>
+    <string name="grdl_dpndncy_hs_bn_">Gradle dependency has been copied to the clipboard</string>
+    <string name="language_settings">Language settings</string>
+    <string name="log_out_and_log_in">Log out and log in</string>
+    <string name="theme_skin">Theme Skin</string>
+    <string name="maven_query">Maven query</string>
+    <string name="id_s_points_s">ID:% s Points:% s</string>
+    <string name="r_y_sr_t_lg_t">Are you sure to log out?</string>
+    <string name="y_hv_nt_lggd_n_yt">You have not logged in yet</string>
+    <string name="points_ranking">Points Ranking</string>
+    <string name="not_yet_open">Not yet open</string>
+    <string name="go_log_in">Go log in</string>
+    <string name="square">square</string>
+    <string name="navigation">Navigation</string>
+    <string name="rgstrd_sccssflly">registered successfully</string>
+    <string name="cmmn_wbst_ddrs">Common website addresses</string>
+
 </resources>

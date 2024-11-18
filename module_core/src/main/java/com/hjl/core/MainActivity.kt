@@ -1,14 +1,15 @@
 package com.hjl.core
 
+
 import android.Manifest
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.hjl.commonlib.adapter.LazyFragmentPagerAdapter
+import com.hjl.commonlib.base.BaseApplication
 import com.hjl.commonlib.utils.LogUtils
 import com.hjl.core.databinding.CoreActivityMainBinding
 import com.hjl.core.ui.main.MainFragment
 import com.hjl.core.ui.minus.MinusFragment
-
 import com.hjl.jetpacklib.mvvm.view.BaseActivity
 import com.permissionx.guolindev.PermissionX
 
@@ -40,9 +41,19 @@ class MainActivity : BaseActivity<CoreActivityMainBinding>() {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION).onExplainRequestReason { deniedList  ->
-            showRequestReasonDialog(deniedList,"该权限为保证相关功能的正常使用,如果拒绝可能导致功能不完善甚至崩溃！","我已明白", "取消")
+            showRequestReasonDialog(
+                deniedList,
+                BaseApplication.getApplication().getString(R.string.ths_prmssn_s_t_nsr_),
+                BaseApplication.getApplication().getString(R.string.i_understand_now),
+                BaseApplication.getApplication().getString(R.string.cancel)
+            )
         }.onForwardToSettings { deniedList ->
-            showForwardToSettingsDialog(deniedList, "您需要去应用程序设置当中手动开启权限", "我已明白", "取消")
+            showForwardToSettingsDialog(
+                deniedList,
+                BaseApplication.getApplication().getString(R.string.y_nd_t_mnlly_nbl_pr),
+                BaseApplication.getApplication().getString(R.string.i_understand_now),
+                BaseApplication.getApplication().getString(R.string.cancel)
+            )
         }.request { allGranted, grantedList, deniedList ->
             if (allGranted) {
                 LogUtils.e(TAG, "所有申请的权限都已通过:$grantedList")

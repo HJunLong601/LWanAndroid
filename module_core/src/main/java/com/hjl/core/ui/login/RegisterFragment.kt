@@ -1,6 +1,8 @@
 package com.hjl.core.ui.login
 
+
 import androidx.lifecycle.ViewModelProvider
+import com.hjl.commonlib.base.BaseApplication
 import com.hjl.commonlib.utils.ToastUtil
 import com.hjl.core.R
 import com.hjl.core.databinding.CoreFragmentRegisterBinding
@@ -72,7 +74,9 @@ class RegisterFragment : BaseMVVMFragment2<CoreFragmentRegisterBinding, UserView
                     binding.registerConfirmPassEt.text.toString()
                 )
             }else{
-                ToastUtil.show("请填写账号和密码噢")
+                ToastUtil.show(
+                    BaseApplication.getApplication().getString(R.string.pls_fll_n_yr_ccnt_n)
+                )
             }
         }
     }

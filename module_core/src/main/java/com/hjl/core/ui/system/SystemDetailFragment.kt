@@ -1,12 +1,14 @@
 package com.hjl.core.ui.system
 
+
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hjl.commonlib.base.BaseApplication
 import com.hjl.commonlib.base.MultipleStatusView
-import com.hjl.jetpacklib.mvvm.recycleview.OnItemChildClickListener
 import com.hjl.commonlib.constant.Constant
+import com.hjl.commonlib.extend.addDivider
 import com.hjl.commonlib.utils.SpUtils
 import com.hjl.commonlib.utils.ToastUtil
 import com.hjl.core.R
@@ -15,11 +17,10 @@ import com.hjl.core.adpter.SimpleLoadStateAdapter
 import com.hjl.core.databinding.CoreFragmentSystemDetailBinding
 import com.hjl.core.net.bean.HomeArticleBean
 import com.hjl.core.viewmodel.HomeViewModel
-import com.hjl.commonlib.extend.addDivider
+import com.hjl.jetpacklib.mvvm.recycleview.OnItemChildClickListener
 import com.hjl.jetpacklib.mvvm.view.BaseMVVMFragment2
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 /**
@@ -55,7 +56,9 @@ class SystemDetailFragment : BaseMVVMFragment2<CoreFragmentSystemDetailBinding,H
             onItemChildClickListener = object : OnItemChildClickListener<HomeArticleBean.Article> {
                 override fun onItemChildClick(position: Int, view: View, bean: HomeArticleBean.Article) {
                     if (SpUtils.getCookie().isNullOrEmpty()){
-                        ToastUtil.show("您尚未登录或登录已过期")
+                        ToastUtil.show(
+                            BaseApplication.getApplication().getString(R.string.y_hv_nt_lggd_n_r_yr)
+                        )
                         return
                     }
 

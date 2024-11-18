@@ -1,11 +1,15 @@
 package com.hjl.core.ui.mine
 
+
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hjl.commonlib.base.BaseApplication
+import com.hjl.commonlib.extend.KTAG
+import com.hjl.commonlib.extend.addDivider
 import com.hjl.commonlib.utils.DensityUtil
 import com.hjl.commonlib.utils.LogUtils
 import com.hjl.commonlib.utils.ToastUtil
@@ -14,13 +18,10 @@ import com.hjl.core.databinding.CoreActivityMavenBinding
 import com.hjl.core.ui.SimpleWebActivity
 import com.hjl.core.viewmodel.MavenViewModel
 import com.hjl.jetpacklib.databinding.BaseItemSimpleTextBinding
-import com.hjl.commonlib.extend.KTAG
-import com.hjl.commonlib.extend.addDivider
 import com.hjl.jetpacklib.mvvm.recycleview.SimpleTextAdapter
 import com.hjl.jetpacklib.mvvm.view.BaseMVVMActivity
 import com.jakewharton.rxbinding3.widget.editorActions
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class MavenActivity : BaseMVVMActivity<CoreActivityMavenBinding, MavenViewModel>() {
@@ -60,7 +61,9 @@ class MavenActivity : BaseMVVMActivity<CoreActivityMavenBinding, MavenViewModel>
             if (binding.coreMavenSearchEv.text!!.length >= 4){
                 MavenSearchResultActivity.startMavenSearchResultActivity(this,binding.coreMavenSearchEv.text.toString())
             }else{
-                ToastUtil.show("必须输入至少四个字符的关键字哦~")
+                ToastUtil.show(
+                    BaseApplication.getApplication().getString(R.string.y_mst_ntr_kywrds_f_)
+                )
             }
         })
 

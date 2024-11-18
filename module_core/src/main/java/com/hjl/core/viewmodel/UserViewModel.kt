@@ -1,13 +1,15 @@
 package com.hjl.core.viewmodel
 
+
 import androidx.lifecycle.MutableLiveData
-import androidx.paging.RemoteMediator
-import com.hjl.jetpacklib.mvvm.BaseViewModel
+import com.hjl.commonlib.base.BaseApplication
 import com.hjl.commonlib.utils.JsonUtils
 import com.hjl.commonlib.utils.LogUtils
 import com.hjl.commonlib.utils.ToastUtil
+import com.hjl.core.R
 import com.hjl.core.repository.UserRepository
 import com.hjl.core.utils.SpUtils
+import com.hjl.jetpacklib.mvvm.BaseViewModel
 
 /**
  * Author : long
@@ -46,7 +48,7 @@ class UserViewModel : BaseViewModel(){
             val userBean = repository.register(username, password, repassword)
 //            SpUtils.saveUserInfo(userBean)
             userstatus.postValue(REGISTER_SUCC)
-            ToastUtil.show("注册成功")
+            ToastUtil.show(BaseApplication.getApplication().getString(R.string.rgstrd_sccssflly))
         },{
             LogUtils.e(TAG,it.errorMessage)
             ToastUtil.show(it.errorMessage)
