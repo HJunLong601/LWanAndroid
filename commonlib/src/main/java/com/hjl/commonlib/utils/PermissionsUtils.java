@@ -6,8 +6,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.Settings;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import com.hjl.commonlib.R;
+import com.hjl.commonlib.base.BaseApplication;
 
 /**
  * Created by long on 2018/9/5.
@@ -35,7 +39,7 @@ public class PermissionsUtils {
 
     private static void showWarningDialog(Activity activity){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle("权限申请").setMessage("如果无权限可能导致应用部分功能无法使用或异常闪退").setPositiveButton("打开权限", (dialog, which) -> {
+        builder.setTitle(BaseApplication.getApplication().getString(R.string.prmssn_pplctn)).setMessage(BaseApplication.getApplication().getString(R.string.f_thr_s_n_prmssn_t_)).setPositiveButton(BaseApplication.getApplication().getString(R.string.open_permissions), (dialog, which) -> {
             if (mDialog != null && mDialog.isShowing()){
                 mDialog.dismiss();
             }
@@ -61,7 +65,7 @@ public class PermissionsUtils {
         if (requestCode == REQUEST_CODE) {
             for (int i = 0; i < permissions.length; i++) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {//选择了“始终允许”
-                    ToastUtil.show( "权限" + permissions[i] + "申请成功");
+                    ToastUtil.show(BaseApplication.getApplication().getString(R.string.jurisdiction) + permissions[i] + BaseApplication.getApplication().getString(R.string.pplctn_sccssfl));
                 }else if (grantResults[i] == PackageManager.PERMISSION_DENIED){
                     if (ActivityCompat.shouldShowRequestPermissionRationale(activity,permissions[i])){  // 是否已经点了拒绝权限 否-> 申请权限
                         showWarningDialog(activity);

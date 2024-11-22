@@ -44,6 +44,6 @@
         android:background="@drawable/common_bg_white_8t"
         android:textStyle="bold"
         android:textColor="@color/common_text_blue"
-        android:text="取消" />
+        android:text="@string/cancel" />
 
 </LinearLayout>

@@ -2,6 +2,9 @@ package com.hjl.commonlib.utils;
 
 import android.os.Looper;
 
+import com.hjl.commonlib.R;
+import com.hjl.commonlib.base.BaseApplication;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -86,19 +89,19 @@ public class DateUtils {
                 Date thisYear = new Date(thisYearDf.parse(thisYearDf.format(today)).getTime());
                 Date yesterday = new Date(todayDf.parse(todayDf.format(today)).getTime());
                 Date beforeYes = new Date(yesterday.getTime() - tDay);
-                SimpleDateFormat halfDf = new SimpleDateFormat("MM月dd日 HH:mm", Locale.CHINA);
+                SimpleDateFormat halfDf = new SimpleDateFormat(BaseApplication.getApplication().getString(R.string.mm_mnth_dd_dy_hh_mm), Locale.CHINA);
                 long dTime = today.getTime() - tDate.getTime();
                 if (tDate.before(thisYear)) {
-                    display = new SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA).format(tDate);
+                    display = new SimpleDateFormat(BaseApplication.getApplication().getString(R.string.yyyy_yr_mm_mnth_dd_), Locale.CHINA).format(tDate);
                 } else {
                     if (dTime < tMin) {
-                        display = "刚刚";
+                        display = BaseApplication.getApplication().getString(R.string.just);
 //                        display = new SimpleDateFormat("HH:mm", Locale.CHINA).format(tDate);
                     } else if (dTime < tHour) {
-                        display = (int) Math.ceil(dTime / tMin) + "分钟前";
+                        display = (int) Math.ceil(dTime / tMin) + BaseApplication.getApplication().getString(R.string.minutes_ago);
 //                        display = new SimpleDateFormat("HH:mm", Locale.CHINA).format(tDate);
                     } else if (dTime < tDay && tDate.after(yesterday)) {
-                        display = (int) Math.ceil(dTime / tHour) + "小时前";
+                        display = (int) Math.ceil(dTime / tHour) + BaseApplication.getApplication().getString(R.string.hours_ago);
 //                        display = new SimpleDateFormat("HH:mm", Locale.CHINA).format(tDate);
                     } else if (tDate.after(beforeYes) && tDate.before(yesterday)) {
                         display = "昨天 " + getStringTime(timeStamp, "HH:mm"); //+ new SimpleDateFormat("HH:mm").format(tDate);

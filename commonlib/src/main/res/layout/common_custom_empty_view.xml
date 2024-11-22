@@ -21,7 +21,7 @@
         android:id="@+id/empty_view_tv"
         style="@style/MultipleStateView.Content"
         android:layout_below="@id/empty_retry_view"
-        android:text="暂无相关内容"
+        android:text="@string/thr_s_crrntly_n_rlv"
         android:visibility="visible"/>
 
     <Button
@@ -31,7 +31,7 @@
         android:layout_height="50dp"
         android:layout_below="@id/empty_view_tv"
         android:background="@color/common_gray_D5D5D5"
-        android:text="刷新"
+        android:text="@string/refresh"
         android:textColor="#FFFFFF"
         android:visibility="gone"
         tools:visibility="visible"/>

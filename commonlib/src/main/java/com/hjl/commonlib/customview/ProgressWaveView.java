@@ -16,6 +16,9 @@ import android.view.animation.LinearInterpolator;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 
+import com.hjl.commonlib.R;
+import com.hjl.commonlib.base.BaseApplication;
+
 /**
  * author: long
  * description 圆形进度条
@@ -199,7 +202,7 @@ public class ProgressWaveView extends View {
     /*****************************************************************************
      **********************  外部方法 *********************************************
      *****************************************************************************/
-    private String centerText = "龙";
+    private String centerText = BaseApplication.getApplication().getString(R.string.loong);
     private int waveColor = Color.parseColor("#04B5FD");
     private int textColor = Color.parseColor("#04B5FD");
     private float currentProgress = 0.50F;

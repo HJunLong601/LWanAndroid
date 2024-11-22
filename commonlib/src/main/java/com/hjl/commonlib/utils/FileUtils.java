@@ -11,12 +11,12 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-
 import android.util.Log;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import com.hjl.commonlib.R;
 import com.hjl.commonlib.base.BaseApplication;
 
 import java.io.File;
@@ -174,12 +174,12 @@ public class FileUtils {
                 File parentFile = file.getParentFile();
                 if (!parentFile.exists()){
                     if (!parentFile.mkdirs() && !parentFile.exists()) {
-                        throw new Exception("文件夹创建失败！");
+                        throw new Exception(BaseApplication.getApplication().getString(R.string.fldr_crtn_fld));
                     }
                 }
 
                 if (!file.createNewFile()){
-                    throw new Exception("文件创建失败！");
+                    throw new Exception(BaseApplication.getApplication().getString(R.string.fl_crtn_fld));
                 }
             }
             FileOutputStream fos = new FileOutputStream(file);
@@ -188,7 +188,7 @@ public class FileUtils {
             fos.close();
         } catch (Exception e) {
             e.printStackTrace();
-            ToastUtil.show("文件保存失败：" + e.getMessage());
+            ToastUtil.show(BaseApplication.getApplication().getString(R.string.file_save_fail_cln) + e.getMessage());
         }
     }
 

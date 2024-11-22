@@ -1,6 +1,8 @@
 package com.hjl.commonlib.network.retrofit;
 
 import com.google.gson.JsonParseException;
+import com.hjl.commonlib.R;
+import com.hjl.commonlib.base.BaseApplication;
 
 import org.json.JSONException;
 
@@ -75,7 +77,7 @@ public abstract class HttpObserver<T> extends DisposableObserver<T> {
             if (e != null) {
                 onError(e.toString());
             } else {
-                onError("未知错误");
+                onError(BaseApplication.getApplication().getString(R.string.unknown_error));
             }
         }
 
@@ -84,19 +86,19 @@ public abstract class HttpObserver<T> extends DisposableObserver<T> {
     private void onException(int unknownError) {
         switch (unknownError) {
             case CONNECT_ERROR:
-                onError("连接错误");
+                onError(BaseApplication.getApplication().getString(R.string.connection_error));
                 break;
 
             case CONNECT_TIMEOUT:
-                onError("连接超时");
+                onError(BaseApplication.getApplication().getString(R.string.cnnctn_tmd_t));
                 break;
 
             case BAD_NETWORK:
-                onError("网络问题");
+                onError(BaseApplication.getApplication().getString(R.string.network_issues));
                 break;
 
             case PARSE_ERROR:
-                onError("解析数据失败");
+                onError(BaseApplication.getApplication().getString(R.string.fld_t_prs_dt));
                 break;
 
             default:

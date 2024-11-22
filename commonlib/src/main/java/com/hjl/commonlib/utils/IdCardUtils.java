@@ -1,5 +1,7 @@
 package com.hjl.commonlib.utils;
 
+import com.hjl.commonlib.R;
+import com.hjl.commonlib.base.BaseApplication;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -61,41 +63,41 @@ public class IdCardUtils {
     public static Map<String, Integer> hkFirstCode = new HashMap<String, Integer>();
 
     static {
-        cityCodes.put("11", "北京");
-        cityCodes.put("12", "天津");
-        cityCodes.put("13", "河北");
-        cityCodes.put("14", "山西");
-        cityCodes.put("15", "内蒙古");
-        cityCodes.put("21", "辽宁");
-        cityCodes.put("22", "吉林");
-        cityCodes.put("23", "黑龙江");
-        cityCodes.put("31", "上海");
-        cityCodes.put("32", "江苏");
-        cityCodes.put("33", "浙江");
-        cityCodes.put("34", "安徽");
-        cityCodes.put("35", "福建");
-        cityCodes.put("36", "江西");
-        cityCodes.put("37", "山东");
-        cityCodes.put("41", "河南");
-        cityCodes.put("42", "湖北");
-        cityCodes.put("43", "湖南");
-        cityCodes.put("44", "广东");
-        cityCodes.put("45", "广西");
-        cityCodes.put("46", "海南");
-        cityCodes.put("50", "重庆");
-        cityCodes.put("51", "四川");
-        cityCodes.put("52", "贵州");
-        cityCodes.put("53", "云南");
-        cityCodes.put("54", "西藏");
-        cityCodes.put("61", "陕西");
-        cityCodes.put("62", "甘肃");
-        cityCodes.put("63", "青海");
-        cityCodes.put("64", "宁夏");
-        cityCodes.put("65", "新疆");
-        cityCodes.put("71", "台湾");
-        cityCodes.put("81", "香港");
-        cityCodes.put("82", "澳门");
-        cityCodes.put("91", "国外");
+        cityCodes.put("11", BaseApplication.getApplication().getString(R.string.beijing));
+        cityCodes.put("12", BaseApplication.getApplication().getString(R.string.tianjin));
+        cityCodes.put("13", BaseApplication.getApplication().getString(R.string.hebei_province));
+        cityCodes.put("14", BaseApplication.getApplication().getString(R.string.shanxi));
+        cityCodes.put("15", BaseApplication.getApplication().getString(R.string.inner_mongolia));
+        cityCodes.put("21", BaseApplication.getApplication().getString(R.string.liaoning));
+        cityCodes.put("22", BaseApplication.getApplication().getString(R.string.jilin));
+        cityCodes.put("23", BaseApplication.getApplication().getString(R.string.hlngjng_prvnc));
+        cityCodes.put("31", BaseApplication.getApplication().getString(R.string.shanghai));
+        cityCodes.put("32", BaseApplication.getApplication().getString(R.string.jiangsu));
+        cityCodes.put("33", BaseApplication.getApplication().getString(R.string.zhejiang));
+        cityCodes.put("34", BaseApplication.getApplication().getString(R.string.anhui_province));
+        cityCodes.put("35", BaseApplication.getApplication().getString(R.string.fujian));
+        cityCodes.put("36", BaseApplication.getApplication().getString(R.string.jiangxi));
+        cityCodes.put("37", BaseApplication.getApplication().getString(R.string.shandong));
+        cityCodes.put("41", BaseApplication.getApplication().getString(R.string.henan));
+        cityCodes.put("42", BaseApplication.getApplication().getString(R.string.hubei_province));
+        cityCodes.put("43", BaseApplication.getApplication().getString(R.string.hunan));
+        cityCodes.put("44", BaseApplication.getApplication().getString(R.string.guangdong));
+        cityCodes.put("45", BaseApplication.getApplication().getString(R.string.guangxi));
+        cityCodes.put("46", BaseApplication.getApplication().getString(R.string.hainan));
+        cityCodes.put("50", BaseApplication.getApplication().getString(R.string.chongqing));
+        cityCodes.put("51", BaseApplication.getApplication().getString(R.string.sichuan));
+        cityCodes.put("52", BaseApplication.getApplication().getString(R.string.guizhou));
+        cityCodes.put("53", BaseApplication.getApplication().getString(R.string.yunnan));
+        cityCodes.put("54", BaseApplication.getApplication().getString(R.string.xizang));
+        cityCodes.put("61", BaseApplication.getApplication().getString(R.string.shaanxi));
+        cityCodes.put("62", BaseApplication.getApplication().getString(R.string.gansu_province));
+        cityCodes.put("63", BaseApplication.getApplication().getString(R.string.qinghai));
+        cityCodes.put("64", BaseApplication.getApplication().getString(R.string.ningxia));
+        cityCodes.put("65", BaseApplication.getApplication().getString(R.string.xinjiang));
+        cityCodes.put("71", BaseApplication.getApplication().getString(R.string.taiwan));
+        cityCodes.put("81", BaseApplication.getApplication().getString(R.string.hong_kong));
+        cityCodes.put("82", BaseApplication.getApplication().getString(R.string.macao));
+        cityCodes.put("91", BaseApplication.getApplication().getString(R.string.abroad));
         twFirstCode.put("A", 10);
         twFirstCode.put("B", 11);
         twFirstCode.put("C", 12);
@@ -282,7 +284,7 @@ public class IdCardUtils {
             return null;
         }
         if (idCard.matches("^[a-zA-Z][0-9]{9}$")) { // 台湾
-            info[0] = "台湾";
+            info[0] = BaseApplication.getApplication().getString(R.string.taiwan);
             System.out.println("11111");
             String char2 = idCard.substring(1, 2);
             if (char2.equals("1")) {
@@ -300,10 +302,10 @@ public class IdCardUtils {
             info[2] = validateTWCard(idCard) ? "true" : "false";
 
         } else if (idCard.matches("^[1|5|7][0-9]{6}\\(?[0-9A-Z]\\)?$")) {
-            info[0] = "澳门";
+            info[0] = BaseApplication.getApplication().getString(R.string.macao);
             info[1] = "N";
         } else if (idCard.matches("^[A-Z]{1,2}[0-9]{6}\\(?[0-9A]\\)?$")) {
-            info[0] = "香港";
+            info[0] = BaseApplication.getApplication().getString(R.string.hong_kong);
             info[1] = "N";
             info[2] = validateHKCard(idCard) ? "true" : "false";
         } else {

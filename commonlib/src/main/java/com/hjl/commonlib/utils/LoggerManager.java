@@ -21,8 +21,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.hjl.commonlib.R;
+import com.hjl.commonlib.base.BaseApplication;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -196,14 +196,14 @@ public class LoggerManager {
         wManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         wmParams = new WindowManager.LayoutParams();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && commonROMPermissionCheck(mContext)) {
-            title = "全局悬浮框";
+            title = BaseApplication.getApplication().getString(R.string.glbl_fltng_frm);
             wmParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            title = "应用悬浮框";
+            title = BaseApplication.getApplication().getString(R.string.pplctn_fltng_frm);
             wmParams.type = WindowManager.LayoutParams.TYPE_APPLICATION;
-            ToastUtil.show(mContext,"打开悬浮框权限以获取全局日志框");
+            ToastUtil.show(mContext, BaseApplication.getApplication().getString(R.string.pn_th_fltng_bx_prms));
         }else {
-            title = "全局悬浮框";
+            title = BaseApplication.getApplication().getString(R.string.glbl_fltng_frm);
             wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
         }
 
@@ -388,7 +388,7 @@ public class LoggerManager {
                 }
                 addViewSafety();
                 addLogInside("悬浮框状态已更新，当前为全局悬浮框");
-                setTitle("全局悬浮框");
+                setTitle(BaseApplication.getApplication().getString(R.string.glbl_fltng_frm));
             }
         }
 

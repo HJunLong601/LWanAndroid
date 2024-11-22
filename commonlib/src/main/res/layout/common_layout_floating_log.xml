@@ -26,7 +26,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="30dp"
-            android:text="标题"
+            android:text="@string/title"
             android:textSize="13sp"
             android:textColor="#000000"
             android:gravity="center"/>
@@ -64,7 +64,7 @@
             android:textSize="12sp"
             android:background="@color/common_transparent"
             android:visibility="visible"
-            android:text="点击标题可拖动\n点击 x 清除日志;长按关闭窗口 \n 底部可拖动调节大小" />
+            android:text="@string/clck_n_th_ttl_t_drg" />
 
         <ScrollView
             android:id="@+id/floating_sv"

@@ -3,6 +3,7 @@ package com.hjl.commonlib.network.okhttp;
 import android.content.Context;
 import android.util.Log;
 
+import com.hjl.commonlib.R;
 import com.hjl.commonlib.base.BaseApplication;
 import com.hjl.commonlib.utils.JsonUtils;
 import com.hjl.commonlib.utils.ToastUtil;
@@ -44,9 +45,9 @@ public abstract class HttpHandler<T> implements Callback{
     public void onFailure(Call call, IOException e) {
         Log.d(TAG, "onFailure " + e.toString());
         if (e instanceof UnknownHostException || e instanceof SocketException) {
-            onFailOnUiThread("网络连接失败",e.getMessage());
+            onFailOnUiThread(BaseApplication.getApplication().getString(R.string.ntwrk_cnnctn_flr), e.getMessage());
         } else {
-            onFailOnUiThread("网络连接失败，请稍后再试",e.getMessage());
+            onFailOnUiThread(BaseApplication.getApplication().getString(R.string.ntwrk_cnnctn_fld_pl), e.getMessage());
         }
 
     }
@@ -69,15 +70,15 @@ public abstract class HttpHandler<T> implements Callback{
                 if (data != null){
                     onSuccessOnUiThread(data);
                 }else {
-                    onFailOnUiThread("JSON 解析错误",respBodyStr);
-                    Log.e(TAG,"JSON 解析错误");
+                    onFailOnUiThread(BaseApplication.getApplication().getString(R.string.json_parsing_error), respBodyStr);
+                    Log.e(TAG, BaseApplication.getApplication().getString(R.string.json_parsing_error));
                 }
 
             }else {
-                onFailOnUiThread("返回的结果为空",respBodyStr);
+                onFailOnUiThread(BaseApplication.getApplication().getString(R.string.th_rtrnd_rslt_s_mpty), respBodyStr);
             }
         }else {
-            onFailOnUiThread("请求错误，错误码为：" + response.code(),response.body().string());
+            onFailOnUiThread(BaseApplication.getApplication().getString(R.string.rqst_rrr_rrr_cd_cln) + response.code(), response.body().string());
         }
     }
 

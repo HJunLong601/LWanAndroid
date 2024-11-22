@@ -52,6 +52,9 @@ import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
+import com.hjl.commonlib.R;
+import com.hjl.commonlib.base.BaseApplication;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -766,8 +769,8 @@ public class AndroidUtils {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(messageId);
         builder.setTitle(titleId);
-        builder.setPositiveButton("确认", positiveBtn);
-        builder.setNegativeButton("取消", nativeBtn);
+        builder.setPositiveButton(BaseApplication.getApplication().getString(R.string.confirm), positiveBtn);
+        builder.setNegativeButton(BaseApplication.getApplication().getString(R.string.cancel), nativeBtn);
         Dialog dialog = builder.create();
         dialog.setCancelable(false);
         dialog.show();

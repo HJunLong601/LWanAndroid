@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/loading_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#FFFFFF"
-    >
+    android:background="#FFFFFF">
     <!--<com.wang.avi.AVLoadingIndicatorView
         android:layout_width="@dimen/custom_avloading_height"
         android:layout_height="@dimen/custom_avloading_height"
@@ -32,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="努力加载中..."
+        android:text="@string/trying_to_load"
         />
 
 </LinearLayout>

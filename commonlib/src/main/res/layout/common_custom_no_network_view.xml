@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/no_network_retry_view2"
-        android:text="呀, 网络出了问题"/>
+        android:text="@string/h_thrs__prblm_wth_t" />
 
     <Button
         android:id="@+id/no_network_retry_view"
@@ -30,13 +30,13 @@
         android:layout_width="130dp"
         android:layout_height="50dp"
         android:layout_below="@id/no_network_view_tv2"
-        android:text="刷新"
+        android:text="@string/refresh"
         android:textColor="#FFFFFF"/>
 
     <TextView
         android:id="@+id/no_network_view_tv"
         style="@style/MultipleStateView.Content"
         android:layout_below="@id/no_network_retry_view"
-        android:text="网络异常"
+        android:text="@string/network_abnormality"
         android:visibility="gone"/>
 </RelativeLayout>

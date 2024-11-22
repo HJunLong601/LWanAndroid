@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/error_retry_view2"
-        android:text="请求失败"/>
+        android:text="@string/request_was_aborted" />
 
     <Button
         android:id="@+id/error_retry_view"
@@ -31,13 +31,13 @@
         android:layout_height="50dp"
         android:layout_below="@id/error_view_tv2"
         android:background="@color/common_gray_D5D5D5"
-        android:text="刷新"
+        android:text="@string/refresh"
         android:textColor="#FFFFFF"/>
 
     <TextView
         android:id="@+id/error_view_tv"
         style="@style/MultipleStateView.Content"
         android:layout_below="@id/error_retry_view"
-        android:text="请求失败，点击图片重试"
+        android:text="@string/rqst_fld_clck_n_th_"
         android:visibility="gone"/>
 </RelativeLayout>
