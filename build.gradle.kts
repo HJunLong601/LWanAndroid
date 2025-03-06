@@ -4,6 +4,7 @@ apply(from = "version.gradle")
 buildscript {
 
     repositories {
+        maven(".\\localMaven")
         maven("https://maven.aliyun.com/repository/central")
         maven("https://maven.aliyun.com/repository/google")
         maven("https://maven.aliyun.com/repository/jcenter")
@@ -18,12 +19,13 @@ buildscript {
         classpath("com.didiglobal.booster:booster-gradle-plugin:4.16.3")
         classpath("cn.therouter:plugin:1.2.1")
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.44")
+        classpath("com.hjl.plugin:custom-plugin:1.0.1")
     }
 }
 
 allprojects {
     repositories {
-//        google()
+        maven("${rootDir.absolutePath}\\localMaven")
         maven("https://maven.aliyun.com/repository/central")
         maven("https://jitpack.io")
         maven("https://maven.aliyun.com/repository/google")

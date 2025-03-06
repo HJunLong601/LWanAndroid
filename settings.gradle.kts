@@ -6,6 +6,9 @@ include(":jetpacklib")
 include(":module_func:func_skin")
 include(":module_func:func_language")
 
+include(":gradle-plugin:plugin")
+include(":gradle-plugin:skin-plugin")
+
 include(":skin:skin-dark")
 include(":skin:skin-green")
 include(":skin:skin-yellow")
@@ -36,3 +39,4 @@ gradle.addBuildListener(object : BuildListener{
 
 })
 
+include(":plugin")

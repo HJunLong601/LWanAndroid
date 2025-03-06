@@ -34,6 +34,7 @@ plugins {
     `kotlin-dsl`
     id("groovy")
     id("kotlin-kapt")
+    id("maven-publish")
 }
 
 dependencies {
@@ -55,4 +56,25 @@ tasks.withType(JavaCompile::class.java){
     options.encoding = "UTF-8"
     sourceCompatibility = JavaVersion.VERSION_1_8.toString()
     targetCompatibility = JavaVersion.VERSION_1_8.toString()
+}
+
+publishing {
+
+    repositories {
+        maven {
+            url = uri("..\\..\\localMaven")
+            isAllowInsecureProtocol = true
+        }
+    }
+
+
+    publications {
+        create<MavenPublication>("mavenJava") {
+            groupId = "com.hjl.plugin"
+            artifactId = "skin-plugin"
+            version = "1.0.0"
+            from(components.getByName("java"))
+        }
+    }
+
 }

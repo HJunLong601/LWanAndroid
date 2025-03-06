@@ -1,45 +1,16 @@
-
-
-buildscript{
-
-    val kotlinVersion = "1.6.21"
-
-    repositories {
-        maven("https://maven.aliyun.com/repository/central" )
-        maven("https://jitpack.io" )
-        maven("https://maven.aliyun.com/repository/google" )
-        maven("https://maven.aliyun.com/repository/jcenter" )
-        maven("https://maven.aliyun.com/nexus/content/groups/public" )
-        maven("https://maven.aliyun.com/repository/gradle-plugin")
-        gradlePluginPortal()
-    }
-
-    dependencies {
-        classpath("com.android.tools.build:gradle-api:7.4.2")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
-
-    }
-
-}
-
-repositories {
-    maven("https://maven.aliyun.com/repository/central" )
-    maven("https://jitpack.io" )
-    maven("https://maven.aliyun.com/repository/google" )
-    maven("https://maven.aliyun.com/repository/jcenter" )
-    maven("https://maven.aliyun.com/nexus/content/groups/public" )
-    maven("https://maven.aliyun.com/repository/gradle-plugin")
-//    mavenCentral()
-//    google()
-    gradlePluginPortal()
-}
-
 plugins {
     `kotlin-dsl`
     id("groovy")
     id("maven-publish")
 }
 
+//sourceSets{
+//    main {
+//        groovy{
+//            setSrcDirs(listOf("src/main/groovy","src/main/kotlin"))
+//        }
+//    }
+//}
 
 dependencies {
     // gradle sdk
@@ -47,7 +18,7 @@ dependencies {
     // groovy sdk
     implementation(localGroovy())
     // android build tools
-    implementation ("com.android.tools.build:gradle-api:7.4.2")
+    implementation("com.android.tools.build:gradle:7.4.2")
 
 
     // third dependencies
@@ -58,7 +29,9 @@ dependencies {
     implementation("commons-io:commons-io:2.4")
     implementation("commons-codec:commons-codec:1.10")
 
-    implementation(project(":skin-plugin"))
+    implementation("com.hjl.plugin:skin-plugin:1.0.0")
+//    implementation(project(":gradle-plugin:skin-plugin"))
+//    implementation(project(":skin-plugin"))
 
     val kotlinVersion = "1.6.21"
 //    annotationProcessor("com.google.auto.service:auto-service:1.0")
@@ -66,24 +39,27 @@ dependencies {
     api("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
 }
 
-tasks.withType(JavaCompile::class.java){
+tasks.withType(JavaCompile::class.java) {
     options.encoding = "UTF-8"
     sourceCompatibility = JavaVersion.VERSION_1_8.toString()
     targetCompatibility = JavaVersion.VERSION_1_8.toString()
 }
 
 publishing {
-    repositories {
-        uri("..\\localMaven")
-    }
 
+    repositories {
+        maven {
+            url = uri("..\\..\\localMaven")
+            isAllowInsecureProtocol = true
+        }
+    }
 
 
     publications {
         create<MavenPublication>("mavenJava") {
             groupId = "com.hjl.plugin"
-            artifactId = "PicTransform"
-            version = "1.0.0"
+            artifactId = "custom-plugin"
+            version = "1.0.1"
             from(components.getByName("java"))
         }
     }
@@ -107,7 +83,7 @@ publishing {
 //    publications { PublicationContainer publication ->
 //        maven(MavenPublication) {
 //            version '0.0.1'
-//            artifactId 'PicTransform'
+//            artifactId 'CustomPlugin'
 //            groupId 'com.hjl.plugin'
 //            from components.java
 //        }
