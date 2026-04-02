@@ -23,6 +23,7 @@
 | 阶段 4 | 修复显式继承迁移后的 `VerifyError` 风险 | 已完成 | 将 `skin-plugin` 改为绝对 no-op 并重新发布到本地 Maven；默认主工程构建图中移除历史插件工程与 `custom-plugin` buildscript classpath，同时把 `app` 构建脚本中的 AGP 布尔解析改为本地函数，避免旧 Transform 再次改写 `BaseActivity`/`BaseMultipleActivity` | `gradle-plugin/skin-plugin/src/main/kotlin/SkinApplicationTransformer.kt`、`localMaven/com/hjl/plugin/skin-plugin/**`、`build.gradle.kts`、`settings.gradle.kts`、`app/build.gradle.kts` | 待提交 |
 | 阶段 4 | 移除默认构建链路中的 Booster | 已完成 | `app` 不再应用 `com.didiglobal.booster`，根构建也不再加载 Booster Gradle 插件；历史 Booster 相关源码继续保留但不再参与主构建 | `app/build.gradle.kts`、`build.gradle.kts`、`README.md` | 待提交 |
 | 阶段 4 | 确认剩余 Transform 警告来源 | 已完成 | 反编译确认 `TheRouter` 插件会在 `apply(Project)` 中调用 `registerTransform`，当前项目仍在使用 `@Route` 与 `TheRouter.build(...).navigation()`，因此它是现阶段升级到 AGP 8 前的剩余主要构建阻塞之一 | `app/build.gradle.kts`、`module_core/src/main/java/com/hjl/core/ui/mine/MineFragment.kt`、`module_func/func_language/src/main/java/com/hjl/language/impl/LanguageSettingActivity.kt`、`module_func/func_skin/src/main/java/com/hjl/skin/SkinActivity.kt` | 待提交 |
+| 阶段 4 | 收口业务层的路由调用入口 | 已完成 | 在 `module_base` 新增统一导航入口 `RouterNavigator`，`MineFragment` 不再直接调用 `TheRouter.build(...).navigation()`；后续如果升级或替换路由框架，业务层改动面会更小 | `module_base/src/main/java/com/hjl/module_base/router/RouterNavigator.kt`、`module_core/src/main/java/com/hjl/core/ui/mine/MineFragment.kt` | 待提交 |
 | 阶段 4 | 升级 Gradle/AGP/Kotlin/SDK 基线 | 未开始 | 待处理 | `gradle/wrapper/gradle-wrapper.properties`、`build.gradle.kts`、`buildSrc/src/main/kotlin/VersionConfig.kt` |  |
 | 阶段 5 | 升级核心依赖与应用兼容层 | 未开始 | 待处理 | `buildSrc/src/main/kotlin/VersionConfig.kt`、各模块 `build.gradle.kts`、网络/数据库/分页相关代码 |  |
 | 阶段 6 | 补最小测试面与回归验证 | 未开始 | 待处理 | `module_core/src/test/**`、`module_base/src/test/**` 等 |  |
@@ -30,8 +31,8 @@
 ## 最近一次执行
 
 - 时间：2026-04-03
-- 内容：从默认构建链路里移除 Booster，继续收口旧 Transform 入口，同时保留历史插件源码和本地 Maven 产物。
-- 验证：使用 `GRADLE_USER_HOME=E:\GradleHome2`、`TEMP=E:\Temp`、`TMP=E:\Temp` 执行 `.\gradlew.bat --no-daemon assembleDebug` 通过；Booster 已退出默认构建链路，但 `TheRouter` 仍会触发 `registerTransform` 警告。
+- 内容：新增统一路由入口 `RouterNavigator`，继续降低业务层对 `TheRouter` 的直接依赖。
+- 验证：通过工作区内 `.gradle-local`、`.temp-local`、`.android-local` 目录执行直接 Gradle 发行版构建，`assembleDebug` 通过。
 - 提交：待提交
 
 ## 当前判断
@@ -49,8 +50,10 @@
 - 默认主构建链路中的 Booster 已移除，当前剩余的历史 Transform 相关代码只作为保留实现存在，不再默认参与 App 构建。
 - 当前仍然存在的 `android.registerTransform` 警告来自 `TheRouter` 官方插件，而不是项目自定义插件链。
 - `TheRouter` 在当前项目里仍承担页面路由能力，短期内不能像 Booster 一样直接移除，后续升级 AGP 8 前需要优先确认其可升级版本或替代方案。
+- 业务层直接依赖 `TheRouter` 的地方已经进一步收口到统一导航入口，目前明确的直接运行时调用主要集中在 `module_base` 的 `RouterNavigator`。
 - 当前机器上建议临时使用 ASCII 路径的 `GRADLE_USER_HOME` 进行构建验证，例如 `E:\GradleHome2`；否则默认 `C:\Users\龙\.gradle` 在 daemon 启动阶段存在路径编码问题。
 - `module_base` 的 Room/KAPT 还依赖临时目录中的 `sqlitejdbc.dll`，当前机器上需要把 `TEMP/TMP` 指到 ASCII 路径，例如 `E:\Temp`，否则会在 `:module_base:kaptDebugKotlin` 阶段失败。
+- 在沙箱环境下，可改用工作区内 `.gradle-local`、`.temp-local`、`.android-local` 目录并直接调用已解压的 Gradle 7.5 发行版完成构建验证。
 
 ## 下一步
 

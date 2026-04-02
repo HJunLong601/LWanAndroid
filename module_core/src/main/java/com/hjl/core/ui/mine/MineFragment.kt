@@ -27,9 +27,8 @@ import com.hjl.core.utils.SpUtils
 import com.hjl.core.utils.Utils
 import com.hjl.jetpacklib.mvvm.view.BaseFragment2
 import com.hjl.module_base.constants.EventKey
-import com.hjl.module_base.router.RouterName
+import com.hjl.module_base.router.RouterNavigator
 import com.jeremyliao.liveeventbus.LiveEventBus
-import com.therouter.TheRouter
 
 /**
  * Author : long
@@ -195,11 +194,11 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
             }
 
             Constant.ACTION_SKIN -> {
-                TheRouter.build(RouterName.SKIN_SKIN_ACTIVITY).navigation()
+                RouterNavigator.openSkin()
             }
 
             Constant.ACTION_LANGUAGE -> {
-                TheRouter.build(RouterName.LANGUAGE_SETTING).navigation()
+                RouterNavigator.openLanguageSetting()
             }
 
             else -> {
