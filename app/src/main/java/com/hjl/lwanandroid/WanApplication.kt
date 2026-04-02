@@ -19,7 +19,6 @@ import skin.support.app.SkinCardViewInflater
 import skin.support.constraint.app.SkinConstraintViewInflater
 import skin.support.design.app.SkinMaterialViewInflater
 
-
 @HiltAndroidApp
 class WanApplication : BaseApplication() {
     override fun attachBaseContext(base: Context) {
@@ -40,7 +39,7 @@ class WanApplication : BaseApplication() {
     }
 
     override fun onCreate() {
-        // 设置换肤支持
+        // 设置换肤资源获取器
         ResourceManager.getInstance().setiResourceAcquirer(SkinResourceAcquirer())
         super.onCreate()
         LogUtils.i("onCreate")
@@ -51,12 +50,10 @@ class WanApplication : BaseApplication() {
 
     private fun initSkinSupport() {
         SkinCompatManager.withoutActivity(this)
-            .addInflater(SkinAppCompatViewInflater()) // 基础控件换肤初始化
-            .addInflater(SkinMaterialViewInflater()) // material design 控件换肤初始化[可选]
-            .addInflater(SkinConstraintViewInflater()) // ConstraintLayout 控件换肤初始化[可选]
-            .addInflater(SkinCardViewInflater()) // CardView v7 控件换肤初始化[可选]
-            //                .setSkinStatusBarColorEnable(false)                     // 关闭状态栏换肤，默认打开[可选]
-            //                .setSkinWindowBackgroundEnable(false)                   // 关闭windowBackground换肤，默认打开[可选]
+            .addInflater(SkinAppCompatViewInflater()) // 基础控件换肤支持
+            .addInflater(SkinMaterialViewInflater()) // Material 控件换肤支持
+            .addInflater(SkinConstraintViewInflater()) // ConstraintLayout 换肤支持
+            .addInflater(SkinCardViewInflater()) // CardView 换肤支持
             .loadSkin()
     }
 

@@ -15,7 +15,7 @@ include(":skin:skin-yellow")
 
 rootProject.name = "LWanAndroid"
 
-gradle.addBuildListener(object : BuildListener{
+gradle.addBuildListener(object : BuildListener {
 //    override fun buildStarted(gradle: Gradle) {
 //        println("---- Build Start ----")
 //    }
@@ -26,7 +26,7 @@ gradle.addBuildListener(object : BuildListener{
 
     override fun projectsLoaded(gradle: Gradle) {
         println("---- Load Project Finish ----")
-        println("Init Finish,Root Project ：${gradle.gradle.rootProject}")
+        println("Init Finish, Root Project: ${gradle.rootProject}")
     }
 
     override fun projectsEvaluated(gradle: Gradle) {
@@ -36,7 +36,6 @@ gradle.addBuildListener(object : BuildListener{
     override fun buildFinished(result: BuildResult) {
         println("---- Build Finish ----")
     }
-
 })
 
 include(":plugin")

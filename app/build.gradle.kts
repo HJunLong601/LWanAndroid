@@ -50,7 +50,7 @@ android {
             buildConfigField("boolean", "isDebug", "true")
             isMinifyEnabled = false
             isDebuggable = true
-            manifestPlaceholders["APP_NAME"] = "玩安卓(测试版)"
+            manifestPlaceholders["APP_NAME"] = "玩安卓测试版"
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -75,10 +75,10 @@ android {
 //    applicationVariants.all { variant ->
 //
 //        variant.outputs.all { output ->
-//            if (variant.buildType.name == "release"){
-//                // 修改输入文件夹
-//                variant.getPackageApplicationProvider().get().outputDirectory = new File("${rootDir}\\output")
-//                // 修改apk名称
+//            if (variant.buildType.name == "release") {
+//                // 修改输出目录
+//                variant.getPackageApplicationProvider().get().outputDirectory = File("${rootDir}\\output")
+//                // 修改 apk 名称
 //                outputFileName = "WanAndroid-${variant.buildType.name}-${buildTime()}-${defaultConfig.versionCode}.apk"
 //            }
 //        }
@@ -92,7 +92,6 @@ fun buildTime(): String {
     return sdf.format(date)
 }
 
-// Allow references to generated code
 kapt {
     correctErrorTypes = true
 }
@@ -111,6 +110,4 @@ dependencies {
 
     implementation(Jetpack.hilt)
     implementation(project(":module_func:func_language"))
-
-
 }
