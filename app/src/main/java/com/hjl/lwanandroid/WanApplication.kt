@@ -4,6 +4,8 @@ import android.R
 import android.content.Context
 import android.content.res.Configuration
 import androidx.appcompat.view.ContextThemeWrapper
+import com.hjl.commonlib.base.ActivityDelegate
+import com.hjl.commonlib.base.ActivityDelegateRegistry
 import com.hjl.commonlib.base.BaseApplication
 import com.hjl.commonlib.base.ResourceManager
 import com.hjl.commonlib.utils.LogUtils
@@ -23,6 +25,15 @@ import skin.support.design.app.SkinMaterialViewInflater
 class WanApplication : BaseApplication() {
     override fun attachBaseContext(base: Context) {
         MultiLanguage.init(base, SPLanguageSetting())
+        ActivityDelegateRegistry.delegate = object : ActivityDelegate {
+            override fun attachBaseContext(base: Context): Context {
+                return MultiLanguage.attachBaseContext(base)
+            }
+
+            override fun onRequestPermissionsResult(activity: android.app.Activity) {
+                MultiLanguage.onRequestPermissionsResult(activity)
+            }
+        }
 
         val attachBaseContext = MultiLanguage.attachBaseContext(base)
         val configuration = attachBaseContext.resources.configuration

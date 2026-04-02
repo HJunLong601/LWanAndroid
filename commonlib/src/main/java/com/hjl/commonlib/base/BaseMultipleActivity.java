@@ -9,15 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.hjl.commonlib.R;
 import com.hjl.commonlib.utils.StatusBarUtil;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
-public abstract class BaseMultipleActivity extends AppCompatActivity {
+public abstract class BaseMultipleActivity extends SkinBaseActivity {
 
     private ProgressDialog progressDialog;
     protected MultipleStatusView mMultipleStateView;

@@ -58,8 +58,6 @@ dependencies {
     implementation("commons-io:commons-io:2.4")
     implementation("commons-codec:commons-codec:1.10")
 
-    implementation(project(":skin-plugin"))
-
     val kotlinVersion = "1.6.21"
 //    annotationProcessor("com.google.auto.service:auto-service:1.0")
     api("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")

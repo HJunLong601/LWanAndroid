@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.hjl.commonlib.base.SkinBaseActivity
 import com.hjl.commonlib.R
 import com.hjl.commonlib.utils.StatusBarUtil
 
@@ -16,7 +17,7 @@ import com.hjl.commonlib.utils.StatusBarUtil
  * Date 2020/3/2 16:24
  * created by long
  */
-abstract class BaseActivity<VDB : ViewDataBinding> : AppCompatActivity() {
+abstract class BaseActivity<VDB : ViewDataBinding> : SkinBaseActivity() {
 
     protected val TAG: String = this.javaClass.simpleName
 

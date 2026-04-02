@@ -89,6 +89,13 @@ dependencies {
     api(View.refreshlayout)
     api(View.BRVAH)
 
+    // skin support
+    api(SkinSupport.skin)
+    api(SkinSupport.skin_appcompat)
+    api(SkinSupport.skin_design)
+    api(SkinSupport.skin_cardview)
+    api(SkinSupport.skin_constraint)
+
     // kotlin && coroutines
     api(KT.ktx)
     api(KT.coroutines)
