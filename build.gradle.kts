@@ -16,7 +16,6 @@ buildscript {
         classpath("com.didiglobal.booster:booster-gradle-plugin:4.16.3")
         classpath("cn.therouter:plugin:1.2.1")
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.44")
-        classpath("com.hjl.plugin:custom-plugin:1.0.1")
     }
 }
 

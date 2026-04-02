@@ -1,4 +1,3 @@
-import com.android.aaptcompiler.parseAsBool
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -92,6 +91,10 @@ fun buildTime(): String {
     return sdf.format(date)
 }
 
+fun String?.toBooleanFlag(): Boolean {
+    return this.equals("true", ignoreCase = true)
+}
+
 kapt {
     correctErrorTypes = true
 }
@@ -99,11 +102,11 @@ kapt {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    if (!parseAsBool(properties["isModule"] as String)!!) {
+    if (!(properties["isModule"] as String).toBooleanFlag()) {
         implementation(project(":module_core"))
     }
 
-    if (parseAsBool(properties["isEnableSkin"].toString())!!) {
+    if (properties["isEnableSkin"].toString().toBooleanFlag()) {
         implementation(project(":module_func:func_skin"))
     }
     kapt(Jetpack.hilt_compiler)

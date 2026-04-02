@@ -6,8 +6,11 @@ include(":jetpacklib")
 include(":module_func:func_skin")
 include(":module_func:func_language")
 
-include(":gradle-plugin:plugin")
-include(":gradle-plugin:skin-plugin")
+// Legacy plugin sources are kept in-repo, but they should not participate in the
+// default Android app build graph. Loading them here can introduce duplicate AGP
+// classes and classloader conflicts during app configuration.
+// include(":gradle-plugin:plugin")
+// include(":gradle-plugin:skin-plugin")
 
 include(":skin:skin-dark")
 include(":skin:skin-green")
@@ -38,4 +41,4 @@ gradle.addBuildListener(object : BuildListener {
     }
 })
 
-include(":plugin")
+// include(":plugin")

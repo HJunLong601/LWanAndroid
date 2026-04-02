@@ -52,11 +52,11 @@
         {
           "name": "skin-plugin-unspecified.jar",
           "url": "skin-plugin-unspecified.jar",
-          "size": 5668,
-          "sha512": "acf62c8616ab4aa9371a2bdcb9481eb56d2503d4ac804f07230f51d1a65b8120421406c779e6e9833bbe34a58affb550ca9bd2392cdbce7f84a417851df7838e",
-          "sha256": "6d3d9e0990ddfc243fc97b4a84bb941485a9a961ff7839ed822c501fa22495bd",
-          "sha1": "5f502467eadd66d81fccc024b886e5d23d8dd28d",
-          "md5": "df4ad20b4d837cc8be6326241d8910fc"
+          "size": 1982,
+          "sha512": "b26aefd6cbee62bf073edbdff32e56b252eb7f16ec91126553e6008cfe5edb32ab4d92af5735311d14865a9e68fe60a49db70f66977fdfe7d72059410e5df355",
+          "sha256": "8ac68ff0a631e93795876dee78168c332a18e20ad811e79a248c04b1600bd662",
+          "sha1": "b225ddc15af9b6b97c340975ded72afeede4bd07",
+          "md5": "cf5975cbc279207bcf03ae0dfb853c50"
         }
       ]
     },
@@ -98,11 +98,11 @@
         {
           "name": "skin-plugin-unspecified.jar",
           "url": "skin-plugin-unspecified.jar",
-          "size": 5668,
-          "sha512": "acf62c8616ab4aa9371a2bdcb9481eb56d2503d4ac804f07230f51d1a65b8120421406c779e6e9833bbe34a58affb550ca9bd2392cdbce7f84a417851df7838e",
-          "sha256": "6d3d9e0990ddfc243fc97b4a84bb941485a9a961ff7839ed822c501fa22495bd",
-          "sha1": "5f502467eadd66d81fccc024b886e5d23d8dd28d",
-          "md5": "df4ad20b4d837cc8be6326241d8910fc"
+          "size": 1982,
+          "sha512": "b26aefd6cbee62bf073edbdff32e56b252eb7f16ec91126553e6008cfe5edb32ab4d92af5735311d14865a9e68fe60a49db70f66977fdfe7d72059410e5df355",
+          "sha256": "8ac68ff0a631e93795876dee78168c332a18e20ad811e79a248c04b1600bd662",
+          "sha1": "b225ddc15af9b6b97c340975ded72afeede4bd07",
+          "md5": "cf5975cbc279207bcf03ae0dfb853c50"
         }
       ]
     }

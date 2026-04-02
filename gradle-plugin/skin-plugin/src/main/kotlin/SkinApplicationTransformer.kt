@@ -13,15 +13,11 @@ import org.objectweb.asm.tree.ClassNode
 @AutoService(ClassTransformer::class)
 class SkinApplicationTransformer : ClassTransformer {
 
-    override fun onPreTransform(context: TransformContext) {
-        super.onPreTransform(context)
-    }
+    override fun onPreTransform(context: TransformContext) = Unit
 
-    override fun onPostTransform(context: TransformContext) {
-        super.onPostTransform(context)
-    }
+    override fun onPostTransform(context: TransformContext) = Unit
 
     override fun transform(context: TransformContext, klass: ClassNode): ClassNode {
-        return super.transform(context, klass)
+        return klass
     }
 }
