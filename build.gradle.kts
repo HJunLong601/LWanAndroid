@@ -13,7 +13,6 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:7.4.2")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Android.kotlinVersion}")
-        classpath("com.didiglobal.booster:booster-gradle-plugin:4.16.3")
         classpath("cn.therouter:plugin:1.2.1")
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.44")
     }

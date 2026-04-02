@@ -6,7 +6,6 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
 
-    id("com.didiglobal.booster")
     id("therouter")
     id("dagger.hilt.android.plugin")
 //    id("com.hjl.plugin")

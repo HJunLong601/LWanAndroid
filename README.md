@@ -11,7 +11,7 @@ WanAndroid 官方开源项目地址：
 
 1. 整体采用 MVVM 架构，并以组件化、多模块方式组织代码。
 2. 工程中包含对 Gradle 插件和 ASM 的实践，覆盖方法耗时插桩、Application/Activity 基类替换等构建期能力。
-3. 接入了 [Booster](https://github.com/didi/booster) 以支持部分构建增强逻辑。
+3. 工程保留了 Gradle 插件和 ASM 的历史实践代码，当前默认构建链路已不再启用 Booster。
 
 ### 技术栈
 
@@ -22,7 +22,6 @@ WanAndroid 官方开源项目地址：
 - [Glide](https://github.com/bumptech/glide)
 - [Android-skin-support](https://github.com/ximsfei/Android-skin-support)
 - [ARouter](https://github.com/alibaba/ARouter)
-- [Booster](https://github.com/didi/booster)
 - [Retrofit](https://square.github.io/retrofit/)
 - Kotlin 与协程
 - CardView

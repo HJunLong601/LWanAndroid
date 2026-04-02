@@ -21,6 +21,8 @@
 | 阶段 4 | 固化旧 Transform 链路兼容开关 | 已完成 | 在当前 Gradle/AGP 基线上显式启用 `legacyTransform.forceNonIncremental`，降低保留旧实现时的构建不确定性 | `gradle.properties` | 待提交 |
 | 阶段 4 | 定位仍生效的旧 Transform 接入点 | 已完成 | 确认触发源不是 `app` 显式应用 `com.hjl.plugin`，而是根 `build.gradle.kts` 的 `custom-plugin` classpath 仍通过本地 Maven 运行时依赖带入 `skin-plugin:1.0.0`；该 classpath 目前不能直接移除，否则会触发 Gradle 类加载约束错误并导致构建失败 | `build.gradle.kts`、`gradle-plugin/plugin/build.gradle.kts`、`localMaven/com/hjl/plugin/custom-plugin/1.0.1/custom-plugin-1.0.1.pom`、`localMaven/com/hjl/plugin/skin-plugin/1.0.0/skin-plugin-1.0.0.pom` | 待提交 |
 | 阶段 4 | 修复显式继承迁移后的 `VerifyError` 风险 | 已完成 | 将 `skin-plugin` 改为绝对 no-op 并重新发布到本地 Maven；默认主工程构建图中移除历史插件工程与 `custom-plugin` buildscript classpath，同时把 `app` 构建脚本中的 AGP 布尔解析改为本地函数，避免旧 Transform 再次改写 `BaseActivity`/`BaseMultipleActivity` | `gradle-plugin/skin-plugin/src/main/kotlin/SkinApplicationTransformer.kt`、`localMaven/com/hjl/plugin/skin-plugin/**`、`build.gradle.kts`、`settings.gradle.kts`、`app/build.gradle.kts` | 待提交 |
+| 阶段 4 | 移除默认构建链路中的 Booster | 已完成 | `app` 不再应用 `com.didiglobal.booster`，根构建也不再加载 Booster Gradle 插件；历史 Booster 相关源码继续保留但不再参与主构建 | `app/build.gradle.kts`、`build.gradle.kts`、`README.md` | 待提交 |
+| 阶段 4 | 确认剩余 Transform 警告来源 | 已完成 | 反编译确认 `TheRouter` 插件会在 `apply(Project)` 中调用 `registerTransform`，当前项目仍在使用 `@Route` 与 `TheRouter.build(...).navigation()`，因此它是现阶段升级到 AGP 8 前的剩余主要构建阻塞之一 | `app/build.gradle.kts`、`module_core/src/main/java/com/hjl/core/ui/mine/MineFragment.kt`、`module_func/func_language/src/main/java/com/hjl/language/impl/LanguageSettingActivity.kt`、`module_func/func_skin/src/main/java/com/hjl/skin/SkinActivity.kt` | 待提交 |
 | 阶段 4 | 升级 Gradle/AGP/Kotlin/SDK 基线 | 未开始 | 待处理 | `gradle/wrapper/gradle-wrapper.properties`、`build.gradle.kts`、`buildSrc/src/main/kotlin/VersionConfig.kt` |  |
 | 阶段 5 | 升级核心依赖与应用兼容层 | 未开始 | 待处理 | `buildSrc/src/main/kotlin/VersionConfig.kt`、各模块 `build.gradle.kts`、网络/数据库/分页相关代码 |  |
 | 阶段 6 | 补最小测试面与回归验证 | 未开始 | 待处理 | `module_core/src/test/**`、`module_base/src/test/**` 等 |  |
@@ -28,8 +30,8 @@
 ## 最近一次执行
 
 - 时间：2026-04-03
-- 内容：定位并修复显式继承迁移后的 `VerifyError` 风险，保留旧实现文件但切断旧 Transform 对主工程的生效链路。
-- 验证：使用 `GRADLE_USER_HOME=E:\GradleHome2`、`TEMP=E:\Temp`、`TMP=E:\Temp` 执行 `.\gradlew.bat --no-daemon assembleDebug` 通过，生成 `app/build/outputs/apk/debug/app-debug.apk`。
+- 内容：从默认构建链路里移除 Booster，继续收口旧 Transform 入口，同时保留历史插件源码和本地 Maven 产物。
+- 验证：使用 `GRADLE_USER_HOME=E:\GradleHome2`、`TEMP=E:\Temp`、`TMP=E:\Temp` 执行 `.\gradlew.bat --no-daemon assembleDebug` 通过；Booster 已退出默认构建链路，但 `TheRouter` 仍会触发 `registerTransform` 警告。
 - 提交：待提交
 
 ## 当前判断
@@ -44,10 +46,13 @@
 - 旧实现文件已保留，但当前运行链路已优先走显式继承方案。
 - 旧 `skin-plugin` 之所以仍出现在构建 classpath，不是因为 `app` 应用了插件，而是因为根脚本依赖的 `custom-plugin:1.0.1` 在本地 Maven 中声明了对 `skin-plugin:1.0.0` 的运行时依赖。
 - 当前默认 App 构建图已经不再加载历史插件工程，也不再依赖 `custom-plugin` buildscript classpath；旧源码和本地 Maven 产物仍保留，便于后续单独整理。
+- 默认主构建链路中的 Booster 已移除，当前剩余的历史 Transform 相关代码只作为保留实现存在，不再默认参与 App 构建。
+- 当前仍然存在的 `android.registerTransform` 警告来自 `TheRouter` 官方插件，而不是项目自定义插件链。
+- `TheRouter` 在当前项目里仍承担页面路由能力，短期内不能像 Booster 一样直接移除，后续升级 AGP 8 前需要优先确认其可升级版本或替代方案。
 - 当前机器上建议临时使用 ASCII 路径的 `GRADLE_USER_HOME` 进行构建验证，例如 `E:\GradleHome2`；否则默认 `C:\Users\龙\.gradle` 在 daemon 启动阶段存在路径编码问题。
 - `module_base` 的 Room/KAPT 还依赖临时目录中的 `sqlitejdbc.dll`，当前机器上需要把 `TEMP/TMP` 指到 ASCII 路径，例如 `E:\Temp`，否则会在 `:module_base:kaptDebugKotlin` 阶段失败。
 
 ## 下一步
 
-- 在保留旧实现文件的前提下，继续清理“仍然生效的旧接入点”，重点是查明当前仍提示 `android.registerTransform` 的具体调用方并彻底收口。
+- 在保留旧实现文件的前提下，开始进入 Gradle/AGP/Kotlin/SDK 基线升级准备，优先评估 `TheRouter` 从 1.2.1 升级到兼容 AGP 8 的版本路径。
 - 然后再进入 Gradle/AGP/Kotlin/SDK 基线升级准备，这时阻塞会比之前小很多。
