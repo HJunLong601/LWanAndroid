@@ -1,6 +1,3 @@
-apply(from = "version.gradle")
-
-
 buildscript {
 
     repositories {
@@ -35,8 +32,7 @@ allprojects {
         google()
         mavenCentral()
     }
-//    指定androidx版本，防止因为换肤库导致的崩溃
-//    https://blog.csdn.net/charlinopen/article/details/126625175
+    // Pin appcompat to avoid compatibility issues introduced by skin libraries.
     configurations.all {
         resolutionStrategy {
             force("androidx.appcompat:appcompat:1.2.0")
