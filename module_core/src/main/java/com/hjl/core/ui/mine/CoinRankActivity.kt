@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,15 +23,14 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -42,11 +42,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.hjl.commonlib.R as CommonRes
 import com.hjl.core.R
 import com.hjl.core.net.bean.CoinRankItemBean
 import com.hjl.core.ui.login.LoginActivity
@@ -90,16 +93,15 @@ class CoinRankActivity : BaseComposeActivity() {
 }
 
 private val CoinRankColorScheme = lightColorScheme(
-    primary = Color(0xFF0F766E),
+    primary = Color(0xFF00A2EE),
     secondary = Color(0xFFF59E0B),
     tertiary = Color(0xFFEF4444),
-    background = Color(0xFFF6F8FB),
+    background = Color.White,
     surface = Color(0xFFFFFFFF),
     onSurface = Color(0xFF0F172A),
     onBackground = Color(0xFF0F172A)
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun CoinRankScreen(
     uiState: CoinRankUiState,
@@ -111,17 +113,9 @@ private fun CoinRankScreen(
     val listState = rememberLazyListState()
 
     Scaffold(
+        containerColor = Color.White,
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = androidx.compose.ui.res.stringResource(id = R.string.points_ranking))
-                },
-                navigationIcon = {
-                    TextButton(onClick = onBack) {
-                        Text(text = androidx.compose.ui.res.stringResource(id = R.string.points_rank_back))
-                    }
-                }
-            )
+            CommonPageTopBar(onBack = onBack)
         }
     ) { innerPadding ->
         when {
@@ -216,6 +210,37 @@ private fun CoinRankScreen(
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun CommonPageTopBar(onBack: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(48.dp)
+            .background(colorResource(id = CommonRes.color.common_base_theme_color))
+    ) {
+        Box(
+            modifier = Modifier
+                .align(Alignment.CenterStart)
+                .size(48.dp)
+                .clickable(onClick = onBack),
+            contentAlignment = Alignment.Center
+        ) {
+            androidx.compose.foundation.Image(
+                painter = painterResource(id = CommonRes.drawable.common_icon_back),
+                contentDescription = androidx.compose.ui.res.stringResource(id = R.string.points_rank_back),
+                modifier = Modifier.size(24.dp)
+            )
+        }
+        Text(
+            text = androidx.compose.ui.res.stringResource(id = R.string.points_ranking),
+            modifier = Modifier.align(Alignment.Center),
+            color = Color.White,
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Normal
+        )
     }
 }
 
