@@ -22,6 +22,11 @@ android {
 
     buildFeatures {
         dataBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Compose.compiler
     }
 
     buildTypes {
@@ -37,10 +42,15 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    val composeBom = platform(Compose.bom)
 
     api(project(":commonlib"))
     api(Jetpack.paging3)
     api(Jetpack.hilt)
+    implementation(composeBom)
+    implementation(Compose.ui)
+    implementation(Compose.foundation)
+    implementation(Compose.material3)
     kapt(Jetpack.hilt_compiler)
 }
 

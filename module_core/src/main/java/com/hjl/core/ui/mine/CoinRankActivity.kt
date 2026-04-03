@@ -1,11 +1,9 @@
 package com.hjl.core.ui.mine
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,7 +21,6 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -43,7 +40,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -57,6 +53,7 @@ import com.hjl.core.viewmodel.CurrentUserCoinInfo
 import com.hjl.core.viewmodel.CoinRankUiState
 import com.hjl.core.viewmodel.CoinRankViewModel
 import com.hjl.jetpacklib.mvvm.view.BaseComposeActivity
+import com.hjl.jetpacklib.mvvm.view.BaseComposeTitleBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
@@ -89,6 +86,14 @@ class CoinRankActivity : BaseComposeActivity() {
                 )
             }
         }
+    }
+
+    override fun isUseFullScreenMode(): Boolean {
+        return true
+    }
+
+    override fun isUseBlackFontWithStatusBar(): Boolean {
+        return false
     }
 }
 
@@ -215,33 +220,13 @@ private fun CoinRankScreen(
 
 @Composable
 private fun CommonPageTopBar(onBack: () -> Unit) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(48.dp)
-            .background(colorResource(id = CommonRes.color.common_base_theme_color))
-    ) {
-        Box(
-            modifier = Modifier
-                .align(Alignment.CenterStart)
-                .size(48.dp)
-                .clickable(onClick = onBack),
-            contentAlignment = Alignment.Center
-        ) {
-            androidx.compose.foundation.Image(
-                painter = painterResource(id = CommonRes.drawable.common_icon_back),
-                contentDescription = androidx.compose.ui.res.stringResource(id = R.string.points_rank_back),
-                modifier = Modifier.size(24.dp)
-            )
-        }
-        Text(
-            text = androidx.compose.ui.res.stringResource(id = R.string.points_ranking),
-            modifier = Modifier.align(Alignment.Center),
-            color = Color.White,
-            style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.Normal
-        )
-    }
+    BaseComposeTitleBar(
+        title = androidx.compose.ui.res.stringResource(id = R.string.points_ranking),
+        onBack = onBack,
+        backgroundColor = colorResource(id = CommonRes.color.common_base_theme_color),
+        contentColor = Color.White,
+        immersive = true
+    )
 }
 
 @Composable
