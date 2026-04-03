@@ -38,14 +38,13 @@
 | 阶段 7 | 修复首页列表头部结构导致的自动下滑根因         | 已完成 | 确认首页把 Banner 头部硬塞进 `PagingDataAdapter` 的实现会让 Paging 插入事件与真实列表结构不一致，首次数据回填时触发 `RecyclerView` 位置补偿；已改为 `ConcatAdapter(头部 Adapter + Paging Adapter)`，并保留 Banner 子视图的滚动/焦点拦截                                                                                         | `module_core/src/main/java/com/hjl/core/adpter/HomeBannerHeaderAdapter.kt`、`module_core/src/main/java/com/hjl/core/ui/main/HomeFragment.kt`、`module_core/src/main/java/com/hjl/core/customview/HomeBannerView.kt`、`module_core/src/main/res/layout/core_header_banner.xml`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | 待提交       |
 | 阶段 8 | 新增 Android 图片转 WebP 技能包     | 已完成 | 新增仓库级技能 `android-images-to-webp`，可批量把 Android 工程中的 PNG/JPG/JPEG 转成 WebP，默认跳过启动图标、`mipmap*/`、`.9.png`，并按 JPG 有损 90 / 小 PNG 无损 / 大 PNG 有损 90 的规则执行                                                                                                                 | `skills/android-images-to-webp/SKILL.md`、`skills/android-images-to-webp/agents/openai.yaml`、`skills/android-images-to-webp/scripts/convert_android_images_to_webp.py`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | 待提交       |
 | 阶段 8 | 在当前工程执行图片转 WebP 技能包         | 已完成 | 已在当前工程实际转换 `84` 个 PNG/JPG/JPEG 资源为 WebP，包含 `app/commonlib/module_core/skin/pic`；启动图标、`mipmap*/`、`.9.png` 均已跳过，并通过 `assembleDebug` 验证                                                                                                                             | `app/src/main/res/**`、`commonlib/src/main/res/**`、`module_core/src/main/res/**`、`skin/**/src/main/res/**`、`pic/**`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 待提交       |
+| 阶段 8 | 修复 Android 13+ 启动时 `LiveEventBus` 崩溃 | 已完成 | 三方 `LiveEventBus` 在高版本系统上会在初始化阶段调用 `registerReceiver` 并因未声明 `RECEIVER_EXPORTED/NOT_EXPORTED` 崩溃；已改为项目内进程事件总线 `AppLiveEventBus`，同时移除 Application 初始化和模块依赖中的 `live-event-bus-x` 使用 | `app/src/main/java/com/hjl/lwanandroid/WanApplication.kt`、`module_base/src/main/java/com/hjl/module_base/bus/AppLiveEventBus.kt`、`module_core/src/main/java/com/hjl/core/ui/login/LoginActivity.kt`、`module_core/src/main/java/com/hjl/core/ui/mine/MineFragment.kt`、`module_core/src/main/java/com/hjl/core/ui/main/WenDaFragment.kt`、`module_base/build.gradle.kts`、`buildSrc/src/main/kotlin/VersionConfig.kt` | 待提交       |
 
 ## 最近一次执行
 
 - 时间：2026-04-03
-- 内容：在当前工程执行 `android-images-to-webp` 技能包，完成实际图片转换，并用 JDK17 + 工作区本地
-  Gradle 环境完成 `assembleDebug` 验证。
-- 验证：`dry-run` 命中 `84` 个文件，实际转换 `84` 个文件；启动图标、`mipmap*/`、`.9.png`
-  未被误改，`assembleDebug` 通过。
+- 内容：修复 Android 13+ 设备上 `LiveEventBus` 初始化阶段注册广播导致的启动崩溃，改为项目内进程事件总线。
+- 验证：替换 `LoginActivity`、`MineFragment`、`WenDaFragment` 的登录态事件分发后，`assembleDebug` 通过。
 - 提交：未提交
 
 ## 当前判断
@@ -71,6 +70,7 @@
 - 当前项目文档已明确新增页面标题栏需与现有页面一致，且页面背景默认纯白。
 - 当前工程中的位图资源已完成一轮 WebP 化，后续新增 PNG/JPG 资源时应优先复用 `android-images-to-webp`
   技能包，继续保持启动图标、`mipmap*/` 和 `.9.png` 不转换的约束。
+- 当前登录态变更事件已不再依赖 `live-event-bus-x` 的跨进程广播注册，运行链路改为应用进程内的 `AppLiveEventBus`，可规避 Android 13+ 的 `registerReceiver` 安全限制。
 - “我的”页里的“积分榜单”已经接到 Compose Activity，当前版本展示榜单首屏、前三高亮和滚动分页加载。
 - 当前积分榜页面的可见文案已统一为中文，后续排名头像已切换为更深的高对比配色。
 - 当前积分榜页面已补充当前用户积分区域，未登录时会展示登录引导，已登录时会展示本地积分和当前页排名匹配结果。

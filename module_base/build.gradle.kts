@@ -53,7 +53,6 @@ dependencies {
     api(project(":jetpacklib"))
 
     api(Dependencies.permissionx)
-    api(Dependencies.liveEventBus)
 
     // room
     api(Jetpack.room)

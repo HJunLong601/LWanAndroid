@@ -13,7 +13,6 @@ import com.hjl.language.MultiLanguage
 import com.hjl.language.impl.SPLanguageSetting
 import com.hjl.lwanandroid.skin.SkinResourceAcquirer
 import com.hjl.module_base.datbase.WanDatabase.Companion.getInstance
-import com.jeremyliao.liveeventbus.core.LiveEventBusCore
 import dagger.hilt.android.HiltAndroidApp
 import skin.support.SkinCompatManager
 import skin.support.app.SkinAppCompatViewInflater
@@ -55,7 +54,6 @@ class WanApplication : BaseApplication() {
         super.onCreate()
         LogUtils.i("onCreate")
         initSkinSupport()
-        initLiveEventBus()
         getInstance(this)
     }
 
@@ -66,11 +64,6 @@ class WanApplication : BaseApplication() {
             .addInflater(SkinConstraintViewInflater()) // ConstraintLayout 换肤支持
             .addInflater(SkinCardViewInflater()) // CardView 换肤支持
             .loadSkin()
-    }
-
-    private fun initLiveEventBus() {
-        LiveEventBusCore.get().config()
-            .lifecycleObserverAlwaysActive(true)
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {

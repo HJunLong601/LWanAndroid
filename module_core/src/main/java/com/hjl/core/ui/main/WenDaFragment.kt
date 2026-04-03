@@ -16,8 +16,8 @@ import com.hjl.core.net.bean.HomeArticleBean
 import com.hjl.core.viewmodel.HomeViewModel
 import com.hjl.jetpacklib.mvvm.recycleview.OnItemChildClickListener
 import com.hjl.jetpacklib.mvvm.view.BaseMVVMFragment2
+import com.hjl.module_base.bus.AppLiveEventBus
 import com.hjl.module_base.constants.EventKey
-import com.jeremyliao.liveeventbus.LiveEventBus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -76,7 +76,7 @@ class WenDaFragment : BaseMVVMFragment2<CoreFragmentWendaBinding,HomeViewModel>(
             it.setOnEmptyData { showEmpty() }
         }
 
-        LiveEventBus.get<String>(EventKey.LOGIN_STATE_CHANGE).observe(this,{
+        AppLiveEventBus.get<String>(EventKey.LOGIN_STATE_CHANGE).observe(this,{
             articleAdapter.refresh()
             articleAdapter.notifyDataSetChanged()
         })
