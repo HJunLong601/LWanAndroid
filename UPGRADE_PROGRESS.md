@@ -31,15 +31,15 @@
 | 阶段 7 | 优化积分榜单中文文案与头像对比度 | 已完成 | 页面文案统一为中文显示，前三名标题改为中文，后续排名头像改为高对比实色底，提升可见性 | `module_core/src/main/java/com/hjl/core/ui/mine/CoinRankActivity.kt`、`module_core/src/main/res/values/strings.xml`、`module_core/src/main/res/values-en/strings.xml` | `8394f3a` |
 | 阶段 7 | 统一新增 Compose 页面基类约束 | 已完成 | 新增 `BaseComposeActivity` 复用现有 Activity 基类链路与多语言/换肤能力，积分榜页面切回项目基类体系，同时恢复英文资源文件 | `jetpacklib/src/main/java/com/hjl/jetpacklib/mvvm/view/BaseComposeActivity.kt`、`module_core/src/main/java/com/hjl/core/ui/mine/CoinRankActivity.kt`、`module_core/src/main/res/values-en/strings.xml`、`AGENTS.md` | `f66529d` |
 | 阶段 7 | 补充当前用户积分卡片与未登录处理 | 已完成 | 榜单页增加当前用户积分卡片，已登录时展示昵称、积分、当前页排名和用户ID，未登录时展示登录引导；页面恢复时会同步刷新登录态 | `module_core/src/main/java/com/hjl/core/viewmodel/CoinRankViewModel.kt`、`module_core/src/main/java/com/hjl/core/ui/mine/CoinRankActivity.kt`、`module_core/src/main/res/values/strings.xml`、`module_core/src/main/res/values-en/strings.xml` | `f66529d` |
-| 阶段 7 | 收口积分榜标题栏与页面背景样式 | 已完成 | 积分榜页面标题栏改为贴近项目现有二级页的标题样式，页面基础背景收为纯白，减少与现有页面视觉偏差 | `module_core/src/main/java/com/hjl/core/ui/mine/CoinRankActivity.kt` | 待提交 |
-| 阶段 7 | 补充页面标题与背景视觉规范 | 已完成 | 在项目文档中明确新增页面标题栏需与现有页面一致，页面背景默认纯白，避免后续页面风格继续漂移 | `AGENTS.md` | 待提交 |
+| 阶段 7 | 收口积分榜标题栏与页面背景样式 | 已完成 | 积分榜页面标题栏改为贴近项目现有二级页的标题样式，页面基础背景收为纯白，减少与现有页面视觉偏差 | `module_core/src/main/java/com/hjl/core/ui/mine/CoinRankActivity.kt` | `b6ca58f` |
+| 阶段 7 | 补充页面标题与背景视觉规范 | 已完成 | 在项目文档中明确新增页面标题栏需与现有页面一致，页面背景默认纯白，避免后续页面风格继续漂移 | `AGENTS.md` | `b6ca58f` |
 
 ## 最近一次执行
 
 - 时间：2026-04-03
 - 内容：收口积分榜页面标题栏与纯白背景样式，并将对应视觉规范补充进项目文档。
 - 验证：在工作区内 `.jdk17`、`.gradle-local`、`.temp-local`、`.android-local`、`.localappdata`、`.appdata` 目录下执行 `assembleDebug` 通过。
-- 提交：待提交
+- 提交：`b6ca58f`
 
 ## 当前判断
 
