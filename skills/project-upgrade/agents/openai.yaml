@@ -1,0 +1,4 @@
+interface:
+  display_name: "工程升级"
+  short_description: "分析 Android 工程现状并输出升级风险与阶段计划"
+  default_prompt: "Use $project-upgrade to analyze the current Android project, record upgrade risks, and produce a phased modernization plan."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Android 图片转 WebP"
+  short_description: "批量转换安卓图片并跳过启动图标与 .9 图"
+  default_prompt: "Use $android-images-to-webp to convert Android project PNG and JPG resources to WebP while skipping launcher icons, mipmap assets, and .9 images."
