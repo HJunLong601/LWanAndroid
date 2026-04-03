@@ -27,13 +27,14 @@
 | 阶段 4 | 升级 Gradle/AGP/Kotlin/SDK 基线 | 已完成 | 根工程切换到现代插件声明；Gradle 升级到 `8.7`，AGP 升级到 `8.5.2`，Kotlin 升级到 `1.9.22`，`compileSdk/targetSdk` 升级到 `34`，并完成 JDK 17 构建验证 | `gradle/wrapper/gradle-wrapper.properties`、`build.gradle.kts`、`settings.gradle.kts`、`buildSrc/build.gradle.kts`、`buildSrc/src/main/kotlin/VersionConfig.kt`、各模块 `build.gradle.kts` | `0a31906` |
 | 阶段 5 | 升级核心依赖与应用兼容层 | 已完成 | 升级 `TheRouter 1.3.2`、`Hilt 2.51.1`、`Room 2.6.1`、`Paging 3.3.6`、`Lifecycle 2.8.7`、`AppCompat 1.7.0`、`Material 1.12.0`、`OkHttp 4.12.0`、`Retrofit 2.11.0`，并修复 `OkHttp 4` API 变更、Android 12+ `android:exported`、协程 `BroadcastChannel` 迁移、非传递 `R` 兼容、历史权限/格式化/lint 阻塞 | `buildSrc/src/main/kotlin/VersionConfig.kt`、`gradle.properties`、`commonlib/src/main/java/com/hjl/commonlib/network/interceptor/LogInterceptor.kt`、`commonlib/src/main/java/com/hjl/commonlib/utils/AndroidUtils.java`、`commonlib/src/main/AndroidManifest.xml`、`commonlib/src/main/res/layout/common_dialog_mark_content.xml`、`commonlib/src/main/res/layout/common_item_base_tv.xml`、`module_core/src/main/AndroidManifest.xml`、`module_core/src/moduledebug/AndroidManifest.xml`、`module_core/src/main/java/com/hjl/core/viewmodel/MavenViewModel.kt`、`module_core/src/main/java/com/hjl/core/viewmodel/HomeSearchViewModel.kt`、`module_core/src/main/java/com/hjl/core/ui/**`、`module_core/src/main/res/**`、`app/src/main/AndroidManifest.xml`、`app/src/main/java/com/hjl/lwanandroid/WanBaseActivity.kt` | `0a31906` |
 | 阶段 6 | 补最小测试面与回归验证 | 已完成 | `assembleDebug`、`test`、`lintDebug` 全部通过；升级闭环完成，当前剩余为非阻塞警告与体验级优化项 | `app/build.gradle.kts`、`app/build/reports/**`、各模块 `build/reports/**` | `0a31906` |
+| 阶段 7 | 实现“积分榜单”Compose 页面首版 | 已完成 | 在“我的”页接入积分榜单入口，基于 WanAndroid `coin/rank/{page}/json` 完成 Compose 榜单页面、首屏效果和分页加载 | `buildSrc/src/main/kotlin/VersionConfig.kt`、`module_core/build.gradle.kts`、`module_core/src/main/AndroidManifest.xml`、`module_core/src/main/java/com/hjl/core/net/CoreApiServer.kt`、`module_core/src/main/java/com/hjl/core/net/bean/CoinRankPageBean.kt`、`module_core/src/main/java/com/hjl/core/repository/CoinRankRepository.kt`、`module_core/src/main/java/com/hjl/core/viewmodel/CoinRankViewModel.kt`、`module_core/src/main/java/com/hjl/core/ui/mine/CoinRankActivity.kt`、`module_core/src/main/java/com/hjl/core/ui/mine/MineFragment.kt`、`module_core/src/main/res/values/strings.xml`、`module_core/src/main/res/values-en/strings.xml` | 待提交 |
 
 ## 最近一次执行
 
 - 时间：2026-04-03
-- 内容：完成 Gradle/AGP/Kotlin/SDK 基线升级、核心依赖升级与 Android 12+/13+ 兼容修复，并清零 `lintDebug` 阻塞错误。
-- 验证：在工作区内 `.gradle-local`、`.temp-local`、`.android-local` 目录下，基于 JDK 17 执行 `assembleDebug`、`test`、`lintDebug` 全部通过。
-- 提交：`0a31906`
+- 内容：完成“积分榜单”Compose 页面首版，在“我的”页接入入口，并基于 WanAndroid 积分排行榜接口打通首屏和分页加载。
+- 验证：在工作区内 `.jdk17`、`.gradle-local`、`.temp-local`、`.android-local`、`.localappdata`、`.appdata` 目录下执行 `assembleDebug` 通过。
+- 提交：待提交
 
 ## 当前判断
 
@@ -53,9 +54,11 @@
 - 当前机器上建议临时使用 ASCII 路径的 `GRADLE_USER_HOME` 进行构建验证，例如 `E:\GradleHome2`；否则默认 `C:\Users\龙\.gradle` 在 daemon 启动阶段存在路径编码问题。
 - `module_base` 的 Room/KAPT 还依赖临时目录中的 `sqlitejdbc.dll`，当前机器上需要把 `TEMP/TMP` 指到 ASCII 路径，例如 `E:\Temp`，否则会在 `:module_base:kaptDebugKotlin` 阶段失败。
 - 在当前环境下，可改用工作区内 `.gradle-local`、`.temp-local`、`.android-local` 目录并配合 JDK 17 完成稳定构建验证。
+- 当前仓库内已经具备 `module_core` 的 Compose 页面能力，可继续用同样方式接入新的独立页面。
+- “我的”页里的“积分榜单”已经接到 Compose Activity，当前版本展示榜单首屏、前三高亮和滚动分页加载。
 - 当前剩余问题主要是废弃 API、无障碍与文案等告警，不影响编译、测试与 lint 通过。
 
 ## 下一步
 
-- 当前没有阻塞升级闭环的必做项。
-- 后续如继续演进，优先处理废弃 API、`launchWhenStarted/launchWhenResumed` 迁移、`resources.getDrawable` 替换与可访问性告警。
+- 如果继续完善积分榜单，优先补当前登录用户排名、下拉刷新、骨架屏和榜单详情交互。
+- 升级闭环本身没有新的阻塞项；工程侧后续仍优先处理废弃 API、`launchWhenStarted/launchWhenResumed` 迁移、`resources.getDrawable` 替换与可访问性告警。

@@ -28,6 +28,18 @@ object AndroidSupport {
     val recyclerview = "androidx.recyclerview:recyclerview:1.3.2"
 }
 
+object Compose {
+    val bom = "androidx.compose:compose-bom:2024.02.02"
+    val activity = "androidx.activity:activity-compose:1.9.3"
+    val ui = "androidx.compose.ui:ui"
+    val foundation = "androidx.compose.foundation:foundation"
+    val material3 = "androidx.compose.material3:material3"
+    val lifecycle = "androidx.lifecycle:lifecycle-runtime-compose:2.8.7"
+    val uiTooling = "androidx.compose.ui:ui-tooling"
+    val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
+    val compiler = "1.5.8"
+}
+
 object RxJava2{
     val rxjava2 = "io.reactivex.rxjava2:rxjava:2.2.10"
     val rxandroid = "io.reactivex.rxjava2:rxandroid:2.1.1"

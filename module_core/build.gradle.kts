@@ -19,6 +19,11 @@ android {
 
     buildFeatures {
         dataBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Compose.compiler
     }
 
     buildTypes {
@@ -65,12 +70,22 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    val composeBom = platform(Compose.bom)
 
     api(project(":module_base"))
 
     api(View.flexbox)
     implementation(View.GroupedRecyclerViewAdapter)
     implementation(View.banner)
+    implementation(composeBom)
+    debugImplementation(composeBom)
+    implementation(Compose.activity)
+    implementation(Compose.ui)
+    implementation(Compose.foundation)
+    implementation(Compose.material3)
+    implementation(Compose.lifecycle)
+    implementation(Compose.uiToolingPreview)
+    debugImplementation(Compose.uiTooling)
 
 
     implementation(Jetpack.hilt)

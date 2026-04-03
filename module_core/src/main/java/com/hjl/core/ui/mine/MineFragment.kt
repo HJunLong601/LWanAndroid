@@ -193,6 +193,10 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
                 quickStartActivity(MavenActivity::class.java)
             }
 
+            Constant.ACTION_RANK -> {
+                quickStartActivity(CoinRankActivity::class.java)
+            }
+
             Constant.ACTION_SKIN -> {
                 RouterNavigator.openSkin()
             }

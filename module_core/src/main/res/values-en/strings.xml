@@ -51,6 +51,15 @@
     <string name="r_y_sr_t_lg_t">Are you sure to log out?</string>
     <string name="y_hv_nt_lggd_n_yt">You have not logged in yet</string>
     <string name="points_ranking">Points Ranking</string>
+    <string name="points_rank_subtitle">Live ranking from WanAndroid points board</string>
+    <string name="points_rank_score">Points %1$d</string>
+    <string name="points_rank_level">Level %1$d</string>
+    <string name="points_rank_loading">Loading points ranking</string>
+    <string name="points_rank_empty">No ranking data yet</string>
+    <string name="points_rank_more">More Rankings</string>
+    <string name="points_rank_retry">Retry</string>
+    <string name="points_rank_load_failed">Load failed, please try again later</string>
+    <string name="points_rank_back">Back</string>
     <string name="not_yet_open">Not yet open</string>
     <string name="go_log_in">Go log in</string>
     <string name="square">square</string>

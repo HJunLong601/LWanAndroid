@@ -157,6 +157,9 @@ interface CoreApiServer {
     @GET("maven_pom/search/json")
     fun searchGoogleMaven(@Query("k")key: String) : Call<BaseResponse<List<MavenItemBean>>>
 
+    @GET("coin/rank/{page}/json")
+    fun getCoinRank(@Path("page") page: Int): Call<BaseResponse<CoinRankPageBean>>
+
 }
 
 //
