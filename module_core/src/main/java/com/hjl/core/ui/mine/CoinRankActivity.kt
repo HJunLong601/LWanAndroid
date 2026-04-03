@@ -55,6 +55,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
+import kotlin.math.absoluteValue
 
 @AndroidEntryPoint
 class CoinRankActivity : ComponentActivity() {
@@ -243,7 +244,7 @@ private fun TopRankSection(items: List<CoinRankItemBean>) {
         champion?.let {
             TopRankCard(
                 item = it,
-                title = "NO.1",
+                title = androidx.compose.ui.res.stringResource(id = R.string.points_rank_first),
                 modifier = Modifier.fillMaxWidth(),
                 colors = listOf(Color(0xFFF59E0B), Color(0xFFF97316))
             )
@@ -252,7 +253,7 @@ private fun TopRankSection(items: List<CoinRankItemBean>) {
             runnerUp?.let {
                 TopRankCard(
                     item = it,
-                    title = "NO.2",
+                    title = androidx.compose.ui.res.stringResource(id = R.string.points_rank_second),
                     modifier = Modifier.weight(1f),
                     colors = listOf(Color(0xFF94A3B8), Color(0xFF64748B))
                 )
@@ -260,7 +261,7 @@ private fun TopRankSection(items: List<CoinRankItemBean>) {
             secondRunnerUp?.let {
                 TopRankCard(
                     item = it,
-                    title = "NO.3",
+                    title = androidx.compose.ui.res.stringResource(id = R.string.points_rank_third),
                     modifier = Modifier.weight(1f),
                     colors = listOf(Color(0xFFFB7185), Color(0xFFF43F5E))
                 )
@@ -324,17 +325,21 @@ private fun TopRankCard(
 }
 
 @Composable
-private fun RankAvatarSeed(name: String) {
+private fun RankAvatarSeed(
+    name: String,
+    backgroundColor: Color = Color.White.copy(alpha = 0.18f),
+    textColor: Color = Color.White
+) {
     Box(
         modifier = Modifier
             .size(44.dp)
             .clip(CircleShape)
-            .background(Color.White.copy(alpha = 0.18f)),
+            .background(backgroundColor),
         contentAlignment = Alignment.Center
     ) {
         Text(
             text = name.take(1).uppercase(),
-            color = Color.White,
+            color = textColor,
             fontWeight = FontWeight.Bold
         )
     }
@@ -342,6 +347,9 @@ private fun RankAvatarSeed(name: String) {
 
 @Composable
 private fun RankListItem(item: CoinRankItemBean) {
+    val avatarPalette = remember(item.rank, item.userId, item.displayName) {
+        rankAvatarPalette(item)
+    }
     Surface(
         shape = RoundedCornerShape(20.dp),
         tonalElevation = 1.dp
@@ -359,7 +367,11 @@ private fun RankListItem(item: CoinRankItemBean) {
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary
             )
-            RankAvatarSeed(name = item.displayName)
+            RankAvatarSeed(
+                name = item.displayName,
+                backgroundColor = avatarPalette.background,
+                textColor = avatarPalette.content
+            )
             Spacer(modifier = Modifier.width(12.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(
@@ -499,4 +511,22 @@ private fun CoinRankEmpty(modifier: Modifier = Modifier) {
             color = Color(0xFF64748B)
         )
     }
+}
+
+private data class AvatarPalette(
+    val background: Color,
+    val content: Color
+)
+
+private fun rankAvatarPalette(item: CoinRankItemBean): AvatarPalette {
+    val palettes = listOf(
+        AvatarPalette(background = Color(0xFF0F766E), content = Color.White),
+        AvatarPalette(background = Color(0xFF1D4ED8), content = Color.White),
+        AvatarPalette(background = Color(0xFFB45309), content = Color.White),
+        AvatarPalette(background = Color(0xFFBE123C), content = Color.White),
+        AvatarPalette(background = Color(0xFF6D28D9), content = Color.White),
+        AvatarPalette(background = Color(0xFF047857), content = Color.White)
+    )
+    val seed = "${item.rank}_${item.userId}_${item.displayName}".hashCode().absoluteValue
+    return palettes[seed % palettes.size]
 }

@@ -50,11 +50,14 @@
     <string name="y_hv_nt_lggd_n_yt">您尚未登录</string>
     <string name="points_ranking">积分榜单</string>
     <string name="points_rank_subtitle">实时查看玩安卓积分排行</string>
+    <string name="points_rank_first">第1名</string>
+    <string name="points_rank_second">第2名</string>
+    <string name="points_rank_third">第3名</string>
     <string name="points_rank_score">积分 %1$d</string>
     <string name="points_rank_level">等级 %1$d</string>
     <string name="points_rank_loading">正在加载积分榜单</string>
     <string name="points_rank_empty">暂无积分数据</string>
-    <string name="points_rank_more">更多排名</string>
+    <string name="points_rank_more">后续排名</string>
     <string name="points_rank_retry">重新加载</string>
     <string name="points_rank_load_failed">加载失败，请稍后重试</string>
     <string name="points_rank_back">返回</string>
