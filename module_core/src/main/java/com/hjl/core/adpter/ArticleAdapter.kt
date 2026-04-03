@@ -1,27 +1,19 @@
 package com.hjl.core.adpter
 
 
-import android.app.Activity
 import android.content.Context
 import android.text.Html
 import android.text.SpannableStringBuilder
-import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import com.hjl.commonlib.base.BaseApplication
 import com.hjl.commonlib.base.ResourceManager
 import com.hjl.commonlib.customview.SpannableStringUtils
 import com.hjl.commonlib.utils.LogUtils
-import com.hjl.commonlib.utils.ToastUtil
 import com.hjl.core.R
-import com.hjl.core.base.HeadViewHolder
 import com.hjl.core.base.PagingDataAdapter
 import com.hjl.core.base.PagingDataViewHolder
 import com.hjl.core.databinding.CoreItemHomeArticleBinding
 import com.hjl.core.net.bean.HomeArticleBean
-import com.hjl.core.net.bean.HomeBannerBean
-import com.hjl.core.ui.SimpleWebActivity
-import com.youth.banner.Banner
-import com.youth.banner.indicator.CircleIndicator
 
 /**
  * author: long
@@ -30,9 +22,6 @@ import com.youth.banner.indicator.CircleIndicator
  */
 class ArticleAdapter(private val context : Context)
     : PagingDataAdapter<HomeArticleBean.Article,ArticleAdapter.HomeArticleViewHolder, CoreItemHomeArticleBinding>(diff) {
-
-    private var mBanner : Banner<HomeBannerBean, ImageBannerAdapter>? = null
-    var cacheBannerData : MutableList<HomeBannerBean>? = null
 
     var isRequestFocus = false
 
@@ -50,38 +39,6 @@ class ArticleAdapter(private val context : Context)
         }
 
         holder.addChildClick(R.id.home_article_like_iv)
-    }
-
-    override fun bindHeaderView(holder: HeadViewHolder) {
-        LogUtils.i("bindHeaderView")
-        val view = holder.itemView
-        mBanner = view.findViewById(R.id.home_banner)
-        mBanner?.addBannerLifecycleObserver(context as LifecycleOwner)
-            ?.setAdapter(ImageBannerAdapter(arrayListOf()))
-            ?.setIndicator(CircleIndicator(context))
-            ?.setLoopTime(2000)
-            ?.setIntercept(true)
-            ?.setOnBannerListener { data, position ->
-                val bean = data as HomeBannerBean
-                if (bean.url.isEmpty()) {
-                    ToastUtil.show("Hello World!")
-                } else {
-                    SimpleWebActivity.loadUrl(context as Activity, bean.url)
-                }
-            }?.start()
-
-        // 重复创建VH导致数据丢失 先这样赋值一个缓存的数据
-        cacheBannerData?.let {
-            LogUtils.i("cacheBannerData${it.size}")
-            mBanner?.setDatas(it)
-        }
-
-    }
-
-    fun setBannerData(data : MutableList<HomeBannerBean>) {
-        LogUtils.i("setBannerData${data.size}")
-//        mBanner?.setDatas(data)
-        cacheBannerData = data
     }
 
     private fun setAuthorText(item : HomeArticleBean.Article,binding: CoreItemHomeArticleBinding){

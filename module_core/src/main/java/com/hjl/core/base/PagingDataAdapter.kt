@@ -42,6 +42,7 @@ abstract class PagingDataAdapter<
     var headLayoutRes : Int = 0
     var headerView : View? = null
     var isNotifiedRefreshDone = false
+    private var isManualRefreshing = false
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -110,25 +111,37 @@ abstract class PagingDataAdapter<
     }
 
     fun bindRefreshLayout(refreshLayout : SwipeRefreshLayout,onRefreshDone : ()-> Unit = {}){
-        refreshLayout.setOnRefreshListener { refresh() }
+        refreshLayout.setOnRefreshListener {
+            isManualRefreshing = true
+            refreshLayout.isRefreshing = true
+            refresh()
+        }
         addLoadStateListener { loadStates ->
             when(loadStates.refresh){
                 is LoadState.Loading ->{
                     LogUtils.i("refresh Loading")
-                    refreshLayout.isRefreshing = true
-                    isNotifiedRefreshDone = false
+                    if (isManualRefreshing) {
+                        refreshLayout.isRefreshing = true
+                        isNotifiedRefreshDone = false
+                    }
                 }
                 is LoadState.Error ->{
-                    refreshLayout.isRefreshing = false
+                    if (isManualRefreshing) {
+                        refreshLayout.isRefreshing = false
+                        isManualRefreshing = false
+                    }
                     ToastUtil.show("Refresh Error")
                 }
                 is LoadState.NotLoading -> {
-                    refreshLayout.isRefreshing = false
                     LogUtils.i("refresh NotLoading")
-                    if (!isNotifiedRefreshDone){
+                    if (isManualRefreshing) {
+                        refreshLayout.isRefreshing = false
+                    }
+                    if (isManualRefreshing && !isNotifiedRefreshDone){
                         onRefreshDone.invoke()
                         isNotifiedRefreshDone = true
                     }
+                    isManualRefreshing = false
                 }
             }
 

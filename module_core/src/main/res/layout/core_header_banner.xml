@@ -4,9 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.youth.banner.Banner
+    <com.hjl.core.customview.HomeBannerView
         android:id="@+id/home_banner"
         android:layout_width="match_parent"
-        android:layout_height="208dp" />
+        android:layout_height="208dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
 
 </FrameLayout>

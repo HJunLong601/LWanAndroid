@@ -33,13 +33,16 @@
 | 阶段 7 | 补充当前用户积分卡片与未登录处理 | 已完成 | 榜单页增加当前用户积分卡片，已登录时展示昵称、积分、当前页排名和用户ID，未登录时展示登录引导；页面恢复时会同步刷新登录态 | `module_core/src/main/java/com/hjl/core/viewmodel/CoinRankViewModel.kt`、`module_core/src/main/java/com/hjl/core/ui/mine/CoinRankActivity.kt`、`module_core/src/main/res/values/strings.xml`、`module_core/src/main/res/values-en/strings.xml` | `f66529d` |
 | 阶段 7 | 收口积分榜标题栏与页面背景样式 | 已完成 | 积分榜页面标题栏改为贴近项目现有二级页的标题样式，页面基础背景收为纯白，减少与现有页面视觉偏差 | `module_core/src/main/java/com/hjl/core/ui/mine/CoinRankActivity.kt` | `b6ca58f` |
 | 阶段 7 | 补充页面标题与背景视觉规范 | 已完成 | 在项目文档中明确新增页面标题栏需与现有页面一致，页面背景默认纯白，避免后续页面风格继续漂移 | `AGENTS.md` | `b6ca58f` |
+| 阶段 7 | 修复首页启动时自动下滑问题 | 已完成 | 首页 `RecyclerView` 和 Banner 头部显式禁用焦点抢占，降低首次布局时因为子控件请求焦点导致的页面自动下滑 | `module_core/src/main/java/com/hjl/core/ui/main/HomeFragment.kt`、`module_core/src/main/java/com/hjl/core/adpter/ArticleAdapter.kt`、`module_core/src/main/res/layout/core_header_banner.xml` | `c290f72` |
+| 阶段 7 | 修复首屏自动加载导致的下拉位移 | 已完成 | 通用分页刷新逻辑改为仅在手动下拉时显示 `SwipeRefreshLayout` 刷新位移，避免首页和同类页面在首屏自动加载时被整体下推 | `module_core/src/main/java/com/hjl/core/base/PagingDataAdapter.kt` | 待提交 |
+| 阶段 7 | 修复首页列表头部结构导致的自动下滑根因 | 已完成 | 确认首页把 Banner 头部硬塞进 `PagingDataAdapter` 的实现会让 Paging 插入事件与真实列表结构不一致，首次数据回填时触发 `RecyclerView` 位置补偿；已改为 `ConcatAdapter(头部 Adapter + Paging Adapter)`，并保留 Banner 子视图的滚动/焦点拦截 | `module_core/src/main/java/com/hjl/core/adpter/HomeBannerHeaderAdapter.kt`、`module_core/src/main/java/com/hjl/core/ui/main/HomeFragment.kt`、`module_core/src/main/java/com/hjl/core/customview/HomeBannerView.kt`、`module_core/src/main/res/layout/core_header_banner.xml` | 待提交 |
 
 ## 最近一次执行
 
 - 时间：2026-04-03
-- 内容：收口积分榜页面标题栏与纯白背景样式，并将对应视觉规范补充进项目文档。
+- 内容：定位首页自动下滑根因到“Paging 列表内部伪造 header”与真实插入位置不一致，改为 `ConcatAdapter` 头部方案，并保留 Banner 子视图滚动拦截。
 - 验证：在工作区内 `.jdk17`、`.gradle-local`、`.temp-local`、`.android-local`、`.localappdata`、`.appdata` 目录下执行 `assembleDebug` 通过。
-- 提交：`b6ca58f`
+- 提交：未提交，真机验证已通过
 
 ## 当前判断
 
@@ -65,6 +68,10 @@
 - “我的”页里的“积分榜单”已经接到 Compose Activity，当前版本展示榜单首屏、前三高亮和滚动分页加载。
 - 当前积分榜页面的可见文案已统一为中文，后续排名头像已切换为更深的高对比配色。
 - 当前积分榜页面已补充当前用户积分区域，未登录时会展示登录引导，已登录时会展示本地积分和当前页排名匹配结果。
+- 首页启动时出现自动下滑的风险点已先按焦点抢占方向处理，后续如果仍复现，再继续排查状态恢复或布局回调链路。
+- 当前分页刷新逻辑已经避免在首屏自动加载时触发下拉位移，这个修复会同时覆盖首页、问答和广场等共用分页列表页面。
+- 已确认首页自动下滑的更深层风险点在列表结构：首页原来通过改 `PagingDataAdapter` 的 `getItemCount/getItemViewType` 伪造 Banner 头部，Paging 的插入位置并不知道这个头部存在，首次数据回填时容易触发 `RecyclerView` 位置补偿。
+- 当前首页已切换到正规 `ConcatAdapter` 头部结构，Banner 头部和文章分页列表完全解耦；Banner 自身也继续保留非无限轮播和子视图滚动拦截。
 - 当前剩余问题主要是废弃 API、无障碍与文案等告警，不影响编译、测试与 lint 通过。
 
 ## 下一步

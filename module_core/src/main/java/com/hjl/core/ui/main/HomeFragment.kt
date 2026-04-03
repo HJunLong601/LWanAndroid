@@ -2,8 +2,10 @@ package com.hjl.core.ui.main
 
 
 import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.fastjson.JSONObject
 import com.hjl.commonlib.base.BaseApplication
@@ -14,6 +16,7 @@ import com.hjl.commonlib.utils.SpUtils
 import com.hjl.commonlib.utils.ToastUtil
 import com.hjl.core.R
 import com.hjl.core.adpter.ArticleAdapter
+import com.hjl.core.adpter.HomeBannerHeaderAdapter
 import com.hjl.core.adpter.SimpleLoadStateAdapter
 import com.hjl.core.databinding.CoreFragmentHomeBinding
 import com.hjl.core.net.bean.HomeArticleBean
@@ -36,6 +39,7 @@ import kotlinx.coroutines.withContext
 class HomeFragment : BaseMVVMFragment2<CoreFragmentHomeBinding, HomeViewModel>(), View.OnClickListener {
 
     private lateinit var homeArticleAdapter: ArticleAdapter
+    private lateinit var homeBannerHeaderAdapter: HomeBannerHeaderAdapter
 
     private var currentCookie: String = ""
 
@@ -48,9 +52,11 @@ class HomeFragment : BaseMVVMFragment2<CoreFragmentHomeBinding, HomeViewModel>()
     }
 
     override fun initView() {
+        homeBannerHeaderAdapter = HomeBannerHeaderAdapter(requireActivity())
+
         viewModel.bannerData.observe(viewLifecycleOwner, Observer {
             if (it.isNullOrEmpty()) return@Observer
-            homeArticleAdapter.setBannerData(it.toMutableList())
+            homeBannerHeaderAdapter.submitBannerData(it)
         })
 
         binding.coreTitleLl.apply {
@@ -63,8 +69,6 @@ class HomeFragment : BaseMVVMFragment2<CoreFragmentHomeBinding, HomeViewModel>()
         currentCookie = SpUtils.getCookie()
 
         homeArticleAdapter = ArticleAdapter(requireContext()).also {
-
-            it.headLayoutRes = R.layout.core_header_banner
             it.bindRefreshLayout(binding.homeRefresh){
                 LogUtils.i("refresh done")
                 // 解决焦点问题
@@ -95,8 +99,14 @@ class HomeFragment : BaseMVVMFragment2<CoreFragmentHomeBinding, HomeViewModel>()
         }
 
         binding.homeRv.apply {
-            this.adapter = homeArticleAdapter.withLoadStateFooter(SimpleLoadStateAdapter())
+            this.adapter = ConcatAdapter(
+                homeBannerHeaderAdapter,
+                homeArticleAdapter.withLoadStateFooter(SimpleLoadStateAdapter())
+            )
             this.layoutManager = LinearLayoutManager(context)
+            descendantFocusability = ViewGroup.FOCUS_BLOCK_DESCENDANTS
+            isFocusable = false
+            isFocusableInTouchMode = false
             addDivider()
         }
 
@@ -114,7 +124,7 @@ class HomeFragment : BaseMVVMFragment2<CoreFragmentHomeBinding, HomeViewModel>()
             if (it.isNotEmpty()) {
                 val data = JSONObject.parseArray(it, HomeBannerBean::class.java)
                 LogUtils.i("Banner", "get Banner cache :$data")
-                lifecycleScope.launch(Dispatchers.Main) { homeArticleAdapter.setBannerData(data) }
+                lifecycleScope.launch(Dispatchers.Main) { homeBannerHeaderAdapter.submitBannerData(data) }
                 lifecycleScope.launch(Dispatchers.IO) {
                     delay(8000)
                     LogUtils.i("loadBannerData")
