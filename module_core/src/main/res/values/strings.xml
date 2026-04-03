@@ -55,6 +55,12 @@
     <string name="points_rank_third">第3名</string>
     <string name="points_rank_score">积分 %1$d</string>
     <string name="points_rank_level">等级 %1$d</string>
+    <string name="points_rank_current_user_title">我的积分</string>
+    <string name="points_rank_current_user_id">用户ID %1$d</string>
+    <string name="points_rank_current_user_rank">当前页排名 %1$s</string>
+    <string name="points_rank_current_user_not_in_page">当前页未上榜</string>
+    <string name="points_rank_current_user_login_tip">登录后可以查看你的当前积分和榜单信息</string>
+    <string name="points_rank_current_user_login_action">去登录</string>
     <string name="points_rank_loading">正在加载积分榜单</string>
     <string name="points_rank_empty">暂无积分数据</string>
     <string name="points_rank_more">后续排名</string>

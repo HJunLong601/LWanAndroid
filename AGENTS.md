@@ -241,4 +241,5 @@ class ExampleUnitTest {
 - **所有思考和回答必须使用中文**
 - **新增或修改的代码注释必须使用中文**
 - **Git 提交信息必须使用中文**
+- **所有新增页面必须继承项目基类；Compose 页面统一继承 `BaseComposeActivity`，不得直接继承系统 `Activity`/`ComponentActivity`**
 - 实现新功能时请遵循现有代码模式

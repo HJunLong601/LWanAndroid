@@ -49,8 +49,11 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hjl.core.R
 import com.hjl.core.net.bean.CoinRankItemBean
+import com.hjl.core.ui.login.LoginActivity
+import com.hjl.core.viewmodel.CurrentUserCoinInfo
 import com.hjl.core.viewmodel.CoinRankUiState
 import com.hjl.core.viewmodel.CoinRankViewModel
+import com.hjl.jetpacklib.mvvm.view.BaseComposeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
@@ -58,9 +61,14 @@ import kotlinx.coroutines.flow.map
 import kotlin.math.absoluteValue
 
 @AndroidEntryPoint
-class CoinRankActivity : ComponentActivity() {
+class CoinRankActivity : BaseComposeActivity() {
 
     private val viewModel: CoinRankViewModel by viewModels()
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshCurrentUser()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +80,7 @@ class CoinRankActivity : ComponentActivity() {
                 CoinRankScreen(
                     uiState = uiState,
                     onBack = ::finish,
+                    onLogin = { LoginActivity.startLoginActivity(this) },
                     onRetry = viewModel::refresh,
                     onLoadMore = viewModel::loadMore
                 )
@@ -95,6 +104,7 @@ private val CoinRankColorScheme = lightColorScheme(
 private fun CoinRankScreen(
     uiState: CoinRankUiState,
     onBack: () -> Unit,
+    onLogin: () -> Unit,
     onRetry: () -> Unit,
     onLoadMore: () -> Unit
 ) {
@@ -165,6 +175,13 @@ private fun CoinRankScreen(
                         HeroBanner()
                     }
 
+                    item {
+                        CurrentUserScoreCard(
+                            currentUserInfo = uiState.currentUserInfo,
+                            onLogin = onLogin
+                        )
+                    }
+
                     if (topItems.isNotEmpty()) {
                         item {
                             TopRankSection(items = topItems)
@@ -231,6 +248,118 @@ private fun HeroBanner() {
                 color = Color.White.copy(alpha = 0.92f)
             )
         }
+    }
+}
+
+@Composable
+private fun CurrentUserScoreCard(
+    currentUserInfo: CurrentUserCoinInfo,
+    onLogin: () -> Unit
+) {
+    Surface(
+        shape = RoundedCornerShape(24.dp),
+        tonalElevation = 2.dp
+    ) {
+        if (currentUserInfo.isLoggedIn) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 18.dp, vertical = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                Text(
+                    text = androidx.compose.ui.res.stringResource(id = R.string.points_rank_current_user_title),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = currentUserInfo.displayName.ifBlank {
+                        androidx.compose.ui.res.stringResource(id = R.string.go_log_in)
+                    },
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary
+                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    ScoreChip(
+                        text = androidx.compose.ui.res.stringResource(
+                            id = R.string.points_rank_score,
+                            currentUserInfo.coinCount
+                        ),
+                        backgroundColor = Color(0xFFE6FFFB),
+                        contentColor = Color(0xFF0F766E),
+                        modifier = Modifier.weight(1f)
+                    )
+                    ScoreChip(
+                        text = if (currentUserInfo.rankInCurrentPage.isNullOrBlank()) {
+                            androidx.compose.ui.res.stringResource(id = R.string.points_rank_current_user_not_in_page)
+                        } else {
+                            androidx.compose.ui.res.stringResource(
+                                id = R.string.points_rank_current_user_rank,
+                                currentUserInfo.rankInCurrentPage
+                            )
+                        },
+                        backgroundColor = Color(0xFFFFF7ED),
+                        contentColor = Color(0xFFC2410C),
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                Text(
+                    text = androidx.compose.ui.res.stringResource(
+                        id = R.string.points_rank_current_user_id,
+                        currentUserInfo.userId
+                    ),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Color(0xFF64748B)
+                )
+            }
+        } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 18.dp, vertical = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Text(
+                    text = androidx.compose.ui.res.stringResource(id = R.string.points_rank_current_user_title),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = androidx.compose.ui.res.stringResource(id = R.string.points_rank_current_user_login_tip),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color(0xFF475569)
+                )
+                Button(onClick = onLogin) {
+                    Text(text = androidx.compose.ui.res.stringResource(id = R.string.points_rank_current_user_login_action))
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ScoreChip(
+    text: String,
+    backgroundColor: Color,
+    contentColor: Color,
+    modifier: Modifier = Modifier
+) {
+    Box(
+        modifier = modifier
+            .clip(RoundedCornerShape(16.dp))
+            .background(backgroundColor)
+            .padding(horizontal = 14.dp, vertical = 12.dp)
+    ) {
+        Text(
+            text = text,
+            color = contentColor,
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.SemiBold
+        )
     }
 }
 

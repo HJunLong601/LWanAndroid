@@ -28,12 +28,14 @@
 | 阶段 5 | 升级核心依赖与应用兼容层 | 已完成 | 升级 `TheRouter 1.3.2`、`Hilt 2.51.1`、`Room 2.6.1`、`Paging 3.3.6`、`Lifecycle 2.8.7`、`AppCompat 1.7.0`、`Material 1.12.0`、`OkHttp 4.12.0`、`Retrofit 2.11.0`，并修复 `OkHttp 4` API 变更、Android 12+ `android:exported`、协程 `BroadcastChannel` 迁移、非传递 `R` 兼容、历史权限/格式化/lint 阻塞 | `buildSrc/src/main/kotlin/VersionConfig.kt`、`gradle.properties`、`commonlib/src/main/java/com/hjl/commonlib/network/interceptor/LogInterceptor.kt`、`commonlib/src/main/java/com/hjl/commonlib/utils/AndroidUtils.java`、`commonlib/src/main/AndroidManifest.xml`、`commonlib/src/main/res/layout/common_dialog_mark_content.xml`、`commonlib/src/main/res/layout/common_item_base_tv.xml`、`module_core/src/main/AndroidManifest.xml`、`module_core/src/moduledebug/AndroidManifest.xml`、`module_core/src/main/java/com/hjl/core/viewmodel/MavenViewModel.kt`、`module_core/src/main/java/com/hjl/core/viewmodel/HomeSearchViewModel.kt`、`module_core/src/main/java/com/hjl/core/ui/**`、`module_core/src/main/res/**`、`app/src/main/AndroidManifest.xml`、`app/src/main/java/com/hjl/lwanandroid/WanBaseActivity.kt` | `0a31906` |
 | 阶段 6 | 补最小测试面与回归验证 | 已完成 | `assembleDebug`、`test`、`lintDebug` 全部通过；升级闭环完成，当前剩余为非阻塞警告与体验级优化项 | `app/build.gradle.kts`、`app/build/reports/**`、各模块 `build/reports/**` | `0a31906` |
 | 阶段 7 | 实现“积分榜单”Compose 页面首版 | 已完成 | 在“我的”页接入积分榜单入口，基于 WanAndroid `coin/rank/{page}/json` 完成 Compose 榜单页面、首屏效果和分页加载 | `buildSrc/src/main/kotlin/VersionConfig.kt`、`module_core/build.gradle.kts`、`module_core/src/main/AndroidManifest.xml`、`module_core/src/main/java/com/hjl/core/net/CoreApiServer.kt`、`module_core/src/main/java/com/hjl/core/net/bean/CoinRankPageBean.kt`、`module_core/src/main/java/com/hjl/core/repository/CoinRankRepository.kt`、`module_core/src/main/java/com/hjl/core/viewmodel/CoinRankViewModel.kt`、`module_core/src/main/java/com/hjl/core/ui/mine/CoinRankActivity.kt`、`module_core/src/main/java/com/hjl/core/ui/mine/MineFragment.kt`、`module_core/src/main/res/values/strings.xml`、`module_core/src/main/res/values-en/strings.xml` | `9a0077c` |
-| 阶段 7 | 优化积分榜单中文文案与头像对比度 | 已完成 | 页面文案统一为中文显示，前三名标题改为中文，后续排名头像改为高对比实色底，提升可见性 | `module_core/src/main/java/com/hjl/core/ui/mine/CoinRankActivity.kt`、`module_core/src/main/res/values/strings.xml`、`module_core/src/main/res/values-en/strings.xml` | 待提交 |
+| 阶段 7 | 优化积分榜单中文文案与头像对比度 | 已完成 | 页面文案统一为中文显示，前三名标题改为中文，后续排名头像改为高对比实色底，提升可见性 | `module_core/src/main/java/com/hjl/core/ui/mine/CoinRankActivity.kt`、`module_core/src/main/res/values/strings.xml`、`module_core/src/main/res/values-en/strings.xml` | `8394f3a` |
+| 阶段 7 | 统一新增 Compose 页面基类约束 | 已完成 | 新增 `BaseComposeActivity` 复用现有 Activity 基类链路与多语言/换肤能力，积分榜页面切回项目基类体系，同时恢复英文资源文件 | `jetpacklib/src/main/java/com/hjl/jetpacklib/mvvm/view/BaseComposeActivity.kt`、`module_core/src/main/java/com/hjl/core/ui/mine/CoinRankActivity.kt`、`module_core/src/main/res/values-en/strings.xml`、`AGENTS.md` | 待提交 |
+| 阶段 7 | 补充当前用户积分卡片与未登录处理 | 已完成 | 榜单页增加当前用户积分卡片，已登录时展示昵称、积分、当前页排名和用户ID，未登录时展示登录引导；页面恢复时会同步刷新登录态 | `module_core/src/main/java/com/hjl/core/viewmodel/CoinRankViewModel.kt`、`module_core/src/main/java/com/hjl/core/ui/mine/CoinRankActivity.kt`、`module_core/src/main/res/values/strings.xml`、`module_core/src/main/res/values-en/strings.xml` | 待提交 |
 
 ## 最近一次执行
 
 - 时间：2026-04-03
-- 内容：优化“积分榜单”页面的中文文案与头像对比度，解决英文显示和后排头像过淡的问题。
+- 内容：为积分榜页面补充当前用户积分卡片和未登录引导，同时让 Compose 页面走统一基类链路。
 - 验证：在工作区内 `.jdk17`、`.gradle-local`、`.temp-local`、`.android-local`、`.localappdata`、`.appdata` 目录下执行 `assembleDebug` 通过。
 - 提交：待提交
 
@@ -56,8 +58,10 @@
 - `module_base` 的 Room/KAPT 还依赖临时目录中的 `sqlitejdbc.dll`，当前机器上需要把 `TEMP/TMP` 指到 ASCII 路径，例如 `E:\Temp`，否则会在 `:module_base:kaptDebugKotlin` 阶段失败。
 - 在当前环境下，可改用工作区内 `.gradle-local`、`.temp-local`、`.android-local` 目录并配合 JDK 17 完成稳定构建验证。
 - 当前仓库内已经具备 `module_core` 的 Compose 页面能力，可继续用同样方式接入新的独立页面。
+- 当前新增 Compose 页面已经有统一基类，后续页面应直接继承 `BaseComposeActivity`，保持和原有页面相同的基类治理方式。
 - “我的”页里的“积分榜单”已经接到 Compose Activity，当前版本展示榜单首屏、前三高亮和滚动分页加载。
 - 当前积分榜页面的可见文案已统一为中文，后续排名头像已切换为更深的高对比配色。
+- 当前积分榜页面已补充当前用户积分区域，未登录时会展示登录引导，已登录时会展示本地积分和当前页排名匹配结果。
 - 当前剩余问题主要是废弃 API、无障碍与文案等告警，不影响编译、测试与 lint 通过。
 
 ## 下一步

@@ -2,9 +2,13 @@ package com.hjl.core.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hjl.commonlib.utils.JsonUtils
 import com.hjl.jetpacklib.mvvm.exception.ExceptionHandler
 import com.hjl.core.net.bean.CoinRankItemBean
+import com.hjl.core.net.bean.UserBean
 import com.hjl.core.repository.CoinRankRepository
+import com.hjl.core.utils.SpUtils
+import com.hjl.core.utils.Utils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,12 +19,21 @@ import kotlinx.coroutines.launch
 
 data class CoinRankUiState(
     val items: List<CoinRankItemBean> = emptyList(),
+    val currentUserInfo: CurrentUserCoinInfo = CurrentUserCoinInfo(),
     val isLoading: Boolean = false,
     val isLoadingMore: Boolean = false,
     val errorMessage: String? = null,
     val loadMoreError: String? = null,
     val currentPage: Int = 0,
     val hasMore: Boolean = true
+)
+
+data class CurrentUserCoinInfo(
+    val isLoggedIn: Boolean = false,
+    val displayName: String = "",
+    val userId: Int = 0,
+    val coinCount: Int = 0,
+    val rankInCurrentPage: String? = null
 )
 
 @HiltViewModel
@@ -32,7 +45,14 @@ class CoinRankViewModel @Inject constructor(
     val uiState: StateFlow<CoinRankUiState> = _uiState.asStateFlow()
 
     init {
+        refreshCurrentUser()
         refresh()
+    }
+
+    fun refreshCurrentUser() {
+        _uiState.update { state ->
+            state.copy(currentUserInfo = buildCurrentUserInfo(state.items))
+        }
     }
 
     fun refresh() {
@@ -85,6 +105,7 @@ class CoinRankViewModel @Inject constructor(
 
                     state.copy(
                         items = mergedItems,
+                        currentUserInfo = buildCurrentUserInfo(mergedItems),
                         isLoading = false,
                         isLoadingMore = false,
                         errorMessage = null,
@@ -102,12 +123,14 @@ class CoinRankViewModel @Inject constructor(
                 _uiState.update { state ->
                     if (isRefresh) {
                         state.copy(
+                            currentUserInfo = buildCurrentUserInfo(state.items),
                             isLoading = false,
                             errorMessage = message,
                             loadMoreError = null
                         )
                     } else {
                         state.copy(
+                            currentUserInfo = buildCurrentUserInfo(state.items),
                             isLoading = false,
                             isLoadingMore = false,
                             loadMoreError = message
@@ -116,5 +139,34 @@ class CoinRankViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    private fun buildCurrentUserInfo(items: List<CoinRankItemBean>): CurrentUserCoinInfo {
+        if (!Utils.hasCookie()) {
+            return CurrentUserCoinInfo()
+        }
+
+        val userInfoJson = runCatching { SpUtils.getUserInfo() }.getOrDefault("")
+        if (userInfoJson.isBlank()) {
+            return CurrentUserCoinInfo(isLoggedIn = true)
+        }
+
+        val userInfo = runCatching {
+            JsonUtils.parseObject(userInfoJson, UserBean::class.java)
+        }.getOrNull() ?: return CurrentUserCoinInfo(isLoggedIn = true)
+
+        val matchedRankItem = items.firstOrNull { item ->
+            item.userId == userInfo.id ||
+                item.username == userInfo.username ||
+                item.nickname == userInfo.nickname
+        }
+
+        return CurrentUserCoinInfo(
+            isLoggedIn = true,
+            displayName = userInfo.nickname?.takeIf { it.isNotBlank() } ?: userInfo.username ?: "",
+            userId = userInfo.id,
+            coinCount = userInfo.coinCount,
+            rankInCurrentPage = matchedRankItem?.rank
+        )
     }
 }
