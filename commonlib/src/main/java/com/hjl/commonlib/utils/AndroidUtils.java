@@ -233,6 +233,7 @@ public class AndroidUtils {
     }
 
     // ----------------------------telephony_information----------------------------
+    @SuppressLint({"HardwareIds", "MissingPermission"})
     public static String getImei(Context context) {
         TelephonyManager localTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String imei = null;
@@ -245,6 +246,7 @@ public class AndroidUtils {
         return imei;
     }
 
+    @SuppressLint("MissingPermission")
     public static String getImsi(Context context) {
         TelephonyManager localTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String str = null;
@@ -254,6 +256,7 @@ public class AndroidUtils {
         return str;
     }
 
+    @SuppressLint("MissingPermission")
     public static String getIccid(Context context) {
         TelephonyManager localTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String str = null;
@@ -402,6 +405,7 @@ public class AndroidUtils {
         return simOperatorName;
     }
 
+    @SuppressLint("MissingPermission")
     public static Map<String, Object> getGSMCellLocationInfo(Context context) {
         TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String operator = manager.getNetworkOperator();
@@ -537,6 +541,7 @@ public class AndroidUtils {
         });
     }
 
+    @SuppressLint("MissingPermission")
     public static void vibrate(Context context, long milliseconds) {
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         if (vibrator != null) {

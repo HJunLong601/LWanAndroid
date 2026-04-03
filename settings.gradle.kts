@@ -1,3 +1,17 @@
+pluginManagement {
+    repositories {
+        maven("${rootDir.absolutePath}\\localMaven")
+        maven("https://maven.aliyun.com/repository/central")
+        maven("https://maven.aliyun.com/repository/google")
+        maven("https://maven.aliyun.com/repository/jcenter")
+        maven("https://maven.aliyun.com/nexus/content/groups/public")
+        maven("https://maven.aliyun.com/repository/gradle-plugin")
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
 include(":app")
 include(":commonlib")
 include(":module_base")

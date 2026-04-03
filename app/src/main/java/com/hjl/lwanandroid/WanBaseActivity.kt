@@ -1,8 +1,8 @@
 package com.hjl.lwanandroid
 
 import android.content.Context
+import com.hjl.commonlib.base.SkinBaseActivity
 import com.hjl.language.MultiLanguage
-import com.hjl.lwanandroid.skin.SkinBaseActivity
 
 abstract class WanBaseActivity : SkinBaseActivity() {
 
@@ -12,7 +12,7 @@ abstract class WanBaseActivity : SkinBaseActivity() {
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
-        permissions: Array<String?>,
+        permissions: Array<out String>,
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)

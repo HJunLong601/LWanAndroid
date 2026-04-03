@@ -53,11 +53,11 @@ class HomeSearchViewModel : BaseViewModel() {
 
     fun saveSearchHistory(item : String){
 
-        val data = historyList.value?.toMutableList()
-        data?.add(0,item)
+        val data = historyList.value?.toMutableList() ?: mutableListOf()
+        data.add(0,item)
 
-        if (data?.size!! > 10){
-            data.subList(0,10)
+        if (data.size > 10){
+            data.subList(10, data.size).clear()
         }
         // update local list
         historyList.postValue(data)

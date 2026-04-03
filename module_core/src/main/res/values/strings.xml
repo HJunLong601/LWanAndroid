@@ -4,7 +4,7 @@
 
     <string name="core_string_all_search_history">全部搜索记录</string>
     <string name="core_string_clear_search_history">清除搜索记录</string>
-    <string name="core_string_key_value_format">%s : %s</string>
+    <string name="core_string_key_value_format">%1$s : %2$s</string>
     <string name="core_string_group">group</string>
     <string name="core_string_artifact">artifact</string>
     <string name="core_string_version">version</string>
@@ -45,7 +45,7 @@
     <string name="log_out_and_log_in">退出登录</string>
     <string name="theme_skin">主题皮肤</string>
     <string name="maven_query">Maven查询</string>
-    <string name="id_s_points_s">ID:%s    积分: %s</string>
+    <string name="id_s_points_s">ID:%1$d    积分: %2$d</string>
     <string name="r_y_sr_t_lg_t">确定退出登录？</string>
     <string name="y_hv_nt_lggd_n_yt">您尚未登录</string>
     <string name="points_ranking">积分榜单</string>

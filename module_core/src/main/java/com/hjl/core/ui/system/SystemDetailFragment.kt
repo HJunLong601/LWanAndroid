@@ -39,8 +39,8 @@ class SystemDetailFragment : BaseMVVMFragment2<CoreFragmentSystemDetailBinding,H
 
     override fun initData() {
 
-        articleAdapter = ArticleAdapter(context!!)
-        courseId = arguments!!.getInt(Constant.INTENT_KEY01)
+        articleAdapter = ArticleAdapter(requireContext())
+        courseId = requireArguments().getInt(Constant.INTENT_KEY01)
     }
 
     override fun initView() {

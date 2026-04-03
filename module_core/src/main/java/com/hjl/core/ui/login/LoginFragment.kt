@@ -27,7 +27,7 @@ class LoginFragment : BaseMVVMFragment2<CoreFragmentLoginBinding, UserViewModel>
 
     override fun initViewModel() {
         // 共用LoginActivity创建的VM
-        viewModel = ViewModelProvider(activity!!).get(UserViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
     }
 
     override fun initView() {

@@ -37,6 +37,7 @@
             android:paddingTop="@dimen/padding_tiny_size"
             android:paddingBottom="@dimen/padding_tiny_size"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:text="14"/>
 
 

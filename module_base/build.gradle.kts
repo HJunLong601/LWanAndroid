@@ -1,17 +1,15 @@
 plugins {
     id("com.android.library")
-    id("kotlin-android")
-    id("kotlin-kapt")
+    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.kapt")
 }
 
 
 android {
     compileSdk = Android.compileSdkVersion
-    buildToolsVersion = Android.buildToolsVersion
 
     defaultConfig {
         minSdk = Android.minSdkVersion
-        targetSdk = Android.targetSdkVersion
     }
 
     compileOptions {
@@ -19,8 +17,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    dataBinding {
-        enable = true
+    buildFeatures {
+        dataBinding = true
     }
 
     kotlinOptions {

@@ -1,9 +1,9 @@
 object Android{
-    val compileSdkVersion = 31
+    val compileSdkVersion = 34
     val minSdkVersion = 21
-    val targetSdkVersion = 30
-    val buildToolsVersion = "30.0.3"
-    val kotlinVersion = "1.6.21"
+    val targetSdkVersion = 34
+    val buildToolsVersion = "34.0.0"
+    val kotlinVersion = "1.9.22"
 }
 
 object Dependencies{
@@ -15,17 +15,17 @@ object Dependencies{
     val glide_transformations = "jp.wasabeef:glide-transformations:4.0.1"
     val permissionx = "com.permissionx.guolindev:permissionx:1.1.1"
     val location = "com.tencent.map.geolocation:TencentLocationSdk-openplatform:7.2.6"
-    val router = "cn.therouter:router:1.2.1"
-    val routerApt = "cn.therouter:apt:1.2.1"
+    val router = "cn.therouter:router:1.3.2"
+    val routerApt = "cn.therouter:apt:1.3.2"
 }
 
 object AndroidSupport {
-    val appcompat = "androidx.appcompat:appcompat:1.2.0"
-    val activityKtx = "androidx.activity:activity-ktx:1.4.0"
-    val fragmentKtx = "androidx.fragment:fragment-ktx:1.4.0"
-    val material = "com.google.android.material:material:1.3.0"
-    val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
+    val appcompat = "androidx.appcompat:appcompat:1.7.0"
+    val activityKtx = "androidx.activity:activity-ktx:1.9.3"
+    val fragmentKtx = "androidx.fragment:fragment-ktx:1.8.6"
+    val material = "com.google.android.material:material:1.12.0"
+    val lifecycle_extensions = "androidx.lifecycle:lifecycle-common-java8:2.8.7"
+    val recyclerview = "androidx.recyclerview:recyclerview:1.3.2"
 }
 
 object RxJava2{
@@ -35,15 +35,15 @@ object RxJava2{
 }
 
 object NetWork{
-    val okhttp = "com.squareup.okhttp3:okhttp:3.9.1"
-    val retrofit = "com.squareup.retrofit2:retrofit:2.4.0"
-    val retrofit_gson = "com.squareup.retrofit2:converter-gson:2.4.0"
-    val retrofit_rxjava2 =  "com.squareup.retrofit2:adapter-rxjava2:2.4.0"
-    val retrofit_scalars =  "com.squareup.retrofit2:converter-scalars:2.4.0"
+    val okhttp = "com.squareup.okhttp3:okhttp:4.12.0"
+    val retrofit = "com.squareup.retrofit2:retrofit:2.11.0"
+    val retrofit_gson = "com.squareup.retrofit2:converter-gson:2.11.0"
+    val retrofit_rxjava2 =  "com.squareup.retrofit2:adapter-rxjava2:2.11.0"
+    val retrofit_scalars =  "com.squareup.retrofit2:converter-scalars:2.11.0"
 }
 
 object View{
-    val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.4"
+    val constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.4"
     val skeleton = "com.ethanhua:skeleton:1.1.2"
     val circleimageview =  "de.hdodenhof:circleimageview:2.1.0"
     val photoView =  "com.github.chrisbanes:PhotoView:2.0.0"
@@ -63,20 +63,20 @@ object WebView{
 }
 
 object KT{
-    val ktx = "androidx.core:core-ktx:1.6.0"
-    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0"
-    val kt_stdlib_jdk7 ="org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Android.kotlinVersion}"
+    val ktx = "androidx.core:core-ktx:1.13.1"
+    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1"
+    val kt_stdlib_jdk7 ="org.jetbrains.kotlin:kotlin-stdlib:${Android.kotlinVersion}"
 }
 
 object Jetpack{
-    val paging3 = "androidx.paging:paging-runtime:3.0.0"
-    val paging3_rxjava = "androidx.paging:paging-rxjava2:3.0.0" // optional
-    val hilt = "com.google.dagger:hilt-android:2.44"
-    val hilt_compiler = "com.google.dagger:hilt-compiler:2.44"
-    val room = "androidx.room:room-runtime:2.2.0"
-    val room_compiler = "androidx.room:room-compiler:2.2.0"
-    val room_ktx = "androidx.room:room-ktx:2.2.0"
-    val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
+    val paging3 = "androidx.paging:paging-runtime:3.3.6"
+    val paging3_rxjava = "androidx.paging:paging-rxjava2:3.3.6" // optional
+    val hilt = "com.google.dagger:hilt-android:2.51.1"
+    val hilt_compiler = "com.google.dagger:hilt-compiler:2.51.1"
+    val room = "androidx.room:room-runtime:2.6.1"
+    val room_compiler = "androidx.room:room-compiler:2.6.1"
+    val room_ktx = "androidx.room:room-ktx:2.6.1"
+    val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7"
 
 }
 

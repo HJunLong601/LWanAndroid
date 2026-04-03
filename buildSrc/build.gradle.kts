@@ -1,8 +1,11 @@
 
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 
 buildscript{
 
-    val kotlinVersion = "1.6.21"
+    val kotlinVersion = "1.9.22"
 
     repositories {
         maven("https://maven.aliyun.com/repository/central" )
@@ -15,7 +18,7 @@ buildscript{
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle-api:7.4.2")
+        classpath("com.android.tools.build:gradle-api:8.5.2")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
 
     }
@@ -47,7 +50,7 @@ dependencies {
     // groovy sdk
     implementation(localGroovy())
     // android build tools
-    implementation ("com.android.tools.build:gradle-api:7.4.2")
+    implementation ("com.android.tools.build:gradle-api:8.5.2")
 
 
     // third dependencies
@@ -58,7 +61,7 @@ dependencies {
     implementation("commons-io:commons-io:2.4")
     implementation("commons-codec:commons-codec:1.10")
 
-    val kotlinVersion = "1.6.21"
+    val kotlinVersion = "1.9.22"
 //    annotationProcessor("com.google.auto.service:auto-service:1.0")
     api("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     api("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
@@ -66,8 +69,14 @@ dependencies {
 
 tasks.withType(JavaCompile::class.java){
     options.encoding = "UTF-8"
-    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-    targetCompatibility = JavaVersion.VERSION_1_8.toString()
+    sourceCompatibility = JavaVersion.VERSION_17.toString()
+    targetCompatibility = JavaVersion.VERSION_17.toString()
+}
+
+tasks.withType(KotlinCompile::class.java).configureEach {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
+    }
 }
 
 publishing {

@@ -34,7 +34,7 @@ class MavenActivity : BaseMVVMActivity<CoreActivityMavenBinding, MavenViewModel>
             LogUtils.d(KTAG,allPackageList.toString())
 
             lifecycleScope.launchWhenResumed {
-                viewModel.searchTipFlow?.collect {
+                viewModel.searchTipFlow.collect {
                     LogUtils.d(KTAG,"getFilterList:${it.size}")
                     if (it.isEmpty() || (it.size == 1 && it[0].equals(binding.coreMavenSearchEv.text.toString()))){
                         binding.coreMavenTipRv.visibility = View.GONE
@@ -69,7 +69,7 @@ class MavenActivity : BaseMVVMActivity<CoreActivityMavenBinding, MavenViewModel>
 
         binding.coreMavenSearchEv.doAfterTextChanged {
             if (it.toString().isNotEmpty()){
-                viewModel.searchKeyChannel.trySend(it.toString())
+                viewModel.searchKeyFlow.tryEmit(it.toString())
             }else{
                 binding.coreMavenTipRv.visibility = View.GONE
             }

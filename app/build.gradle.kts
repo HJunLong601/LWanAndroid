@@ -3,18 +3,16 @@ import java.util.Date
 
 plugins {
     id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-kapt")
-
+    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.kapt")
     id("therouter")
-    id("dagger.hilt.android.plugin")
+    id("com.google.dagger.hilt.android")
 //    id("com.hjl.plugin")
 }
 
 android {
 
     compileSdk = Android.compileSdkVersion
-    buildToolsVersion = Android.buildToolsVersion
 
     defaultConfig {
         applicationId = "com.hjl.lwanandroid"
@@ -38,8 +36,17 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    dataBinding {
-        enable = true
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    buildFeatures {
+        dataBinding = true
+        buildConfig = true
+    }
+
+    lint {
+        disable += "NotificationPermission"
     }
 
     buildTypes {

@@ -24,23 +24,23 @@
 | 阶段 4 | 移除默认构建链路中的 Booster | 已完成 | `app` 不再应用 `com.didiglobal.booster`，根构建也不再加载 Booster Gradle 插件；历史 Booster 相关源码继续保留但不再参与主构建 | `app/build.gradle.kts`、`build.gradle.kts`、`README.md` | 待提交 |
 | 阶段 4 | 确认剩余 Transform 警告来源 | 已完成 | 反编译确认 `TheRouter` 插件会在 `apply(Project)` 中调用 `registerTransform`，当前项目仍在使用 `@Route` 与 `TheRouter.build(...).navigation()`，因此它是现阶段升级到 AGP 8 前的剩余主要构建阻塞之一 | `app/build.gradle.kts`、`module_core/src/main/java/com/hjl/core/ui/mine/MineFragment.kt`、`module_func/func_language/src/main/java/com/hjl/language/impl/LanguageSettingActivity.kt`、`module_func/func_skin/src/main/java/com/hjl/skin/SkinActivity.kt` | 待提交 |
 | 阶段 4 | 收口业务层的路由调用入口 | 已完成 | 在 `module_base` 新增统一导航入口 `RouterNavigator`，`MineFragment` 不再直接调用 `TheRouter.build(...).navigation()`；后续如果升级或替换路由框架，业务层改动面会更小 | `module_base/src/main/java/com/hjl/module_base/router/RouterNavigator.kt`、`module_core/src/main/java/com/hjl/core/ui/mine/MineFragment.kt` | 待提交 |
-| 阶段 4 | 升级 Gradle/AGP/Kotlin/SDK 基线 | 未开始 | 待处理 | `gradle/wrapper/gradle-wrapper.properties`、`build.gradle.kts`、`buildSrc/src/main/kotlin/VersionConfig.kt` |  |
-| 阶段 5 | 升级核心依赖与应用兼容层 | 未开始 | 待处理 | `buildSrc/src/main/kotlin/VersionConfig.kt`、各模块 `build.gradle.kts`、网络/数据库/分页相关代码 |  |
-| 阶段 6 | 补最小测试面与回归验证 | 未开始 | 待处理 | `module_core/src/test/**`、`module_base/src/test/**` 等 |  |
+| 阶段 4 | 升级 Gradle/AGP/Kotlin/SDK 基线 | 已完成 | 根工程切换到现代插件声明；Gradle 升级到 `8.7`，AGP 升级到 `8.5.2`，Kotlin 升级到 `1.9.22`，`compileSdk/targetSdk` 升级到 `34`，并完成 JDK 17 构建验证 | `gradle/wrapper/gradle-wrapper.properties`、`build.gradle.kts`、`settings.gradle.kts`、`buildSrc/build.gradle.kts`、`buildSrc/src/main/kotlin/VersionConfig.kt`、各模块 `build.gradle.kts` | 待提交 |
+| 阶段 5 | 升级核心依赖与应用兼容层 | 已完成 | 升级 `TheRouter 1.3.2`、`Hilt 2.51.1`、`Room 2.6.1`、`Paging 3.3.6`、`Lifecycle 2.8.7`、`AppCompat 1.7.0`、`Material 1.12.0`、`OkHttp 4.12.0`、`Retrofit 2.11.0`，并修复 `OkHttp 4` API 变更、Android 12+ `android:exported`、协程 `BroadcastChannel` 迁移、非传递 `R` 兼容、历史权限/格式化/lint 阻塞 | `buildSrc/src/main/kotlin/VersionConfig.kt`、`gradle.properties`、`commonlib/src/main/java/com/hjl/commonlib/network/interceptor/LogInterceptor.kt`、`commonlib/src/main/java/com/hjl/commonlib/utils/AndroidUtils.java`、`commonlib/src/main/AndroidManifest.xml`、`commonlib/src/main/res/layout/common_dialog_mark_content.xml`、`commonlib/src/main/res/layout/common_item_base_tv.xml`、`module_core/src/main/AndroidManifest.xml`、`module_core/src/moduledebug/AndroidManifest.xml`、`module_core/src/main/java/com/hjl/core/viewmodel/MavenViewModel.kt`、`module_core/src/main/java/com/hjl/core/viewmodel/HomeSearchViewModel.kt`、`module_core/src/main/java/com/hjl/core/ui/**`、`module_core/src/main/res/**`、`app/src/main/AndroidManifest.xml`、`app/src/main/java/com/hjl/lwanandroid/WanBaseActivity.kt` | 待提交 |
+| 阶段 6 | 补最小测试面与回归验证 | 已完成 | `assembleDebug`、`test`、`lintDebug` 全部通过；升级闭环完成，当前剩余为非阻塞警告与体验级优化项 | `app/build.gradle.kts`、`app/build/reports/**`、各模块 `build/reports/**` | 待提交 |
 
 ## 最近一次执行
 
 - 时间：2026-04-03
-- 内容：新增统一路由入口 `RouterNavigator`，继续降低业务层对 `TheRouter` 的直接依赖。
-- 验证：通过工作区内 `.gradle-local`、`.temp-local`、`.android-local` 目录执行直接 Gradle 发行版构建，`assembleDebug` 通过。
+- 内容：完成 Gradle/AGP/Kotlin/SDK 基线升级、核心依赖升级与 Android 12+/13+ 兼容修复，并清零 `lintDebug` 阻塞错误。
+- 验证：在工作区内 `.gradle-local`、`.temp-local`、`.android-local` 目录下，基于 JDK 17 执行 `assembleDebug`、`test`、`lintDebug` 全部通过。
 - 提交：待提交
 
 ## 当前判断
 
-- 当前可工作的稳定组合是：Gradle 7.5 + AGP 7.4.2 + Kotlin 1.6.21 + JDK 11。
+- 当前可工作的稳定组合是：Gradle 8.7 + AGP 8.5.2 + Kotlin 1.9.22 + JDK 17。
 - `app` 实际启用了 `Booster`、`TheRouter` 和 `Hilt`。
 - `SkinApplicationTransformer` 基于 Booster 的 Transform/ASM 链路运行，是升级 AGP 8 的首要阻塞点。
-- `TheRouter` 当前可正常工作，但也依赖旧构建链路，需要在升级前单独验证。
+- `TheRouter` 已升级到 `1.3.2`，当前可在 AGP 8 链路下正常工作。
 - `com.hjl.plugin` 自定义插件当前在 `app/build.gradle.kts` 中是注释状态，不是当前主阻塞项。
 - 显式继承方案本身方向正确，但需要先解决模块分层问题，不能让基础模块依赖 `app`。
 - 目前换肤能力已经可由公共基类显式承接，后续可以继续收缩 `WanBaseActivity` 和历史 skin-plugin 产物。
@@ -48,14 +48,14 @@
 - 旧 `skin-plugin` 之所以仍出现在构建 classpath，不是因为 `app` 应用了插件，而是因为根脚本依赖的 `custom-plugin:1.0.1` 在本地 Maven 中声明了对 `skin-plugin:1.0.0` 的运行时依赖。
 - 当前默认 App 构建图已经不再加载历史插件工程，也不再依赖 `custom-plugin` buildscript classpath；旧源码和本地 Maven 产物仍保留，便于后续单独整理。
 - 默认主构建链路中的 Booster 已移除，当前剩余的历史 Transform 相关代码只作为保留实现存在，不再默认参与 App 构建。
-- 当前仍然存在的 `android.registerTransform` 警告来自 `TheRouter` 官方插件，而不是项目自定义插件链。
-- `TheRouter` 在当前项目里仍承担页面路由能力，短期内不能像 Booster 一样直接移除，后续升级 AGP 8 前需要优先确认其可升级版本或替代方案。
+- 当前仍然存在的 `android.registerTransform` 警告来自 `TheRouter` 官方插件，而不是项目自定义插件链；但它已不再阻塞升级后的构建与验证。
 - 业务层直接依赖 `TheRouter` 的地方已经进一步收口到统一导航入口，目前明确的直接运行时调用主要集中在 `module_base` 的 `RouterNavigator`。
 - 当前机器上建议临时使用 ASCII 路径的 `GRADLE_USER_HOME` 进行构建验证，例如 `E:\GradleHome2`；否则默认 `C:\Users\龙\.gradle` 在 daemon 启动阶段存在路径编码问题。
 - `module_base` 的 Room/KAPT 还依赖临时目录中的 `sqlitejdbc.dll`，当前机器上需要把 `TEMP/TMP` 指到 ASCII 路径，例如 `E:\Temp`，否则会在 `:module_base:kaptDebugKotlin` 阶段失败。
-- 在沙箱环境下，可改用工作区内 `.gradle-local`、`.temp-local`、`.android-local` 目录并直接调用已解压的 Gradle 7.5 发行版完成构建验证。
+- 在当前环境下，可改用工作区内 `.gradle-local`、`.temp-local`、`.android-local` 目录并配合 JDK 17 完成稳定构建验证。
+- 当前剩余问题主要是废弃 API、无障碍与文案等告警，不影响编译、测试与 lint 通过。
 
 ## 下一步
 
-- 在保留旧实现文件的前提下，开始进入 Gradle/AGP/Kotlin/SDK 基线升级准备，优先评估 `TheRouter` 从 1.2.1 升级到兼容 AGP 8 的版本路径。
-- 然后再进入 Gradle/AGP/Kotlin/SDK 基线升级准备，这时阻塞会比之前小很多。
+- 当前没有阻塞升级闭环的必做项。
+- 后续如继续演进，优先处理废弃 API、`launchWhenStarted/launchWhenResumed` 迁移、`resources.getDrawable` 替换与可访问性告警。

@@ -62,7 +62,7 @@ class HomeFragment : BaseMVVMFragment2<CoreFragmentHomeBinding, HomeViewModel>()
 
         currentCookie = SpUtils.getCookie()
 
-        homeArticleAdapter = ArticleAdapter(this.context!!).also {
+        homeArticleAdapter = ArticleAdapter(requireContext()).also {
 
             it.headLayoutRes = R.layout.core_header_banner
             it.bindRefreshLayout(binding.homeRefresh){

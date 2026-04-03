@@ -5,7 +5,7 @@
 
     <string name="core_string_all_search_history">All the search records</string>
     <string name="core_string_clear_search_history">Clear search records</string>
-    <string name="core_string_key_value_format">%s : %s</string>
+    <string name="core_string_key_value_format">%1$s : %2$s</string>
     <string name="core_string_group">group</string>
     <string name="core_string_artifact">artifact</string>
     <string name="core_string_version">version</string>
@@ -47,7 +47,7 @@
     <string name="log_out_and_log_in">Log out and log in</string>
     <string name="theme_skin">Theme Skin</string>
     <string name="maven_query">Maven query</string>
-    <string name="id_s_points_s">ID:% s Points:% s</string>
+    <string name="id_s_points_s">ID:%1$d Points:%2$d</string>
     <string name="r_y_sr_t_lg_t">Are you sure to log out?</string>
     <string name="y_hv_nt_lggd_n_yt">You have not logged in yet</string>
     <string name="points_ranking">Points Ranking</string>

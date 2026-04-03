@@ -4,7 +4,7 @@ import android.util.Log
 import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.Response
-import okhttp3.ResponseBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 import java.io.IOException
 
 /**
@@ -18,20 +18,21 @@ class LogInterceptor : Interceptor {
         val response = chain.proceed(request)
         val endTime = System.currentTimeMillis()
         val duration = endTime - startTime
-        val mediaType = response.body()!!.contentType()
-        val content = response.body()!!.string()
+        val responseBody = response.body ?: return response
+        val mediaType = responseBody.contentType()
+        val content = responseBody.string()
         Log.d(TAG, "---------------------Request Start---------------------------")
 //        Log.d(TAG, "|${request.url()}")
         Log.d(TAG, "|${request}")
-        val method = request.method()
+        val method = request.method
         if ("POST" == method) {
-            if (request.body() is FormBody) {
-                val body = request.body() as FormBody?
-                for (i in 0 until body!!.size()) {
+            val requestBody = request.body
+            if (requestBody is FormBody) {
+                for (i in 0 until requestBody.size) {
                     Log.i(
                         TAG,
-                        "| RequestParams:{params :${body.encodedName(i)} values:${
-                            body.encodedValue(i)
+                        "| RequestParams:{params :${requestBody.encodedName(i)} values:${
+                            requestBody.encodedValue(i)
                         }}"
                     )
                 }
@@ -40,7 +41,7 @@ class LogInterceptor : Interceptor {
         Log.d(TAG, "Response: ")
         Log.d(TAG, "| Response:$content")
         Log.d(TAG, "------------------End Request Cost: $duration ms ------------------")
-        return response.newBuilder().body(ResponseBody.create(mediaType, content)).build()
+        return response.newBuilder().body(content.toResponseBody(mediaType)).build()
     }
 
     companion object {

@@ -30,7 +30,7 @@ public abstract class BaseMultipleActivity extends SkinBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.Theme_AppCompat_NoActionBar);
+        setTheme(R.style.AppTheme);
 
         setContentView(getLayoutId());
 

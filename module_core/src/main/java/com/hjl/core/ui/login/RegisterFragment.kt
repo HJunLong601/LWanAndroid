@@ -27,7 +27,7 @@ class RegisterFragment : BaseMVVMFragment2<CoreFragmentRegisterBinding, UserView
 
     override fun initViewModel() {
         // 共用LoginActivity创建的VM
-        viewModel = ViewModelProvider(activity!!).get(UserViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
     }
 
     override fun initView() {

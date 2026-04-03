@@ -164,7 +164,7 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
         when(v!!.id){
             R.id.mine_user_icon_iv,R.id.mine_user_icon_iv ->{
                 if (!Utils.hasCookie()){
-                    LoginActivity.startLoginActivity(activity!!)
+                    LoginActivity.startLoginActivity(requireActivity())
                 }
             }
         }

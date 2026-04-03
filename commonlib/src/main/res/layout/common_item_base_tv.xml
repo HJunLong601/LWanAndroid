@@ -23,9 +23,12 @@
         tools:text="选项" />
     <View
         android:id="@+id/item_lineview"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
         android:layout_marginTop="@dimen/margin_normal_size"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/common_divider_line_color"/>
+        android:background="@color/common_divider_line_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

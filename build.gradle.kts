@@ -1,7 +1,14 @@
-buildscript {
+plugins {
+    id("com.android.application") version "8.5.2" apply false
+    id("com.android.library") version "8.5.2" apply false
+    id("org.jetbrains.kotlin.android") version "1.9.22" apply false
+    id("org.jetbrains.kotlin.kapt") version "1.9.22" apply false
+    id("com.google.dagger.hilt.android") version "2.51.1" apply false
+}
 
+buildscript {
     repositories {
-        maven(".\\localMaven")
+        maven("${rootDir.absolutePath}\\localMaven")
         maven("https://maven.aliyun.com/repository/central")
         maven("https://maven.aliyun.com/repository/google")
         maven("https://maven.aliyun.com/repository/jcenter")
@@ -11,10 +18,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:7.4.2")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Android.kotlinVersion}")
-        classpath("cn.therouter:plugin:1.2.1")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.44")
+        classpath("cn.therouter:plugin:1.3.2")
     }
 }
 
