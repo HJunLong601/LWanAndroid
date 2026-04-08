@@ -1,5 +1,7 @@
+import com.android.build.api.variant.impl.VariantOutputImpl
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 plugins {
     id("com.android.application")
@@ -19,15 +21,15 @@ android {
         minSdk = Android.minSdkVersion
         targetSdk = Android.targetSdkVersion
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
     }
 
     signingConfigs {
 //        create("release") {
-//            storeFile(File(properties["RELEASE_STORE_FILE"] as String))
-//            storePassword(properties["RELEASE_STORE_PASSWORD"] as String)
-//            keyAlias(properties["RELEASE_KEY_ALIAS"] as String)
-//            keyPassword(properties["RELEASE_KEY_PASSWORD"] as String)
+//            storeFile = File(properties["RELEASE_STORE_FILE"] as String)
+//            storePassword = properties["RELEASE_STORE_PASSWORD"] as String
+//            keyAlias = properties["RELEASE_KEY_ALIAS"] as String
+//            keyPassword = properties["RELEASE_KEY_PASSWORD"] as String
 //        }
     }
 
@@ -76,24 +78,21 @@ android {
         }
     }
     namespace = "com.hjl.lwanandroid"
+}
 
-//    applicationVariants.all { variant ->
-//
-//        variant.outputs.all { output ->
-//            if (variant.buildType.name == "release") {
-//                // 修改输出目录
-//                variant.getPackageApplicationProvider().get().outputDirectory = File("${rootDir}\\output")
-//                // 修改 apk 名称
-//                outputFileName = "WanAndroid-${variant.buildType.name}-${buildTime()}-${defaultConfig.versionCode}.apk"
-//            }
-//        }
-//
-//    }
+androidComponents {
+    onVariants(selector().withBuildType("release")) { variant ->
+        val versionCode = android.defaultConfig.versionName ?: 1
+        val apkName = "WanAndroid-${variant.buildType}-$versionCode.apk"
+        variant.outputs.forEach { output ->
+            (output as VariantOutputImpl).outputFileName.set(apkName)
+        }
+    }
 }
 
 fun buildTime(): String {
     val date = Date(System.currentTimeMillis())
-    val sdf = SimpleDateFormat("MM_dd_HH_mm")
+    val sdf = SimpleDateFormat("MM_dd_HH_mm", Locale.getDefault())
     return sdf.format(date)
 }
 
