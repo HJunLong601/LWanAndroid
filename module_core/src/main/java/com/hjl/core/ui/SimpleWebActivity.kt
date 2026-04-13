@@ -16,6 +16,7 @@ import com.hjl.commonlib.utils.AndroidUtils
 import com.hjl.commonlib.utils.DensityUtil
 import com.hjl.commonlib.utils.LogUtils
 import com.hjl.commonlib.utils.StatusBarUtil
+import com.hjl.commonlib.utils.WanAndroidUrlUtils
 import com.hjl.core.R
 import com.hjl.core.databinding.CoreActivitySimpleWebBinding
 import com.tencent.smtt.sdk.WebChromeClient
@@ -57,7 +58,9 @@ open class SimpleWebActivity : AppCompatActivity() {
         )
 
 
-        val url = intent.getStringExtra(Constant.INTENT_KEY01)
+        val url = WanAndroidUrlUtils.normalizeWanAndroidUrl(
+            intent.getStringExtra(Constant.INTENT_KEY01)
+        ) ?: ""
         LogUtils.i("load url:$url")
 
         progressBar = CircleProgressButton(this)
@@ -156,7 +159,7 @@ open class SimpleWebActivity : AppCompatActivity() {
 
         fun loadUrl(activity: Activity,url : String){
             val intent  = Intent(activity,SimpleWebActivity::class.java)
-            intent.putExtra(Constant.INTENT_KEY01,url)
+            intent.putExtra(Constant.INTENT_KEY01, WanAndroidUrlUtils.normalizeWanAndroidUrl(url))
             activity.startActivity(intent)
         }
 

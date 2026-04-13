@@ -4,7 +4,9 @@ import com.hjl.commonlib.network.interceptor.CacheInterceptor;
 import com.hjl.commonlib.network.interceptor.CookieInterceptor;
 import com.hjl.commonlib.network.interceptor.LogInterceptor;
 import com.hjl.commonlib.network.interceptor.RetryInterceptor;
+import com.hjl.commonlib.network.interceptor.WanAndroidDomainInterceptor;
 import com.hjl.commonlib.utils.FileUtils;
+import com.hjl.commonlib.utils.WanAndroidUrlUtils;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -18,7 +20,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiRetrofit {
 
-    public final String BASE_SERVER_URL = "https://www.wanandroid.com/";
+    public final String BASE_SERVER_URL = WanAndroidUrlUtils.PRIMARY_BASE_URL;
     private volatile static ApiRetrofit apiRetrofit;
     private Retrofit retrofit;
     private Retrofit retrofitWithoutGson;
@@ -34,6 +36,7 @@ public class ApiRetrofit {
 
 
         okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(new WanAndroidDomainInterceptor())
                 //添加log拦截器
                 .addInterceptor(new LogInterceptor())
                 .addInterceptor(new RetryInterceptor())

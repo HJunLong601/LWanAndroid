@@ -6,6 +6,7 @@ import android.net.Uri
 import android.util.AttributeSet
 import androidx.core.content.ContextCompat.startActivity
 import com.hjl.commonlib.utils.LogUtils
+import com.hjl.commonlib.utils.WanAndroidUrlUtils
 import com.tencent.smtt.sdk.WebSettings
 import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
@@ -37,12 +38,13 @@ class X5WebView : WebView {
 
         webViewClient =  object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                return if (url.startsWith("http")) {
-                    view.loadUrl(url)
+                val normalizedUrl = WanAndroidUrlUtils.normalizeWanAndroidUrl(url)
+                return if (normalizedUrl.startsWith("http")) {
+                    view.loadUrl(normalizedUrl)
                     true
                 } else {
                     try {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(normalizedUrl))
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         context.startActivity(intent)
                         true

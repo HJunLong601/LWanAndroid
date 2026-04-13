@@ -634,7 +634,7 @@ public class AndroidUtils {
 
     public static void openBrowser(Context context, String url) {
         try {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(WanAndroidUrlUtils.normalizeWanAndroidUrl(url)));
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         } catch (Exception e) {
