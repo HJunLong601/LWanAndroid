@@ -72,6 +72,7 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     val composeBom = platform(Compose.bom)
 
+    implementation(project(":module_ai"))
     api(project(":module_base"))
 
     api(View.flexbox)

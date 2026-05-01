@@ -15,3 +15,4 @@
 wankey.jks
 # Project exclude paths
 /gradle-plugin/skin-plugin/build/
+/module_ai/build/

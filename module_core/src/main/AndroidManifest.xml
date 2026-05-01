@@ -3,6 +3,7 @@
 
     <application android:usesCleartextTraffic="true">
         <activity android:name=".ui.mine.CoinRankActivity" />
+        <activity android:name=".ui.mine.LocalLlmActivity" />
         <activity android:name=".ui.mine.MavenSearchResultActivity" />
         <activity
             android:name=".ui.mine.MavenActivity"

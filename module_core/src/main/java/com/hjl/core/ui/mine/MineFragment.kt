@@ -142,6 +142,13 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
         )
         itemList.add(
             MineItemBean(
+                BaseApplication.getApplication().getString(R.string.local_llm_title),
+                Constant.ACTION_LOCAL_LLM,
+                R.drawable.core_icon_local_ai
+            )
+        )
+        itemList.add(
+            MineItemBean(
                 BaseApplication.getApplication().getString(R.string.language_settings),
                 Constant.ACTION_LANGUAGE,
                 R.drawable.core_icon_language
@@ -195,6 +202,10 @@ class MineFragment : BaseFragment2<CoreFragmentMineBinding>(), View.OnClickListe
 
             Constant.ACTION_RANK -> {
                 quickStartActivity(CoinRankActivity::class.java)
+            }
+
+            Constant.ACTION_LOCAL_LLM -> {
+                quickStartActivity(LocalLlmActivity::class.java)
             }
 
             Constant.ACTION_SKIN -> {

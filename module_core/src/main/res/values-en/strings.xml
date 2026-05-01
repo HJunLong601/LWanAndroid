@@ -47,6 +47,13 @@
     <string name="log_out_and_log_in">Log out and log in</string>
     <string name="theme_skin">Theme Skin</string>
     <string name="maven_query">Maven query</string>
+    <string name="local_llm_title">Local LLM</string>
+    <string name="local_llm_model_path">GGUF model path</string>
+    <string name="local_llm_load_model">Load model</string>
+    <string name="local_llm_prompt">Prompt</string>
+    <string name="local_llm_generate">Generate</string>
+    <string name="local_llm_stop">Stop</string>
+    <string name="local_llm_empty_answer">Generated result appears here</string>
     <string name="id_s_points_s">ID:%1$d Points:%2$d</string>
     <string name="r_y_sr_t_lg_t">Are you sure to log out?</string>
     <string name="y_hv_nt_lggd_n_yt">You have not logged in yet</string>

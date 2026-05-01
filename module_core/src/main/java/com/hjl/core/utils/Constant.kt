@@ -8,6 +8,7 @@ package com.hjl.core.utils
 object Constant {
 
     const val ACTION_RANK = "mine_rank"
+    const val ACTION_LOCAL_LLM = "mine_local_llm"
     const val ACTION_COLLECT = "mine_collect"
     const val ACTION_EXIT = "mine_exit"
     const val ACTION_MAVEN = "mine_maven"

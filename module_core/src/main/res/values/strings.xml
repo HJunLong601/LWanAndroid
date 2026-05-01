@@ -45,6 +45,13 @@
     <string name="log_out_and_log_in">退出登录</string>
     <string name="theme_skin">主题皮肤</string>
     <string name="maven_query">Maven查询</string>
+    <string name="local_llm_title">本地大模型</string>
+    <string name="local_llm_model_path">GGUF模型路径</string>
+    <string name="local_llm_load_model">加载模型</string>
+    <string name="local_llm_prompt">输入问题</string>
+    <string name="local_llm_generate">生成</string>
+    <string name="local_llm_stop">停止</string>
+    <string name="local_llm_empty_answer">生成结果会显示在这里</string>
     <string name="id_s_points_s">ID:%1$d    积分: %2$d</string>
     <string name="r_y_sr_t_lg_t">确定退出登录？</string>
     <string name="y_hv_nt_lggd_n_yt">您尚未登录</string>
